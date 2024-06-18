@@ -24,4 +24,12 @@ public class Categoria {
     public String getNombre() {
         return nombre;
     }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id_categoria=" + id_categoria +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

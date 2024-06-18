@@ -1,24 +1,20 @@
 package pe.edu.utp.model;
 
-public class Producto {
+public class Servicio {
 
-
-    //ATRIBUTOS PRODUCTOS
-    public String codigo_producto;
-    public int categoria;
+    //ATRIBUTOS
+    public int id_servicio;
     public String nombre;
     public String descripcion;
     public double precio;
     public String imagen;
 
     //CONSTRUCTOR VACIO
-    public Producto() {
+    public Servicio() {
     }
 
     //CONSTRUCTOR LLENO
-    public Producto(String codigo_producto, int categoria, String nombre, String descripcion, double precio, String imagen) {
-        this.codigo_producto = codigo_producto;
-        this.categoria = categoria;
+    public Servicio(String nombre, String descripcion, double precio, String imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -26,12 +22,8 @@ public class Producto {
     }
 
     //GETTERS
-    public String getCodigo_producto() {
-        return codigo_producto;
-    }
-
-    public int getCategoria() {
-        return categoria;
+    public int getId_servicio() {
+        return id_servicio;
     }
 
     public String getNombre() {
@@ -50,11 +42,11 @@ public class Producto {
         return imagen;
     }
 
+    //TO STRING
     @Override
     public String toString() {
-        return "Producto{" +
-                "codigo_producto='" + codigo_producto + '\'' +
-                ", categoria=" + categoria +
+        return "Servicio{" +
+                "id_servicio=" + id_servicio +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
