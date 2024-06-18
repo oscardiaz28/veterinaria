@@ -11,7 +11,21 @@ public class Producto {
     public double precio;
     public String imagen;
 
+    //CONSTRUCTOR VACIO
+    public Producto() {
+    }
 
+    //CONSTRUCTOR LLENO
+    public Producto(String codigo_producto, int categoria, String nombre, String descripcion, double precio, String imagen) {
+        this.codigo_producto = codigo_producto;
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+    }
+
+    //GETTERS
     public String getCodigo_producto() {
         return codigo_producto;
     }
