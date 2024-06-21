@@ -2,33 +2,36 @@ package pe.edu.utp.service;
 
 import pe.edu.utp.model.Categoria;
 import pe.edu.utp.util.DataAccess;
+import pe.edu.utp.util.ErrorLog;
 
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class CategoriaService {
 
-    private final Connection conn;
-
+    private final Connection cnn;
     public CategoriaService(DataAccess dao) throws SQLException, NamingException {
-        this.conn =dao.getConnection();
+        this.cnn = dao.getConnection();
     }
 
-    public void addCategoria(Categoria categoria){
-        String sql = String.format("CALL registrarCategoria(?, ?)");
+    // Metodo para registrar una categoria
+    public void addCategoria(Categoria cat) throws SQLException, IOException {
+        String consulta = String.format("CALL registrarCategoria(?, ?)");
 
-        try{
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, categoria.getNombre());
-            stmt.setString(2, categoria.getFoto());
+        try {
+            PreparedStatement pstmt = cnn.prepareStatement(consulta);
+            pstmt.setString(1, cat.getNombre());
+            pstmt.setString(2, cat.getFoto());
 
-            stmt.executeUpdate();
+            int num = pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException(e);
         }
     }
-
 }

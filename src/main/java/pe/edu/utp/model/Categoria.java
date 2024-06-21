@@ -17,15 +17,7 @@ public class Categoria {
 
     public Categoria(String nombre, String foto){
         this.nombre = nombre;
-        this.foto = foto;
+        this.foto =foto;
     }
 
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", foto='" + foto + '\'' +
-                '}';
-    }
 }
