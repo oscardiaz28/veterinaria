@@ -1,64 +1,22 @@
 package pe.edu.utp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Producto {
 
-
     //ATRIBUTOS PRODUCTOS
-    public String codigo_producto;
-    public int categoria;
+    public Integer id;
     public String nombre;
     public String descripcion;
-    public double precio;
+    public Double precio;
     public String imagen;
+    private Categoria categoria;
 
-    //CONSTRUCTOR VACIO
-    public Producto() {
-    }
-
-    //CONSTRUCTOR LLENO
-    public Producto(String codigo_producto, int categoria, String nombre, String descripcion, double precio, String imagen) {
-        this.codigo_producto = codigo_producto;
-        this.categoria = categoria;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.imagen = imagen;
-    }
-
-    //GETTERS
-    public String getCodigo_producto() {
-        return codigo_producto;
-    }
-
-    public int getCategoria() {
-        return categoria;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "codigo_producto='" + codigo_producto + '\'' +
-                ", categoria=" + categoria +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", imagen='" + imagen + '\'' +
-                '}';
-    }
 }

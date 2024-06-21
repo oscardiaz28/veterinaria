@@ -1,6 +1,7 @@
 package pe.edu.utp;
 import jakarta.servlet.MultipartConfigElement;
 
+import pe.edu.utp.servlets.CategoriaController;
 import pe.edu.utp.util.*;
 import pe.edu.utp.utils.*;
 
@@ -31,6 +32,8 @@ public class App
         //Inicio Sesion Moderador
         //webserver.addServlet(LoginModeradorServlet.class,"/logeo_admin");
         //webserver.addServlet(DashboardAdminServlet.class, "/admin_dashboard");
+
+        webserver.addServlet(CategoriaController.class, "/create_categorias").getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
 
 
         URL myURL = new URL("http://localhost:8085/index.html");

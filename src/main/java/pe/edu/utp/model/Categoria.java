@@ -1,35 +1,31 @@
 package pe.edu.utp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
 public class Categoria {
 
     //ATRIBUTOS CATEGORIA
-    public int id_categoria;
+    public Integer id;
     public String nombre;
+    private String foto;
 
-    //CONSTRUCTOR
-    public Categoria() {
-    }
-
-    //CONSTRUCTOR LLENO
-    public Categoria(int id_categoria, String nombre) {
-        this.id_categoria = id_categoria;
+    public Categoria(String nombre, String foto){
         this.nombre = nombre;
-    }
-
-    //GETTERS
-    public int getId_categoria() {
-        return id_categoria;
-    }
-
-    public String getNombre() {
-        return nombre;
+        this.foto = foto;
     }
 
     @Override
     public String toString() {
         return "Categoria{" +
-                "id_categoria=" + id_categoria +
+                "id=" + id +
                 ", nombre='" + nombre + '\'' +
+                ", foto='" + foto + '\'' +
                 '}';
     }
 }
