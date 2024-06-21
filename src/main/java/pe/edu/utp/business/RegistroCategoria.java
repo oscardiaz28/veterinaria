@@ -7,13 +7,9 @@ import pe.edu.utp.service.CategoriaService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
 import pe.edu.utp.util.ErrorLog;
-
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class RegistroCategoria {
 
