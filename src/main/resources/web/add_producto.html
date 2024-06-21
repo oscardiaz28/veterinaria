@@ -273,7 +273,7 @@
           <div class="tile">
             <h3 class="tile-title">Registrar Producto</h3>
             <div class="tile-body">
-              <form method="POST" action="productoController">
+              <form method="POST" action="/create_producto" enctype="multipart/form-data">
                 <div class="row mb-3">
                   <!--
                   <div class="col-md-6">
@@ -287,10 +287,9 @@
                   -->
                   <div class="col-md-6">
                     <label class="form-label">Categoria</label>
-                    <select class="form-select">
+                    <select class="form-select" name="categoria">
                       <option selected>Selecciona la categoria</option>
-                      <option value="Collares">Accesorios</option>
-                      <option value="Comidas">Comidas</option>
+                      <option value="1">Accesorios</option>
                     </select>
                   </div>
                 </div>
@@ -301,6 +300,7 @@
                       class="form-control"
                       type="text"
                       placeholder="Nombre Producto"
+                      name="nombre"
                     />
                   </div>
                   <div class="col-md-6">
@@ -309,6 +309,7 @@
                       class="form-control"
                       type="text"
                       placeholder="Descripción del producto"
+                      name="descripcion"
                     />
                   </div>
                 </div>
@@ -319,6 +320,7 @@
                       class="form-control"
                       type="number"
                       placeholder="Precio del producto"
+                      name="precio"
                     />
                   </div>
                   <div class="col-md-6">
@@ -327,24 +329,26 @@
                       class="form-control"
                       type="number"
                       placeholder="Cantidad del producto"
+                      name="stock"
                     />
                   </div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Foto</label>
-                  <input class="form-control" type="file" accept="image/*" />
+                  <input class="form-control" type="file" accept="image/*" name="imagen" />
+                </div>
+                <div class="tile-footer">
+                  <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-check-circle-fill me-2"></i>Registrar
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <a class="btn btn-danger" href="#">
+                    <i class="bi bi-x-circle-fill me-2"></i>Cancelar
+                  </a>
                 </div>
               </form>
             </div>
-            <div class="tile-footer">
-              <button class="btn btn-primary" type="button">
-                <i class="bi bi-check-circle-fill me-2"></i>Registrar
-              </button>
-              &nbsp;&nbsp;&nbsp;
-              <a class="btn btn-danger" href="#">
-                <i class="bi bi-x-circle-fill me-2"></i>Cancelar
-              </a>
-            </div>
+
           </div>
         </div>
       </div>

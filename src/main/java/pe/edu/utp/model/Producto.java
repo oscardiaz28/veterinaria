@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Producto {
 
     //ATRIBUTOS PRODUCTOS
@@ -18,5 +17,15 @@ public class Producto {
     public Double precio;
     public String imagen;
     private Categoria categoria;
+    private Integer stock;
+
+    public Producto(String nombre, String descripcion, Double precio, String imagen, Integer stock, Categoria categoria){
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.stock = stock;
+        this.categoria = categoria;
+    }
 
 }
