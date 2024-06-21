@@ -1,18 +1,15 @@
 package pe.edu.utp.business;
 
 
-import com.google.zxing.NotFoundException;
-import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Categoria;
 import pe.edu.utp.service.CategoriaService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
-
 import javax.naming.NamingException;
-import pe.edu.utp.util.ErrorLog;
-import javax.naming.NamingException;
+import pe.edu.utp.utils.TextUTP;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RegistroCategoria {
 
@@ -38,4 +35,44 @@ public class RegistroCategoria {
             throw new RuntimeException(e);
         }
     }
+
+    //Listar Avance
+    public String getHtmlListarCategoria() throws IOException, SQLException {
+        // Cargar plantilla principal
+        String filename = "src\\main\\resources\\web\\categoria.html";
+        String html = TextUTP.read(filename);
+
+        // Cargar plantilla para los item
+        String filenameItems = "src\\main\\resources\\templates\\listado_categoria.html";
+        String htmlItem = TextUTP.read(filenameItems);
+
+        // Recorrer la lista
+        StringBuilder itemsHtml = new StringBuilder();
+
+        // Listar
+        List<Categoria> listaCategoria = categoriaService.getAllCategoria();
+        //String comboClientes = busquedaServiceProyecto.getComboClientes();
+
+        for (Categoria categoria : listaCategoria) {
+
+            //Tabla Clientes
+            String item = htmlItem.replace("${nombre}", categoria.getNombre())
+                    .replace("${foto}", categoria.getFoto());
+            itemsHtml.append(item);
+        }
+        // Reemplazar en la plantilla principal
+        /*String reporteHtml = html.replace("${itemsProyecto}", itemsHtml.toString())
+                .replace("${comboClientes}", comboClientes);*/
+
+        // Reemplazar en la plantilla principal
+        String reporteHtml = html.replace("${itemsCategoria}", itemsHtml.toString());
+
+        return reporteHtml;
+
+
+    }
+
+
+
+
 }

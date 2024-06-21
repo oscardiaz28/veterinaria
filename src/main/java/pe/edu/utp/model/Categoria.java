@@ -1,13 +1,7 @@
 package pe.edu.utp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
-@NoArgsConstructor
+
 public class Categoria {
 
     //ATRIBUTOS CATEGORIA
@@ -23,4 +17,24 @@ public class Categoria {
         this.foto =foto;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", foto='" + foto + '\'' +
+                '}';
+    }
 }
