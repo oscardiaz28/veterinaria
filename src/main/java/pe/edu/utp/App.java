@@ -2,12 +2,11 @@ package pe.edu.utp;
 import jakarta.servlet.MultipartConfigElement;
 
 import pe.edu.utp.business.RegistroCategoria;
+import pe.edu.utp.business.RegistroProducto;
 import pe.edu.utp.servlets.CategoriaController;
-<<<<<<< Updated upstream
+import pe.edu.utp.servlets.ListarProductoServlet;
 import pe.edu.utp.servlets.ProductoController;
-=======
 import pe.edu.utp.servlets.ListarCategoriaServlet;
->>>>>>> Stashed changes
 import pe.edu.utp.util.*;
 import pe.edu.utp.utils.*;
 
@@ -22,6 +21,7 @@ public class App
 {
 
     public static RegistroCategoria RegCategoria = new RegistroCategoria();
+    public static RegistroProducto RegProducto = new RegistroProducto();
     //public static  RegistroClientes rgClientes = new RegistroClientes();
 
 
@@ -47,6 +47,7 @@ public class App
 
 
         webserver.addServlet(ListarCategoriaServlet.class,"/listar_categoria");
+        webserver.addServlet(ListarProductoServlet.class,"/listar_producto");
 
         URL myURL = new URL("http://localhost:8085/index.html");
         System.out.println("*********************************************************");

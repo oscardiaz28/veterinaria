@@ -68,11 +68,7 @@ public class RegistroCategoria {
         String reporteHtml = html.replace("${itemsCategoria}", itemsHtml.toString());
 
         return reporteHtml;
-
-
     }
-
-
 
 
 }

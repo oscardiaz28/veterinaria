@@ -1,13 +1,13 @@
 package pe.edu.utp.model;
 
-
-
 public class Categoria {
 
     //ATRIBUTOS CATEGORIA
     public Integer id;
     public String nombre;
     private String foto;
+
+    public Categoria(){}
 
     public Categoria(Integer id){
         this.id = id;
@@ -16,7 +16,6 @@ public class Categoria {
         this.nombre = nombre;
         this.foto =foto;
     }
-
     public Integer getId() {
         return id;
     }
@@ -27,6 +26,18 @@ public class Categoria {
 
     public String getFoto() {
         return foto;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     @Override
