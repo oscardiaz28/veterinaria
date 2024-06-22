@@ -3,11 +3,8 @@ import jakarta.servlet.MultipartConfigElement;
 
 import pe.edu.utp.business.RegistroCategoria;
 import pe.edu.utp.servlets.CategoriaController;
-<<<<<<< Updated upstream
 import pe.edu.utp.servlets.ProductoController;
-=======
 import pe.edu.utp.servlets.ListarCategoriaServlet;
->>>>>>> Stashed changes
 import pe.edu.utp.util.*;
 import pe.edu.utp.utils.*;
 
