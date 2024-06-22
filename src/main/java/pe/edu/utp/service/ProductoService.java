@@ -1,5 +1,6 @@
 package pe.edu.utp.service;
 
+import pe.edu.utp.model.Categoria;
 import pe.edu.utp.model.Producto;
 import pe.edu.utp.util.DataAccess;
 import pe.edu.utp.util.ErrorLog;
@@ -7,7 +8,10 @@ import pe.edu.utp.util.ErrorLog;
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ProductoService {
 
@@ -33,6 +37,36 @@ public class ProductoService {
         } catch (SQLException e) {
             throw new SQLException(e);
         }
+    }
+
+    public List<Producto> getAllProductos(){
+        List<Producto> listado = new LinkedList<>();
+        String consulta = String.format("CALL listarProductos()");
+
+        try{
+            ResultSet rs = cnn.createStatement().executeQuery(consulta);
+
+            while(rs.next()){
+                Producto producto = new Producto();
+
+                producto.setId( rs.getInt("producto_id") );
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setImagen(rs.getString("producto_imagen"));
+                producto.setStock(rs.getInt("stock"));
+
+                Categoria categoria = new Categoria();
+                categoria.setId(rs.getInt("categoria_id"));
+                categoria.setNombre(rs.getString("categoria_nombre"));
+                categoria.setFoto(rs.getString("categoria_foto"));
+
+                producto.setCategoria(categoria);
+                listado.add(producto);
+            }
+        }catch(Exception e){
+        }
+        return listado;
     }
 
 }
