@@ -1,20 +1,25 @@
 <tr>
-  <td>${id}</td>
-  <td>${categoria}</td>
-  <td>${nombre}</td>
-  <td>${descripcion}</td>
-  <td>S/${precio}</td>
-  <td>${stock}</td>
-  <td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">${id}</td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">${categoriaNombre}</td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">${nombre}</td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">${descripcion}</td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">S/${precio}</td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">${stock}</td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">
+    <img
+            width="100px"
+            style="border-radius: 5%; margin: 0 auto; display: block;"
+            src="upload/${foto}" alt="Imagen"
+    />
   </td>
-  <td>
+  <td style="padding: 8px; text-align: center; vertical-align: middle; border-bottom: 1px solid #ddd;">
     <a href="#"
-    ><button class="btn btn-warning">
-      <i class="bi bi-pencil"></i></button
+    ><button style="margin-right: 4px;" class="btn btn-warning">
+      <i class="bi bi-pencil" style="font-size: 1rem;"></i></button
     ></a>
     <a href="#"
-    ><button class="btn btn-danger">
-      <i class="bi bi-trash"></i></button
+    ><button style="margin-right: 4px;"  class="btn btn-danger">
+      <i class="bi bi-trash" style="font-size: 1rem;"></i></button
     ></a>
   </td>
 </tr>

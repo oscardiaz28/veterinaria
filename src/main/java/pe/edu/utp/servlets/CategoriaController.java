@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import pe.edu.utp.business.RegistroCategoria;
 import pe.edu.utp.model.Categoria;
-import pe.edu.utp.service.ArchivoService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,18 +33,4 @@ public class CategoriaController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        String nombre = req.getParameter("nombre_categoria");
-        Part filePart = req.getPart("foto_categoria");
-        String fileName = ArchivoService.almacenarArchivo(filePart);
-
-        Categoria categoria = new Categoria(nombre, fileName);
-
-        registroCategoria.createCategoria(categoria);
-        resp.sendRedirect("categoria.html");
-    }
-
 }

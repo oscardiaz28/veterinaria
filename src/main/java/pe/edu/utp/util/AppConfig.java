@@ -32,7 +32,5 @@ public class AppConfig {
     public static String getDashboardAdmin() { return  getTemplateDir() + "\\admin_dashboard.html";}
 
 
-
-
-
+    public static String getErrorTemplate() { return  getTemplateDir() + "\\error.html";}
 }

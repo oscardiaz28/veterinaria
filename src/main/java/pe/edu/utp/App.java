@@ -4,10 +4,7 @@ import jakarta.servlet.MultipartConfigElement;
 import pe.edu.utp.business.RegistroCategoria;
 import pe.edu.utp.business.RegistroProducto;
 import pe.edu.utp.servlets.CategoriaController;
-<<<<<<< HEAD
-=======
 import pe.edu.utp.servlets.ListarProductoServlet;
->>>>>>> 50627bfec96a659efa77c7aedc2627a016c23638
 import pe.edu.utp.servlets.ProductoController;
 import pe.edu.utp.servlets.ListarCategoriaServlet;
 import pe.edu.utp.util.*;

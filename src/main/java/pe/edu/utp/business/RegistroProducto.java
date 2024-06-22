@@ -41,38 +41,31 @@ public class RegistroProducto {
         String filename = "src\\main\\resources\\web\\producto.html";
         String html = TextUTP.read(filename);
 
-        // Cargar plantilla para los item
+        // Cargar plantilla para los items
         String filenameItems = "src\\main\\resources\\templates\\listado_producto.html";
         String htmlItem = TextUTP.read(filenameItems);
 
         // Recorrer la lista
         StringBuilder itemsHtml = new StringBuilder();
 
-        // Listar
-        List<Producto> listado = productoService.getAllProductos();
-        //String comboClientes = busquedaServiceProyecto.getComboClientes();
+        // Listar productos
+        List<Producto> listado = productoService.getAllProducto();
 
         for (Producto producto : listado) {
-
-            //Tabla Clientes
-            String item = htmlItem.replace("${nombre}", producto.getNombre())
-            .replace("${id}", String.valueOf(producto.getId()) )
-                    .replace("${categoria}", String.valueOf(producto.getCategoria().getNombre()) )
+            // Reemplazar los marcadores en la plantilla del item
+            String item = htmlItem.replace("${id}", Integer.toString(producto.getId()))
+                    .replace("${nombre}", producto.getNombre())
+                    .replace("${categoriaNombre}", producto.getCategoriaNombre())
                     .replace("${descripcion}", producto.getDescripcion())
-                    .replace("${precio}", String.valueOf(producto.getPrecio()))
-                    .replace("${stock}", String.valueOf(producto.getStock()))
-                    ;
+                    .replace("${precio}", Double.toString(producto.getPrecio()))
+                    .replace("${foto}", producto.getImagen())
+                    .replace("${stock}", Integer.toString(producto.getStock()));
             itemsHtml.append(item);
         }
-        // Reemplazar en la plantilla principal
-        /*String reporteHtml = html.replace("${itemsProyecto}", itemsHtml.toString())
-                .replace("${comboClientes}", comboClientes);*/
 
         // Reemplazar en la plantilla principal
         String reporteHtml = html.replace("${itemsProducto}", itemsHtml.toString());
 
         return reporteHtml;
     }
-
-
 }

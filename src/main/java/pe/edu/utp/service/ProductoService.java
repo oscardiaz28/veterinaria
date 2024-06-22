@@ -1,5 +1,6 @@
 package pe.edu.utp.service;
 
+import pe.edu.utp.exceptions.NotFoundException;
 import pe.edu.utp.model.Categoria;
 import pe.edu.utp.model.Producto;
 import pe.edu.utp.util.DataAccess;
@@ -21,16 +22,16 @@ public class ProductoService {
     }
 
     public void addProducto(Producto producto) throws SQLException {
-        String consulta = String.format("CALL registrarProducto(?, ?, ?, ?, ?, ?)");
+        String consulta = "CALL registrarProducto(?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement stmt = cnn.prepareStatement(consulta);
-            stmt.setString(1, producto.getNombre());
-            stmt.setString(2, producto.getDescripcion());
-            stmt.setDouble(3, producto.getPrecio());
-            stmt.setString(4, producto.getImagen());
-            stmt.setInt(5, producto.getCategoria().getId());
-            stmt.setInt(6, producto.getStock());
+            stmt.setInt(1, producto.getCategoria());// ID de la categoría
+            stmt.setString(2, producto.getNombre());
+            stmt.setString(3, producto.getDescripcion());
+            stmt.setDouble(4, producto.getPrecio());
+            stmt.setInt(5, producto.getStock());
+            stmt.setString(6, producto.getImagen());
 
             int num = stmt.executeUpdate();
 
@@ -39,34 +40,42 @@ public class ProductoService {
         }
     }
 
-    public List<Producto> getAllProductos(){
-        List<Producto> listado = new LinkedList<>();
-        String consulta = String.format("CALL listarProductos()");
 
-        try{
-            ResultSet rs = cnn.createStatement().executeQuery(consulta);
+    //Metodo para listar Productos
+    public List<Producto> getAllProducto() throws SQLException, NotFoundException {
+        List<Producto> lista = new LinkedList<>();
 
-            while(rs.next()){
-                Producto producto = new Producto();
+        String strSQL = String.format("CALL listarProductos()");
 
-                producto.setId( rs.getInt("producto_id") );
-                producto.setNombre(rs.getString("nombre"));
-                producto.setDescripcion(rs.getString("descripcion"));
-                producto.setPrecio(rs.getDouble("precio"));
-                producto.setImagen(rs.getString("producto_imagen"));
-                producto.setStock(rs.getInt("stock"));
+        try {
+            ResultSet rst = cnn.createStatement().executeQuery(strSQL);
+            int count = 0;
 
-                Categoria categoria = new Categoria();
-                categoria.setId(rs.getInt("categoria_id"));
-                categoria.setNombre(rs.getString("categoria_nombre"));
-                categoria.setFoto(rs.getString("categoria_foto"));
+            while (rst.next()) {
+                int id_producto = rst.getInt("producto_id");
+                String nombre = rst.getString("nombre");
+                int categoria = rst.getInt("categoria_id");
+                String descripcion = rst.getString("descripcion");
+                Double precio = rst.getDouble("precio");
+                String foto = rst.getString("producto_imagen");
+                Integer stock = rst.getInt("stock");
+                String categoriaNombre = rst.getString("categoria_nombre");
 
-                producto.setCategoria(categoria);
-                listado.add(producto);
+                Producto producto = new Producto(nombre,descripcion,precio,foto,stock,categoria,categoriaNombre);
+                producto.setId(id_producto);
+                lista.add(producto);
+                count++;
             }
-        }catch(Exception e){
+            if (count == 0) {
+                throw new NotFoundException("No se encontró ninguna cuenta en la bd");
+            }
+        } catch (SQLException e) {
+            String msg = String.format("Ocurrió una excepción SQL: %s", e.getMessage());
+            throw new SQLException(msg);
         }
-        return listado;
+        return lista;
     }
+
+
 
 }
