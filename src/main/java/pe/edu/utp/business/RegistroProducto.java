@@ -1,13 +1,12 @@
 package pe.edu.utp.business;
 
-import pe.edu.utp.model.Categoria;
+import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Producto;
-import pe.edu.utp.service.CategoriaService;
 import pe.edu.utp.service.ProductoService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
+import pe.edu.utp.util.ErrorLog;
 import pe.edu.utp.utils.TextUTP;
-
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,22 +16,48 @@ public class RegistroProducto {
 
     String cnx = AppConfig.getConnectionStringCFN();
     DataAccessMariaDB dao = new DataAccessMariaDB(cnx);
-    public static ProductoService productoService = null;
+    public static ProductoService busquedaProductoService = null;
 
     public RegistroProducto() {
+
         try {
-            productoService = new ProductoService(dao);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (NamingException e) {
+            busquedaProductoService = new ProductoService(dao); // Inicia busquedaService
+        } catch (SQLException | NamingException e) {
+            String msg = String.format("Error del motor de bd: %s%n", e.getMessage());
+            System.out.printf(msg);
+            System.exit(1);
         }
     }
 
-    public void createProducto(Producto producto){
+
+    public static void registrarProducto(Producto producto) throws IOException {
         try {
-            productoService.addProducto(producto);
+            busquedaProductoService.addProducto(producto);
+            System.out.println("Nuevo ok");
+        } catch (AlreadyExistsException e) {
+            String errorMsg = "AlreadyExistsException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg,ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            String errorMsg = "SQLException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (RuntimeException e) {
+            String errorMsg = "Error al crear: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
     }
 
@@ -49,7 +74,7 @@ public class RegistroProducto {
         StringBuilder itemsHtml = new StringBuilder();
 
         // Listar productos
-        List<Producto> listado = productoService.getAllProducto();
+        List<Producto> listado = busquedaProductoService.getAllProducto();
 
         for (Producto producto : listado) {
             // Reemplazar los marcadores en la plantilla del item

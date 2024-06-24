@@ -13,6 +13,11 @@ import java.sql.SQLException;
 public class ListarCategoriaServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        //UTF-8
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
         try {
             resp.getWriter().println(App.RegCategoria.getHtmlListarCategoria());
         } catch (SQLException e) {

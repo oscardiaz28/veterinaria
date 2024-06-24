@@ -63,4 +63,29 @@ public class CategoriaService {
         return lista;
     }
 
+    //Metodo Combo Categoria
+    public String getComboCategorias() throws SQLException, IOException {
+        StringBuilder sb = new StringBuilder();
+        String strSQL = "SELECT id_categoria, nombre FROM categoria";
+
+        try {
+            Statement stmt = cnn.createStatement();
+            ResultSet rst = stmt.executeQuery(strSQL);
+
+            while (rst.next()) {
+                int id_categoria = rst.getInt("id_categoria");
+                String nombre = rst.getString("nombre");
+                sb.append(String.format("<option value=\"%d\">%s</option>", id_categoria, nombre));
+            }
+            rst.close();
+            stmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener la lista de las categorias");
+        }
+
+        return sb.toString();
+    }
+
+
 }

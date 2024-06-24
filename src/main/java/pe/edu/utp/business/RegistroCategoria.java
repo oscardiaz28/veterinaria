@@ -6,9 +6,13 @@ import pe.edu.utp.service.CategoriaService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
 import javax.naming.NamingException;
+
+import pe.edu.utp.util.ErrorLog;
 import pe.edu.utp.utils.TextUTP;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class RegistroCategoria {
@@ -70,5 +74,18 @@ public class RegistroCategoria {
         return reporteHtml;
     }
 
+    //Combo para add_entregable
+    public String getHtmlComboCategorias() throws IOException, SQLException {
+        // Cargar la plantilla de la página de agregar PRODUCTO
+        String filename = "src\\main\\resources\\web\\add_producto.html";
+        String html = TextUTP.read(filename);
 
+        // Obtener las opciones del combo de categorias
+        String comboCategorias = categoriaService.getComboCategorias();
+
+        // Reemplazar
+        String resultHtml = html.replace("${comboCategorias}",comboCategorias);
+
+        return resultHtml;
+    }
 }

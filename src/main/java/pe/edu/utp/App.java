@@ -3,10 +3,7 @@ import jakarta.servlet.MultipartConfigElement;
 
 import pe.edu.utp.business.RegistroCategoria;
 import pe.edu.utp.business.RegistroProducto;
-import pe.edu.utp.servlets.CategoriaController;
-import pe.edu.utp.servlets.ListarProductoServlet;
-import pe.edu.utp.servlets.ProductoController;
-import pe.edu.utp.servlets.ListarCategoriaServlet;
+import pe.edu.utp.servlets.*;
 import pe.edu.utp.util.*;
 import pe.edu.utp.utils.*;
 
@@ -35,21 +32,19 @@ public class App
         String path = "src\\main\\resources\\web\\";
         JettyAdvUTP webserver = new JettyAdvUTP(8085,path);
 
-        //Inicio Sesion Moderador
-        //webserver.addServlet(LoginModeradorServlet.class,"/logeo_admin");
-        //webserver.addServlet(DashboardAdminServlet.class, "/admin_dashboard");
-
+        //CATEGORIA
+        webserver.addServlet(ListarCategoriaServlet.class,"/listar_categoria");
         webserver.addServlet(CategoriaController.class, "/create_categorias")
                 .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
 
-        webserver.addServlet(ProductoController.class, "/create_producto")
-                .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
-
-
-        webserver.addServlet(ListarCategoriaServlet.class,"/listar_categoria");
+        //PRODUCTO
         webserver.addServlet(ListarProductoServlet.class,"/listar_producto");
+        webserver.addServlet(ProductoController.class, "/register_producto")
+                .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
+        webserver.addServlet(CombosForProductos.class,"/add_producto");
 
-        URL myURL = new URL("http://localhost:8085/index.html");
+
+        URL myURL = new URL("http://localhost:8085/dashboard.html");
         System.out.println("*********************************************************");
         System.out.println("CLICK AQUI PARA ABRIR LA APLICACION:" + myURL);
         System.out.println("*********************************************************");

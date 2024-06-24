@@ -1,11 +1,8 @@
 package pe.edu.utp.service;
 
 import pe.edu.utp.exceptions.NotFoundException;
-import pe.edu.utp.model.Categoria;
 import pe.edu.utp.model.Producto;
 import pe.edu.utp.util.DataAccess;
-import pe.edu.utp.util.ErrorLog;
-
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

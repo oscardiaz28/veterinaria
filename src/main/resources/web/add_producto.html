@@ -287,9 +287,9 @@
                   -->
                   <div class="col-md-6">
                     <label class="form-label">Categoria</label>
-                    <select name="txt_"class="form-select" name="categoria">
+                    <select name="txtcategoriaId"class="form-select" name="txtcategoriaId">
                       <option selected>Selecciona la categoria</option>
-                      <option value="1">Accesorios</option>
+                      ${comboCategorias}
                     </select>
                   </div>
                 </div>
@@ -297,19 +297,21 @@
                   <div class="col-md-6">
                     <label class="form-label">Nombre Producto</label>
                     <input
+                      id="txtnombre"
                       class="form-control"
                       type="text"
                       placeholder="Nombre Producto"
-                      name="nombre"
+                      name="txtnombre"
                     />
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">Descripción</label>
                     <input
+                      id="txtdescripcion"
                       class="form-control"
                       type="text"
                       placeholder="Descripción del producto"
-                      name="descripcion"
+                      name="txtdescripcion"
                     />
                   </div>
                 </div>
@@ -320,7 +322,8 @@
                       class="form-control"
                       type="number"
                       placeholder="Precio del producto"
-                      name="precio"
+                      name="txtprecio"
+                      id="txtprecio"
                     />
                   </div>
                   <div class="col-md-6">
@@ -329,13 +332,14 @@
                       class="form-control"
                       type="number"
                       placeholder="Cantidad del producto"
-                      name="stock"
+                      name="txtstock"
+                      id="txtstock"
                     />
                   </div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Foto</label>
-                  <input class="form-control" type="file" accept="image/*" name="imagen" />
+                  <input class="form-control" type="file" accept="image/*" id="txtFoto" name="txtFoto" />
                 </div>
                 <div class="tile-footer">
                   <button class="btn btn-primary" type="submit">

@@ -3,12 +3,10 @@ package pe.edu.utp.model;
 public class Producto {
 
     //ATRIBUTOS PRODUCTOS
-    public Integer id;
-
-    public String nombre;
-    public String descripcion;
-
-    public Double precio;
+    private Integer id;
+    private String nombre;
+    private String descripcion;
+    private Double precio;
     public String imagen;
     private int categoria;
     private Integer stock;
@@ -17,6 +15,7 @@ public class Producto {
     public Producto() {
     }
 
+    //Constructor para el Listado del Producto
     public Producto(String nombre, String descripcion, Double precio, String imagen, Integer stock, int categoria, String categoriaNombre){
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -26,6 +25,17 @@ public class Producto {
         this.categoria = categoria;
         this.categoriaNombre = categoriaNombre;
     }
+
+    // Constructor para el Registro del Producto
+    public Producto(String nombre, String descripcion, double precio, String imagen, int stock, int categoria) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.stock = stock;
+        this.categoria = categoria;
+    }
+
 
     public Integer getId() {
         return id;
@@ -58,6 +68,9 @@ public class Producto {
     public String getCategoriaNombre() {
         return categoriaNombre;
     }
+
+
+    //Setters
 
     public void setId(Integer id) {
         this.id = id;

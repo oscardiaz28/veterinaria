@@ -9,18 +9,27 @@ $(document).ready(function () {
         text: '<i class="bi bi-file-earmark-excel-fill"></i>Excel',
         titleAttr: "Exportar a Excel",
         className: "btn btn-success me-2",
+        exportOptions: {
+            columns: ':not(:last-child)'
+        }
       },
       {
         extend: "pdfHtml5",
         text: '<i class="bi bi-file-earmark-pdf-fill"></i>PDF',
         titleAttr: "Exportar a PDF",
         className: "btn btn-danger me-2",
+        exportOptions: {
+            columns: ':not(:last-child)'  // Excluir la última columna
+        }
       },
       {
         extend: "print",
         text: '<i class="bi bi-printer"></i> IMPRIMIR',
         titleAttr: "Imprimir",
         className: "btn btn-info",
+        exportOptions: {
+            columns: ':not(:last-child)'
+        }
       },
     ],
     language: {

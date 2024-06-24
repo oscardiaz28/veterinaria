@@ -6,13 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import pe.edu.utp.App;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/listar_producto")
-public class ListarProductoServlet extends HttpServlet {
-
+@WebServlet("/add_producto")
+public class CombosForProductos extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //UTF-8
@@ -20,10 +18,10 @@ public class ListarProductoServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         try {
-            resp.getWriter().println(App.RegProducto.getHTMListarProducto());
+            String html = App.RegCategoria.getHtmlComboCategorias();
+            resp.getWriter().println(html);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
