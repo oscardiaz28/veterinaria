@@ -78,18 +78,15 @@ public class RegistroCategoria {
 
         // Listar
         List<Categoria> listaCategoria = categoriaService.getAllCategoria();
-        //String comboClientes = busquedaServiceProyecto.getComboClientes();
 
         for (Categoria categoria : listaCategoria) {
 
-            //Tabla Clientes
+            //Tabla Categorias
             String item = htmlItem.replace("${nombre}", categoria.getNombre())
-                    .replace("${foto}", categoria.getFoto());
+                    .replace("${foto}", categoria.getFoto())
+                    .replace("${id}", Integer.toString(categoria.getId()));
             itemsHtml.append(item);
         }
-        // Reemplazar en la plantilla principal
-        /*String reporteHtml = html.replace("${itemsProyecto}", itemsHtml.toString())
-                .replace("${comboClientes}", comboClientes);*/
 
         // Reemplazar en la plantilla principal
         String reporteHtml = html.replace("${itemsCategoria}", itemsHtml.toString());

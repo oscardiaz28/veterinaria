@@ -1,0 +1,2 @@
+2024-06-25 12:09:51 - ERROR - PROCEDURE bd_veterinaria.registrarCategoria does not exist
+2024-06-25 12:09:51 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: PROCEDURE bd_veterinaria.registrarCategoria does not exist

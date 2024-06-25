@@ -45,11 +45,13 @@ public class CategoriaService {
             int conteo = 0;
 
             while (rst.next()){
-                int id_categoria = rst.getInt("id_categoria");
+
+                int id = rst.getInt("id_categoria");
                 String nombre = rst.getString("nombre");
                 String img = rst.getString("img");
 
-                Categoria categoria = new Categoria(id_categoria, nombre, img);
+                Categoria categoria = new Categoria(id, nombre, img);
+                categoria.setId(id);
                 lista.add(categoria);
                 conteo++;
             }

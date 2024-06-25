@@ -9,6 +9,8 @@ public class Categoria {
 
     public Categoria(){}
 
+
+    //Consctructo para Listar
     public Categoria(int id,String nombre, String foto){
         this.id = id;
         this.nombre = nombre;
