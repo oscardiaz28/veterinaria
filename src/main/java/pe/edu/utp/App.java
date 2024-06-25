@@ -34,7 +34,7 @@ public class App
 
         //CATEGORIA
         webserver.addServlet(ListarCategoriaServlet.class,"/listar_categoria");
-        webserver.addServlet(CategoriaController.class, "/create_categorias")
+        webserver.addServlet(CategoriaController.class, "/register_categorias")
                 .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
 
         //PRODUCTO

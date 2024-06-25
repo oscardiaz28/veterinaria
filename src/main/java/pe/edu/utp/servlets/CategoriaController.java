@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-@WebServlet(urlPatterns = "/register_categoria")
+@WebServlet(urlPatterns = "/register_categorias")
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 2,  // Ajusta este valor a 2 MB, por ejemplo
