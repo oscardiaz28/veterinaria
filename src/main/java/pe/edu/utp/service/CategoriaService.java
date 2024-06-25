@@ -35,26 +35,27 @@ public class CategoriaService {
     }
 
     // Metodo para listar las Categoria
-    public List<Categoria> getAllCategoria() throws SQLException, NotFoundException {
+    public List<Categoria> getAllCategoria() throws SQLException, NotFoundException{
         List<Categoria> lista = new LinkedList<>();
 
-        String consulta = String.format("select * from categoria");
+        String consulta = String.format("CALL ListarCategoria()");
 
         try{
             ResultSet rst = cnn.createStatement().executeQuery(consulta);
             int conteo = 0;
 
             while (rst.next()){
-                String foto = rst.getString("foto");
+                int id_categoria = rst.getInt("id_categoria");
                 String nombre = rst.getString("nombre");
+                String img = rst.getString("img");
 
-                Categoria categoria = new Categoria(foto, nombre);
+                Categoria categoria = new Categoria(id_categoria, nombre, img);
                 lista.add(categoria);
                 conteo++;
             }
 
             if (conteo == 0 ){
-                throw new NotFoundException("No se encontro ninguna actividad en este proyecto");
+                throw new NotFoundException("No se encontro ninguna Categoria");
             }
         }catch (SQLException e){
             String msg = String.format("Ocurrió una exepción SQL: %s", e.getMessage());
@@ -62,7 +63,6 @@ public class CategoriaService {
         }
         return lista;
     }
-
     //Metodo Combo Categoria
     public String getComboCategorias() throws SQLException, IOException {
         StringBuilder sb = new StringBuilder();

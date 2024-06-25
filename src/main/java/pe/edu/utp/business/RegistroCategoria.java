@@ -1,7 +1,9 @@
 package pe.edu.utp.business;
 
 
+import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Categoria;
+import pe.edu.utp.model.Producto;
 import pe.edu.utp.service.CategoriaService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
@@ -30,17 +32,38 @@ public class RegistroCategoria {
         }
     }
 
-    public void createCategoria(Categoria categoria) {
+    public static void registrarCategoria(Categoria categoria) throws IOException {
         try {
             categoriaService.addCategoria(categoria);
+            System.out.println("Nuevo ok");
+        } catch (AlreadyExistsException e) {
+            String errorMsg = "AlreadyExistsException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg,ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            String errorMsg = "SQLException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (RuntimeException e) {
+            String errorMsg = "Error al crear: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
     }
 
-    //Listar Avance
+    //Listar Categoria
     public String getHtmlListarCategoria() throws IOException, SQLException {
         // Cargar plantilla principal
         String filename = "src\\main\\resources\\web\\categoria.html";

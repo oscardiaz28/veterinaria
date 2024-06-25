@@ -9,9 +9,13 @@ public class Categoria {
 
     public Categoria(){}
 
-    public Categoria(Integer id){
+    public Categoria(int id,String nombre, String foto){
         this.id = id;
+        this.nombre = nombre;
+        this.foto =foto;
     }
+
+    // Constructor para registrar
     public Categoria(String nombre, String foto){
         this.nombre = nombre;
         this.foto =foto;
