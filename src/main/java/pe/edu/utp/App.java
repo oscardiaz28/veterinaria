@@ -3,6 +3,7 @@ import jakarta.servlet.MultipartConfigElement;
 
 import pe.edu.utp.business.RegistroCategoria;
 import pe.edu.utp.business.RegistroProducto;
+import pe.edu.utp.business.RegistroUsuario;
 import pe.edu.utp.servlets.*;
 import pe.edu.utp.util.*;
 import pe.edu.utp.utils.*;
@@ -19,15 +20,14 @@ public class App
 
     public static RegistroCategoria RegCategoria = new RegistroCategoria();
     public static RegistroProducto RegProducto = new RegistroProducto();
-    //public static  RegistroClientes rgClientes = new RegistroClientes();
+    public static RegistroUsuario RegUsuario = new RegistroUsuario();
 
 
     public static void main( String[] args ) throws Exception {
 
         DataAccess dao = new DataAccessMariaDB(AppConfig.getConnectionStringCFN());
-        //busquedaService = new EmprendedoresService(dao);
-        //busquedaClienteService = new ClientesService(dao);
 
+        //Cargar plantillas()
 
         String path = "src\\main\\resources\\web\\";
         JettyAdvUTP webserver = new JettyAdvUTP(8085,path);

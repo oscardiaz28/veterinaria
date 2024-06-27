@@ -4,6 +4,7 @@ public class Categoria {
 
     //ATRIBUTOS CATEGORIA
     public Integer id;
+
     public String nombre;
     private String foto;
 

@@ -55,7 +55,6 @@ public class CategoriaService {
                 lista.add(categoria);
                 conteo++;
             }
-
             if (conteo == 0 ){
                 throw new NotFoundException("No se encontro ninguna Categoria");
             }

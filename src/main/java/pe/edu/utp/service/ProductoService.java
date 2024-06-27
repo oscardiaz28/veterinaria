@@ -64,7 +64,7 @@ public class ProductoService {
                 count++;
             }
             if (count == 0) {
-                throw new NotFoundException("No se encontró ninguna cuenta en la bd");
+                throw new NotFoundException("No se encontró ningun producto en la bd");
             }
         } catch (SQLException e) {
             String msg = String.format("Ocurrió una excepción SQL: %s", e.getMessage());
