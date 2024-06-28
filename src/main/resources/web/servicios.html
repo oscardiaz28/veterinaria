@@ -13,6 +13,40 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   </head>
+
+    <style>
+      .active{
+        color: white !important;
+        background-color: green !important;
+      }
+      .load {
+          width: 48px;
+          height: 48px;
+          border: 5px solid black;
+          border-bottom-color: transparent;
+          border-radius: 50%;
+          display: inline-block;
+          box-sizing: border-box;
+          margin: 2rem auto;
+          animation: rotation 1s linear infinite;
+          }
+
+          @keyframes rotation {
+          0% {
+              transform: rotate(0deg);
+          }
+          100% {
+              transform: rotate(360deg);
+          }
+      }
+      .hidden{
+        display: none;
+      }
+      .show{
+        display: block;
+      }
+
+    </style>
   <body>
 
     <header class="header header-light">
@@ -34,22 +68,70 @@
 
 
       <section>
-
         <div class="max-w-[1200px] mx-auto py-20 px-5">
             <h3 class="text-center text-[#91C235] uppercase font-bold text-sm pb-9">Make an appointment</h3>
-            <form action="" method="" class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+          <div class="flex items-center justify-center">
+            <span class="load hidden" id="loader"></span>
+          </div>
+
+            <form action="" method="" class="grid grid-cols-1 gap-6 md:grid-cols-2" id="solicitarServicio">
+                <input type="hidden" name="id_cliente" value="43256789">
                 <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <input type="text" placeholder="First Name" class="w-full border outline-none h-[55px] px-3 text-md ">
-                    <input type="text" placeholder="Last Name" class="w-full border outline-none h-[55px] px-3 text-md ">
-                    <input type="date" placeholder="Date" class="w-full border outline-none h-[55px] px-3 text-md ">
-                    <input type="time" placeholder="Hour" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <input name="nombre" type="text" placeholder="First Name" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <input name="apellido" type="text" placeholder="Last Name" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <input name="fecha" type="date" placeholder="Date" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <div class="grid grid-rows-2 grid-cols-5 gap-2" id="time-container">
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="09:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">09:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="10:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">10:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="11:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">11:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="12:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">12:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="13:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">13:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="14:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">14:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="15:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">15:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="16:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">16:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="17:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">17:00</label>
+                      </div>
+                      <div class="relative border w-[50px] rounded text-center time-btn">
+                        <input type="radio" value="18:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
+                        <label for="">18:00</label>
+                      </div>
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <select class="w-full border outline-none h-[55px] px-3 text-md">
+                    <select name="servicios" class="w-full border outline-none h-[55px] px-3 text-md" multiple>
                         <option value="">Seleccionar los servicios</option>
+                        <option value="1">Vacunacion</option>
+                        <option value="2">Limpieza</option>
                     </select>
-                    <input type="text" placeholder="Phone" class="w-full border outline-none h-[55px] px-3 text-md ">
-                    <textarea placeholder="Message" class="w-full border outline-none h-[55px] px-3 text-md "></textarea>
+                    <input name="telefono" type="text" placeholder="Phone" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <textarea name="mensaje" placeholder="Message" class="w-full border outline-none h-[55px] px-3 text-md "></textarea>
                     <input type="submit" class="cursor-pointer w-full border outline-none h-[55px] px-3 text-md bg-[#91C235] text-white rounded-md" value="Reservar">
                 </div>
             </form>
@@ -213,5 +295,6 @@
         })
         .catch(error => console.error('Error al cargar el footer:', error));
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   </body>
 </html>

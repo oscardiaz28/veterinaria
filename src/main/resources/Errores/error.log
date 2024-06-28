@@ -1,2 +1,6 @@
 2024-06-25 12:09:51 - ERROR - PROCEDURE bd_veterinaria.registrarCategoria does not exist
 2024-06-25 12:09:51 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: PROCEDURE bd_veterinaria.registrarCategoria does not exist
+2024-06-28 04:46:56 - ERROR - Field 'fecha' doesn't have a default value
+2024-06-28 04:49:05 - ERROR - Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate(), Statement.executeLargeUpdate() or Connection.prepareStatement().
+2024-06-28 06:02:12 - ERROR - Can not issue executeUpdate() or executeLargeUpdate() with statements that produce result sets
+2024-06-28 06:45:37 - ERROR - Unknown column 'estad' in 'field list'
