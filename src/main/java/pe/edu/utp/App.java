@@ -32,6 +32,10 @@ public class App
         String path = "src\\main\\resources\\web\\";
         JettyAdvUTP webserver = new JettyAdvUTP(8085,path);
 
+        //USUARIO
+        webserver.addServlet(ListarUsuarioServlet.class,"/listar_usuario");
+        webserver.addServlet(UsuarioController.class, "/register_usuario");
+
         //CATEGORIA
         webserver.addServlet(ListarCategoriaServlet.class,"/listar_categoria");
         webserver.addServlet(CategoriaController.class, "/register_categorias")

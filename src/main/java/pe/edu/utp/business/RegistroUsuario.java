@@ -64,32 +64,34 @@ public class RegistroUsuario {
         String filename = "src\\main\\resources\\web\\usuarios.html";
         String html = TextUTP.read(filename);
 
-        // Cargar plantilla para los item
+        // Cargar plantilla para los items
         String filenameItems = "src\\main\\resources\\templates\\listado_usuario.html";
         String htmlItem = TextUTP.read(filenameItems);
 
         // Recorrer la lista
         StringBuilder itemsHtml = new StringBuilder();
 
-        // Listar
+        // Listar usuarios
         List<Usuario> listaUsuario = usuarioService.getAllUsuarios();
 
         for (Usuario usuario : listaUsuario) {
+            String token = usuario.getToken() != null ? usuario.getToken() : "";
 
-            //Tabla USUARIO
-            String item = htmlItem.replace("${id}", Integer.toString(usuario.getId())
+            // Tabla USUARIO
+            String item = htmlItem
+                    .replace("${id}", Integer.toString(usuario.getId()))
                     .replace("${email}", usuario.getEmail())
                     .replace("${pass}", usuario.getContra())
-                    .replace("${token}", usuario.getToken())
-                    .replace("${estado}", usuario.getEstado())
-            );
+                    .replace("${token}", token)
+                    .replace("${estado}", usuario.getEstado());
 
             itemsHtml.append(item);
         }
 
-        // Reemplazar en la plantilla principal
-        String reporteHtml = html.replace("${itemsUSUARIO}", itemsHtml.toString());
+        // Reemplazar el placeholder de items en la plantilla principal
+        html = html.replace("${itemsUSUARIO}", itemsHtml.toString());
 
-        return reporteHtml;
+        return html;
     }
+
 }

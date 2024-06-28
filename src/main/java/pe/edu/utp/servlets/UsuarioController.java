@@ -12,7 +12,7 @@ import pe.edu.utp.utils.TextUTP;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = "/register_usuarios")
+@WebServlet(urlPatterns = "/register_usuario")
 public class UsuarioController extends HttpServlet  {
 
     @Override

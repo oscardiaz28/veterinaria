@@ -273,7 +273,7 @@
           <div class="tile">
             <h3 class="tile-title">Registrar Usuario</h3>
             <div class="tile-body">
-              <form>
+              <form method="POST" action="/register_usuario">
                 <div class="row mb-3">
                   <!--<div class="col-md-6">
                     <label class="form-label">ID</label>
@@ -288,6 +288,8 @@
                     <input
                       class="form-control"
                       type="email"
+                      id="txtEMAIL"
+                      name="txtEMAIL"
                       placeholder="Correo electrónico"
                     />
                   </div>
@@ -298,28 +300,30 @@
                     <input
                       class="form-control"
                       type="password"
+                      id="txtPASS"
+                      name="txtPASS"
                       placeholder="Contraseña"
                     />
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">Estado</label>
-                    <select class="form-select">
+                    <select id="txtESTADO" name="txtESTADO" class="form-select">
                       <option selected>Selecciona el estado</option>
                       <option value="Activo">Activo</option>
                       <option value="Inactivo">Inactivo</option>
                     </select>
                   </div>
                 </div>
+                <div class="tile-footer">
+                  <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-check-circle-fill me-2"></i>Registrar
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <a class="btn btn-danger" href="#">
+                    <i class="bi bi-x-circle-fill me-2"></i>Cancelar
+                  </a>
+                </div>
               </form>
-            </div>
-            <div class="tile-footer">
-              <button class="btn btn-primary" type="button">
-                <i class="bi bi-check-circle-fill me-2"></i>Registrar
-              </button>
-              &nbsp;&nbsp;&nbsp;
-              <a class="btn btn-danger" href="#">
-                <i class="bi bi-x-circle-fill me-2"></i>Cancelar
-              </a>
             </div>
           </div>
         </div>

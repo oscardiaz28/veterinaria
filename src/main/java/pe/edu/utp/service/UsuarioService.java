@@ -44,7 +44,7 @@ public class UsuarioService {
     public List<Usuario> getAllUsuarios() throws SQLException, NotFoundException {
         List<Usuario> lista = new LinkedList<>();
 
-        String consulta = String.format("CALL ListarUSUARIO()");
+        String consulta = String.format("CALL ListarUsuario()");
 
         try{
             ResultSet rst = cnn.createStatement().executeQuery(consulta);
