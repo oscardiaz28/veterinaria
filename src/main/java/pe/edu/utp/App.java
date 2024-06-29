@@ -1,10 +1,7 @@
 package pe.edu.utp;
 import jakarta.servlet.MultipartConfigElement;
 
-import pe.edu.utp.business.RegistroCategoria;
-import pe.edu.utp.business.RegistroCita;
-import pe.edu.utp.business.RegistroProducto;
-import pe.edu.utp.business.RegistroUsuario;
+import pe.edu.utp.business.*;
 import pe.edu.utp.servlets.*;
 import pe.edu.utp.util.*;
 import pe.edu.utp.utils.*;
@@ -23,6 +20,7 @@ public class App
     public static RegistroProducto RegProducto = new RegistroProducto();
     public static RegistroUsuario RegUsuario = new RegistroUsuario();
     public static RegistroCita registroCita = new RegistroCita();
+    public static RegistroTrabajador RegTrabajador = new RegistroTrabajador();
 
 
     public static void main( String[] args ) throws Exception {
