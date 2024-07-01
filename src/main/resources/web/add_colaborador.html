@@ -275,13 +275,15 @@
           <div class="tile">
             <h3 class="tile-title">Registrar Colaborador</h3>
             <div class="tile-body">
-              <form>
+              <form method="POST" action="/register_trabajador">
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <label class="form-label">DNI</label>
                     <input
                       class="form-control"
                       type="text"
+                      id = "txtdni"
+                      name="txtdni"
                       placeholder="DNI del colaborador"
                     />
                   </div>
@@ -290,6 +292,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtid_user"
+                      name="txtid_user"
                       placeholder="Nombre de usuario"
                     />
                   </div>
@@ -300,6 +304,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtnombre"
+                      name="txtnombre"
                       placeholder="Nombre del colaborador"
                     />
                   </div>
@@ -308,6 +314,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtapellidos"
+                      name="txtapellidos"
                       placeholder="Apellidos del colaborador"
                     />
                   </div>
@@ -318,6 +326,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtcargo"
+                      name="txtcargo"
                       placeholder="Cargo del colaborador"
                     />
                   </div>
@@ -325,7 +335,9 @@
                     <label class="form-label">Salario</label>
                     <input
                       class="form-control"
-                      type="number"
+                      type="text"
+                      id="txtsalario"
+                      name="txtsalario"
                       placeholder="Salario del colaborador"
                     />
                   </div>
@@ -336,6 +348,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtdireccion"
+                      name="txtdireccion"
                       placeholder="Dirección del colaborador"
                     />
                   </div>
@@ -344,34 +358,32 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtcelular"
+                      name="txtcelular"
                       placeholder="Celular del colaborador"
                     />
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-md-6">
-                    <label class="form-label">Fecha de Contratación</label>
-                    <input class="form-control" type="date" />
-                  </div>
-                  <div class="col-md-6">
                     <label class="form-label">Estado</label>
-                    <select class="form-select">
+                    <select id="txtestado" name="txtestado" class="form-select">
                       <option selected>Selecciona el estado</option>
                       <option value="Activo">Activo</option>
                       <option value="Inactivo">Inactivo</option>
                     </select>
                   </div>
                 </div>
+                <div class="tile-footer">
+                  <button  class="btn btn-primary" type="submit">
+                    <i class="bi bi-check-circle-fill me-2"></i>Registrar
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <a class="btn btn-danger" href="#">
+                    <i class="bi bi-x-circle-fill me-2"></i>Cancelar
+                  </a>
+                </div>
               </form>
-            </div>
-            <div class="tile-footer">
-              <button class="btn btn-primary" type="button">
-                <i class="bi bi-check-circle-fill me-2"></i>Registrar
-              </button>
-              &nbsp;&nbsp;&nbsp;
-              <a class="btn btn-danger" href="#">
-                <i class="bi bi-x-circle-fill me-2"></i>Cancelar
-              </a>
             </div>
           </div>
         </div>

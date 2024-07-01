@@ -1,5 +1,13 @@
 package pe.edu.utp.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+
 public class Producto {
 
     //ATRIBUTOS PRODUCTOS
@@ -37,84 +45,5 @@ public class Producto {
     }
 
 
-    public Integer getId() {
-        return id;
-    }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public int getCategoria() {
-        return categoria;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public String getCategoriaNombre() {
-        return categoriaNombre;
-    }
-
-
-    //Setters
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public void setCategoria(int categoria) {
-        this.categoria = categoria;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public void setCategoriaNombre(String categoriaNombre) {
-        this.categoriaNombre = categoriaNombre;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", imagen='" + imagen + '\'' +
-                ", categoria=" + categoria +
-                ", stock=" + stock +
-                ", categoriaNombre='" + categoriaNombre + '\'' +
-                '}';
-    }
 }

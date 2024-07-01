@@ -21,6 +21,7 @@ public class App
     public static RegistroUsuario RegUsuario = new RegistroUsuario();
     public static RegistroCita registroCita = new RegistroCita();
     public static RegistroTrabajador RegTrabajador = new RegistroTrabajador();
+    public static  RegistroCliente RegCliente = new RegistroCliente();
 
 
     public static void main( String[] args ) throws Exception {

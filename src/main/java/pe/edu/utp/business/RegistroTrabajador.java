@@ -69,7 +69,7 @@ public class RegistroTrabajador {
         String html = TextUTP.read(filename);
 
         // Cargar plantilla para los items
-        String filenameItems = "src\\main\\resources\\templates\\listado_colaborador.html";
+        String filenameItems = "src\\main\\resources\\templates\\listado_trabajador.html";
         String htmlItem = TextUTP.read(filenameItems);
 
         // Recorrer la lista

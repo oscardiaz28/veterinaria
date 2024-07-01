@@ -20,7 +20,7 @@ public class TrabajadorService {
     }
 
     public void addTrabajador(Trabajador tra) throws SQLException, IOException {
-        String consulta = String.format("CALL registrarTrabajador(?, ?)");
+        String consulta = String.format("CALL registrar_trabajador(?, ? ,?, ?, ?, ?, ? ,?, ?, ?)");
 
         try {
             PreparedStatement pstmt = cnn.prepareStatement(consulta);
@@ -47,7 +47,7 @@ public class TrabajadorService {
     public List<Trabajador> getAllTrabajador() throws SQLException, NotFoundException {
         List<Trabajador> lista = new LinkedList<>();
 
-        String strSQL = String.format("CALL listarTrabajador()");
+        String strSQL = String.format("SELECT * FROM trabajador");
 
         try {
             ResultSet rst = cnn.createStatement().executeQuery(strSQL);
@@ -65,7 +65,7 @@ public class TrabajadorService {
                 String fecha_contrato = rst.getString("fecha_contratacion");
                 String estado = rst.getString("estado");
                 //Nombre Usuario
-                String nombreUsuario = rst.getString("usuario_nombre");
+                String nombreUsuario = rst.getString("usuario_id");
 
                 Trabajador trabajador = new Trabajador(dni,nombre,apellidos,cargo,salario,direccion,celular,fecha_contrato,estado,nombreUsuario);
                 lista.add(trabajador);
