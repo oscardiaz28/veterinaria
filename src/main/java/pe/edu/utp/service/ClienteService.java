@@ -66,7 +66,7 @@ public class ClienteService {
                 count++;
             }
             if (count == 0) {
-                throw new NotFoundException("No se encontró ningun colaborador en la bd");
+                throw new NotFoundException("No se encontró ningun cliente en la bd");
             }
         } catch (SQLException e) {
             String msg = String.format("Ocurrió una excepción SQL: %s", e.getMessage());

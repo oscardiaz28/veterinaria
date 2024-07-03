@@ -37,6 +37,10 @@ public class App
         webserver.addServlet(ListarUsuarioServlet.class,"/listar_usuario");
         webserver.addServlet(UsuarioController.class, "/register_usuario");
 
+        //CLIENTE
+        webserver.addServlet(ClienteController.class, "/register_cliente");
+        webserver.addServlet(ListarClienteServlet.class, "/listar_cliente");
+
         //TRABAJADOR
         webserver.addServlet(ListarTrabajadorServlet.class, "/listar_trabajador");
         webserver.addServlet(TrabajadorController.class, "/register_trabajador");

@@ -273,37 +273,23 @@
           <div class="tile">
             <h3 class="tile-title">Registrar Cliente</h3>
             <div class="tile-body">
-              <form>
+              <form action="/register_cliente" method="POST">
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <label class="form-label">DNI</label>
                     <input
+                      id="txtdni"
+                      name="txtdni"
                       class="form-control"
                       type="text"
                       placeholder="Dni cliente"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Email</label>
-                    <input
-                      class="form-control"
-                      type="email"
-                      placeholder="Enter email address"
                     />
                   </div>
                 </div>
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <label class="form-label">Usuario</label>
-                    <input class="form-control" type="text" placeholder="Rol" />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Mascota</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      placeholder="Codigo mascota"
-                    />
+                    <input class="form-control" id="txtusuarioID" name="txtusuarioID" type="text" placeholder="Rol" />
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -312,6 +298,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtnombre"
+                      name="txtnombre"
                       placeholder="Nombre Cliente"
                     />
                   </div>
@@ -320,6 +308,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtapellidos"
+                      name="txtapellidos"
                       placeholder="Apellidos Cliente"
                     />
                   </div>
@@ -330,6 +320,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtdireccion"
+                      name="txtdireccion"
                       placeholder="Dirección"
                     />
                   </div>
@@ -339,19 +331,21 @@
                       class="form-control"
                       type="text"
                       placeholder="Celular"
+                      id="txtcelular"
+                      name="txtcelular"
                     />
                   </div>
                 </div>
+                <div class="tile-footer">
+                  <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-check-circle-fill me-2"></i>Registrar
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <a class="btn btn-danger" href="#">
+                    <i class="bi bi-x-circle-fill me-2"></i>Cancelar
+                  </a>
+                </div>
               </form>
-            </div>
-            <div class="tile-footer">
-              <button class="btn btn-primary" type="button">
-                <i class="bi bi-check-circle-fill me-2"></i>Registrar
-              </button>
-              &nbsp;&nbsp;&nbsp;
-              <a class="btn btn-danger" href="#">
-                <i class="bi bi-x-circle-fill me-2"></i>Cancelar
-              </a>
             </div>
           </div>
         </div>
