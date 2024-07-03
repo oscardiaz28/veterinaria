@@ -2,7 +2,6 @@ package pe.edu.utp.business;
 
 
 import pe.edu.utp.exceptions.AlreadyExistsException;
-import pe.edu.utp.model.Categoria;
 import pe.edu.utp.model.Cliente;
 import pe.edu.utp.service.ClienteService;
 import pe.edu.utp.util.AppConfig;

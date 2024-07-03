@@ -1,7 +1,6 @@
 package pe.edu.utp.business;
 
 import pe.edu.utp.model.CitaServicio;
-import pe.edu.utp.service.CitaService;
 import pe.edu.utp.service.CitaServicioService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;

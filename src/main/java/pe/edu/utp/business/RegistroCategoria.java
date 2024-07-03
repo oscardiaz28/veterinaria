@@ -3,7 +3,6 @@ package pe.edu.utp.business;
 
 import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Categoria;
-import pe.edu.utp.model.Producto;
 import pe.edu.utp.service.CategoriaService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
@@ -12,9 +11,7 @@ import javax.naming.NamingException;
 import pe.edu.utp.util.ErrorLog;
 import pe.edu.utp.utils.TextUTP;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class RegistroCategoria {

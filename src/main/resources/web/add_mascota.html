@@ -273,14 +273,27 @@
           <div class="tile">
             <h3 class="tile-title">Registrar Mascota</h3>
             <div class="tile-body">
-              <form method="post" action="/register_mascota">
+              <form method="post" action="/register_mascotas" enctype="multipart/form-data">
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <label class="form-label">Código</label>
                     <input
                       class="form-control"
                       type="text"
+                      id="txtcodigo"
+                      name="txtcodigo"
                       placeholder="Código de la mascota"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">DNI - Dueño</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtdni_cliente"
+                      name="txtdni_cliente"
+                      placeholder="Nombre de la mascota"
                     />
                   </div>
                   <div class="col-md-6">
@@ -288,6 +301,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtnombre"
+                      name="txtnombre"
                       placeholder="Nombre de la mascota"
                     />
                   </div>
@@ -298,6 +313,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtespecie"
+                      name="txtespecie"
                       placeholder="Especie de la mascota"
                     />
                   </div>
@@ -306,6 +323,8 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtraza"
+                      name="txtraza"
                       placeholder="Raza de la mascota"
                     />
                   </div>
@@ -316,27 +335,40 @@
                     <input
                       class="form-control"
                       type="text"
+                      id="txtedad"
+                      name="txtedad"
                       placeholder="Edad de la mascota"
                     />
                   </div>
                   <div class="col-md-6">
+                    <label class="form-label">Género</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="txtgenero"
+                      name="txtgenero"
+                      placeholder="Macho / Hembra"
+                    />
+                  </div>
+                  <!-- <div class="col-md-6">
                     <label class="form-label">Género</label>
                     <select class="form-select">
                       <option selected>Selecciona el género</option>
                       <option value="Macho">Macho</option>
                       <option value="Hembra">Hembra</option>
                     </select>
-                  </div>
-                  <div class="col-md-6">
+                  </div> -->
+                  <!-- <div class="col-md-6">
                     <label class="form-label">DNI-DUEÑO</label>
                     <select class="form-select">
                       <option selected>Seleccionar</option>
                         {itemsDueño}
                     </select>
-                  </div>
+                  </div> -->
                   <div class="col-md-6">
                     <label class="form-label">Foto</label>
-                    <input class="form-control" type="file" accept="image/*" />
+                    <input class="form-control" type="file" accept="image/*" id="txtFoto"
+                    name="txtFoto" />
                   </div>
                 </div>
                 <div class="tile-footer">
