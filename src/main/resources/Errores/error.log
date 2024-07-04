@@ -21,3 +21,7 @@
 2024-07-03 10:42:32 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Column 'password' cannot be null
 2024-07-03 10:42:32 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
 2024-07-03 10:42:32 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-04 06:50:41 - ERROR - Parameter index of 4 is out of range (1, 3)
+2024-07-04 06:50:41 - ERROR - SQLException: java.sql.SQLException: Parameter index of 4 is out of range (1, 3)
+2024-07-04 06:50:41 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-04 06:50:41 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))

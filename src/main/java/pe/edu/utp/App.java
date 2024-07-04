@@ -22,7 +22,7 @@ public class App {
     public static RegistroTrabajador RegTrabajador = new RegistroTrabajador();
     public static RegistroCliente RegCliente = new RegistroCliente();
     public static RegistroMascota RegMascotas = new RegistroMascota();
-   public static RegistroServicios RegServicios =new RegistroServicios();
+    public static RegistroServicios RegServicios =new RegistroServicios();
 
     public static void main(String[] args) throws Exception {
 

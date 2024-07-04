@@ -276,16 +276,6 @@
                 <form method="post" action="/register_servicios" enctype="multipart/form-data">
                   <div class="row mb-3">
                     <div class="col-md-6">
-                      <label class="form-label">Código</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        id="txtid_servicio"
-                        name="txtid_servicio"
-                        placeholder="Código del servicio"
-                      />
-                    </div>
-                    <div class="col-md-6">
                       <label class="form-label">Nombre</label>
                       <input
                         class="form-control"
@@ -295,49 +285,51 @@
                         placeholder="Nombre del servicio"
                       />
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Descripcion</label>
-                    <input
-                            class="form-control"
-                            type="text"
-                            id="txtdescripcion"
-                            name="txtdescripcion"
-                            placeholder="Descripcion del servicio"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Precio</label>
-                    <input
-                            class="form-control"
-                            type="text"
-                            id="txtprecio"
-                            name="txtprecio"
-                            placeholder="Descripcion del servicio"
-                    />
-                  </div>
                     <div class="col-md-6">
-                      <label class="form-label">Imagen</label>
+                      <label class="form-label">Descripcion</label>
                       <input
-                        class="form-control"
-                        type="file"
-                        id="txtFoto"
-                        name="txtFoto"
-                        accept="image/*"
+                              class="form-control"
+                              type="text"
+                              id="txtdescripcion"
+                              name="txtdescripcion"
+                              placeholder="Descripcion del servicio"
                       />
                     </div>
-
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Precio</label>
+                      <input
+                              class="form-control"
+                              type="text"
+                              id="txtprecio"
+                              name="txtprecio"
+                              placeholder="Descripcion del servicio"
+                      />
+                    </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Imagen</label>
+                        <input
+                          class="form-control"
+                          type="file"
+                          id="txtFoto"
+                          name="txtFoto"
+                          accept="image/*"
+                        />
+                      </div>
+                  </div>
+                  <div class="tile-footer">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="bi bi-check-circle-fill me-2"></i>Registrar
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-danger" href="#">
+                      <i class="bi bi-x-circle-fill me-2"></i>Cancelar
+                    </a>
+                  </div>
                 </form>
               </div>
-              <div class="tile-footer">
-                <button class="btn btn-primary" type="button">
-                  <i class="bi bi-check-circle-fill me-2"></i>Registrar
-                </button>
-                &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger" href="#">
-                  <i class="bi bi-x-circle-fill me-2"></i>Cancelar
-                </a>
-              </div>
+
             </div>
           </div>
         </div>

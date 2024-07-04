@@ -21,6 +21,15 @@ public class Servicio {
         this.imagen = imagen;
     }
 
+    public Servicio(int id_servicio, String nombre, String descripcion, double precio, String imagen) {
+        this.id_servicio = id_servicio;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+    }
+
+
     //GETTERS
     public int getId_servicio() {
         return id_servicio;
@@ -40,6 +49,26 @@ public class Servicio {
 
     public String getImagen() {
         return imagen;
+    }
+
+    public void setId_servicio(int id_servicio) {
+        this.id_servicio = id_servicio;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     //TO STRING

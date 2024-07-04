@@ -38,7 +38,6 @@ public class ServiceController extends HttpServlet{
         resp.setCharacterEncoding("UTF-8");
 
         // Captura de datos
-        int id_servicio = Integer.parseInt(req.getParameter("txtid_servicio"));
         String nombre= req.getParameter("txtnombre");
         String descripcion = req.getParameter("txtdescripcion");
         Double precio = Double.valueOf(req.getParameter("txtprecio"));
@@ -65,7 +64,7 @@ public class ServiceController extends HttpServlet{
             UTPBinary.echobin(data, fileFoto);
 
             // Crear el objeto Producto y registrar el producto
-            Servicio servicio = new Servicio(id_servicio, nombre, descripcion, precio, foto);
+            Servicio servicio = new Servicio(nombre, descripcion, precio, foto);
            App.RegServicios.registrarServicio(servicio);
 
             resp.sendRedirect("/listar_servicios");

@@ -23,7 +23,7 @@ public class RegistroServicios {
     public static ServicioService servicioService = null;
     public RegistroServicios() {
         try {
-            servicioService = new ServicioService(dao); // Inicia busquedaService
+            servicioService = new ServicioService(dao);
         } catch (SQLException | NamingException e) {
             String msg = String.format("Error del motor de bd: %s%n", e.getMessage());
             System.out.printf(msg);
@@ -31,7 +31,7 @@ public class RegistroServicios {
         }
     }
 
-    // Método para confirmar el registro de la mascota
+    // Método para confirmar el registro del servicio
     public static void registrarServicio (Servicio servicio) throws IOException {
 
         try {
@@ -77,7 +77,7 @@ public class RegistroServicios {
                     .replace("${nombre}", servicio.getNombre())
                     .replace("${descripcion}", servicio.getDescripcion())
                     .replace("${precio}", Double.toString(servicio.getPrecio()))
-                    .replace("${foto}", servicio.getFoto());
+                    .replace("${foto}", servicio.getImagen());
 
             itemsHtml.append(item);
         }

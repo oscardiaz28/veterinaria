@@ -20,7 +20,7 @@ public class ServicioService {
     public ServicioService(DataAccess dao) throws SQLException, NamingException {
         this.cnn = dao.getConnection();
     }
-    // Método para registrar a una mascota
+    // Método para registrar a un servicio
     public void addservice (Servicio servicio) throws SQLException, IOException {
         String consultaSQL = "CALL registrarservicio(?, ?, ?, ?, ?)";
 
@@ -30,7 +30,7 @@ public class ServicioService {
             pstm.setString(2, servicio.getNombre());
             pstm.setString(3, servicio.getDescripcion());
             pstm.setDouble(4, servicio.getPrecio());
-            pstm.setString(5, servicio.getFoto());
+            pstm.setString(5, servicio.getImagen());
 
             int num = pstm.executeUpdate();
 
