@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import pe.edu.utp.App;
 import pe.edu.utp.model.Trabajador;
+import pe.edu.utp.model.Usuario;
 import pe.edu.utp.util.AppConfig;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -25,13 +26,19 @@ public class TrabajadorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //UTF-8
+        // UTF-8
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
         // Captura de datos
+
+        //Usuario
+        String email = req.getParameter("txtusername");
+        String password = req.getParameter("txtpassword");
+        String estadoUsuario = ("txtestado");
+
+        //Trabajador
         String dniTrabajador = req.getParameter("txtdni");
-        String usuario_id = req.getParameter("txtid_user");
         String nombre = req.getParameter("txtnombre");
         String apellidos = req.getParameter("txtapellidos");
         String cargo = req.getParameter("txtcargo");
@@ -49,22 +56,23 @@ public class TrabajadorController extends HttpServlet {
             Validator.validateNotEmpty(cargo, "Cargo");
             Validator.validateNotEmpty(direccion, "Direccion");
             Validator.validateNotEmpty(salario, "Salario");
-            Validator.validateNotEmpty(estado, "Estado");
             Validator.validateNotEmpty(celular, "Celular");
-            Validator.validateNotEmpty(usuario_id, "Usuario");
 
-            //Conversion
+            // Conversion
             Double salarioStr = Double.parseDouble(salario);
-            Integer usuario_idStr = Integer.parseInt(usuario_id);
 
-            // Crear el objeto Trabajador y registrar el trabajador
-            Trabajador trabajador = new Trabajador(dniTrabajador,usuario_idStr,nombre,apellidos,cargo,salarioStr,direccion,celular,fecha_contrato, estado);
+            // Registro Usuario
+            Usuario usuario = new Usuario(email, password, estadoUsuario);
+            int idUsuario = App.RegUsuario.registrarUsuario(usuario);
+
+            // Registro Trabajador con el ID del usuario obtenido
+            Trabajador trabajador = new Trabajador(dniTrabajador, idUsuario, nombre, apellidos, cargo, salarioStr, direccion, celular, fecha_contrato, estado);
             App.RegTrabajador.registrarTrabajador(trabajador);
 
             resp.sendRedirect("/listar_trabajador");
 
         } catch (IllegalArgumentException e) {
-            // Leer el HTML de error y reemplazar el marcador de posición con el mensaje de error
+            e.printStackTrace();
             String errorPagePath = AppConfig.getErrorTemplate();
             String html_error = new String(Files.readAllBytes(Paths.get(errorPagePath)), StandardCharsets.UTF_8);
             html_error = html_error.replace("${error}", e.getMessage());

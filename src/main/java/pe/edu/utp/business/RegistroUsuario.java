@@ -27,7 +27,7 @@ public class RegistroUsuario {
         }
     }
 
-    public static void registrarUsuario(Usuario usuario) throws IOException {
+    public static int registrarUsuario(Usuario usuario) throws IOException {
         try {
             usuarioService.addUsuario(usuario);
             System.out.println("Nuevo ok");
@@ -56,6 +56,7 @@ public class RegistroUsuario {
                 ioException.printStackTrace();
             }
         }
+        return 0;
     }
 
     //ListarUsuario

@@ -9,3 +9,15 @@
 2024-07-03 02:39:29 - ERROR - No se puede crear a la mascota porque ya existe uno con su mismo codigo
 2024-07-03 03:26:55 - ERROR - No se puede crear a la mascota porque ya existe uno con su mismo codigo
 2024-07-03 03:41:28 - ERROR - No se puede crear a la mascota porque ya existe uno con su mismo codigo
+2024-07-03 10:38:33 - ERROR - Column 'email' cannot be null
+2024-07-03 10:38:33 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Column 'email' cannot be null
+2024-07-03 10:38:33 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-03 10:38:33 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-03 10:42:20 - ERROR - Column 'password' cannot be null
+2024-07-03 10:42:20 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Column 'password' cannot be null
+2024-07-03 10:42:20 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-03 10:42:20 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-03 10:42:32 - ERROR - Column 'password' cannot be null
+2024-07-03 10:42:32 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Column 'password' cannot be null
+2024-07-03 10:42:32 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-03 10:42:32 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
