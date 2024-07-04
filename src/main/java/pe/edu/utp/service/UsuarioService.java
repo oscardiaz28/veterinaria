@@ -1,16 +1,13 @@
 package pe.edu.utp.service;
 
 import pe.edu.utp.exceptions.NotFoundException;
-import pe.edu.utp.model.Categoria;
+import java.sql.CallableStatement;
 import pe.edu.utp.model.Usuario;
 import pe.edu.utp.util.DataAccess;
 import pe.edu.utp.util.ErrorLog;
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,21 +21,25 @@ public class UsuarioService {
 
     // Metodo para registrar un usuario
     public void addUsuario(Usuario use) throws SQLException, IOException {
-        String consulta = String.format("CALL registrarUsuario(?, ?, ?)");
+        String consulta = "{CALL registrarUsuario(?, ?, ?, ?)}";
+        try (CallableStatement cstmt = cnn.prepareCall(consulta)) {
+            cstmt.setString(1, use.getEmail());
+            cstmt.setString(2, use.getContra());
+            cstmt.setString(3, use.getEstado());
+            cstmt.registerOutParameter(4, java.sql.Types.INTEGER);
 
-        try {
-            PreparedStatement pstmt = cnn.prepareStatement(consulta);
-            pstmt.setString(1, use.getEmail());
-            pstmt.setString(2, use.getContra());
-            pstmt.setString(3, use.getEstado());
+            cstmt.executeUpdate();
 
-            int num = pstmt.executeUpdate();
-
+            // Obtener el ID generado
+            int idUsuario = cstmt.getInt(4);
+            use.setId(idUsuario);
         } catch (SQLException e) {
             ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
             throw new SQLException(e);
         }
     }
+
+
 
     // Metodo para listar Usuarios
     public List<Usuario> getAllUsuarios() throws SQLException, NotFoundException {
