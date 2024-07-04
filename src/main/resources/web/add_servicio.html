@@ -273,13 +273,15 @@
             <div class="tile">
               <h3 class="tile-title">Registrar Servicio</h3>
               <div class="tile-body">
-                <form>
+                <form method="post" action="/register_servicios" enctype="multipart/form-data">
                   <div class="row mb-3">
                     <div class="col-md-6">
                       <label class="form-label">Código</label>
                       <input
                         class="form-control"
                         type="text"
+                        id="txtid_servicio"
+                        name="txtid_servicio"
                         placeholder="Código del servicio"
                       />
                     </div>
@@ -288,36 +290,43 @@
                       <input
                         class="form-control"
                         type="text"
+                        id="txtnombre"
+                        name="txtnombre"
                         placeholder="Nombre del servicio"
                       />
                     </div>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Descripción</label>
-                    <textarea
-                      class="form-control"
-                      placeholder="Descripción del servicio"
-                      rows="3"
-                    ></textarea>
+                  <div class="col-md-6">
+                    <label class="form-label">Descripcion</label>
+                    <input
+                            class="form-control"
+                            type="text"
+                            id="txtdescripcion"
+                            name="txtdescripcion"
+                            placeholder="Descripcion del servicio"
+                    />
                   </div>
-                  <div class="row mb-3">
-                    <div class="col-md-6">
-                      <label class="form-label">Precio</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Precio del servicio"
-                      />
-                    </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Precio</label>
+                    <input
+                            class="form-control"
+                            type="text"
+                            id="txtprecio"
+                            name="txtprecio"
+                            placeholder="Descripcion del servicio"
+                    />
+                  </div>
                     <div class="col-md-6">
                       <label class="form-label">Imagen</label>
                       <input
                         class="form-control"
                         type="file"
+                        id="txtFoto"
+                        name="txtFoto"
                         accept="image/*"
                       />
                     </div>
-                  </div>
+
                 </form>
               </div>
               <div class="tile-footer">

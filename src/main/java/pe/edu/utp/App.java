@@ -22,6 +22,7 @@ public class App {
     public static RegistroTrabajador RegTrabajador = new RegistroTrabajador();
     public static RegistroCliente RegCliente = new RegistroCliente();
     public static RegistroMascota RegMascotas = new RegistroMascota();
+   public static RegistroServicios RegServicios =new RegistroServicios();
 
     public static void main(String[] args) throws Exception {
 
@@ -61,6 +62,11 @@ public class App {
         // MASCOTAS
         webserver.addServlet(ListarMascotaServlet.class, "/listar_mascotas");
         webserver.addServlet(MascotaController.class, "/register_mascotas").getRegistration()
+                .setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
+
+        // SERVICIO
+        webserver.addServlet(ListarServicios.class, "/listar_servicios");
+        webserver.addServlet(ServiceController.class, "/register_servicios").getRegistration()
                 .setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
 
         URL myURL = new URL("http://localhost:8085/dashboard.html");
