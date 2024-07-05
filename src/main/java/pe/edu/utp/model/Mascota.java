@@ -37,8 +37,7 @@ public class Mascota {
 
    
     // Constructor para registrar
-    public Mascota(String nombre, String especie, String raza, String edad,
-                   String genero, String foto) {
+    public Mascota(String nombre, String especie, String raza, String edad, String genero, String foto) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
@@ -46,6 +45,7 @@ public class Mascota {
         this.genero = genero;
         this.foto = foto;
     }
-    
+
+
 
 }

@@ -60,3 +60,15 @@
 2024-07-05 01:54:08 - ERROR - SQLException: java.sql.SQLException: Data truncated for column 'p_codigo_mascota' at row 1
 2024-07-05 01:55:17 - ERROR - Incorrect integer value: 'a' for column 'p_codigo_mascota' at row 1
 2024-07-05 01:55:17 - ERROR - SQLException: java.sql.SQLException: Incorrect integer value: 'a' for column 'p_codigo_mascota' at row 1
+2024-07-05 07:31:47 - ERROR - Parameter number 7 is not an OUT parameter
+2024-07-05 07:31:47 - ERROR - SQLException: java.sql.SQLException: Parameter number 7 is not an OUT parameter
+2024-07-05 07:31:47 - ERROR - Parameter number 7 is not an OUT parameter
+2024-07-05 07:31:47 - ERROR - SQLException: java.sql.SQLException: Parameter number 7 is not an OUT parameter
+2024-07-05 07:36:26 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-05 07:36:26 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-05 07:36:26 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-05 07:36:26 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-05 07:37:33 - ERROR - Data truncated for column 'edad' at row 1
+2024-07-05 07:37:33 - ERROR - SQLException: java.sql.SQLException: Data truncated for column 'edad' at row 1
+2024-07-05 07:37:33 - ERROR - Data truncated for column 'edad' at row 1
+2024-07-05 07:37:33 - ERROR - SQLException: java.sql.SQLException: Data truncated for column 'edad' at row 1

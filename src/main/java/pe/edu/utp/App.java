@@ -55,7 +55,9 @@ public class App {
         webserver.addServlet(CombosForProductos.class, "/add_producto");
 
         // CITAS
-        webserver.addServlet(CitaController.class, "/api/crear_cita");
+        webserver.addServlet(CitaController.class, "/api/crear_cita")
+                .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
+
 
         // MASCOTAS
         webserver.addServlet(ListarMascotaServlet.class, "/listar_mascotas");

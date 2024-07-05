@@ -5,6 +5,7 @@ import jakarta.json.bind.annotation.JsonbDateFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import pe.edu.utp.model.Mascota;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class CitaDto {
     private String hora;
     private String mensaje;
     private List<Integer> servicios;
+    private List<Integer> mascotas;
     private String telefono;
 
     public boolean hasEmptyFields() {

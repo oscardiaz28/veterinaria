@@ -34,8 +34,8 @@ public class RegistroMascota {
     // Método para confirmar el registro de la mascota
     public static int registrarMascota(Mascota mascota) throws IOException {
         try {
-            mascotaService.addMascota(mascota);
             System.out.println("Nuevo ok");
+            return mascotaService.addMascota(mascota);
         } catch (AlreadyExistsException e) {
             String errorMsg = "AlreadyExistsException: " + e.getMessage();
             System.out.println(errorMsg);

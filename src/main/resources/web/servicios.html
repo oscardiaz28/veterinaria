@@ -75,13 +75,22 @@
             <span class="load hidden" id="loader"></span>
           </div>
 
-            <form action="" method="" class="grid grid-cols-1 gap-6 md:grid-cols-2" id="solicitarServicio">
+            <form action="" method="" class="grid grid-cols-1 gap-6 md:grid-cols-1" id="solicitarServicio" enctype="multipart/form-data">
+
                 <input type="hidden" name="id_cliente" value="43256789">
-                <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
+                <fieldset class="border p-4 rounded-md">
+
+                  <legend>Informacion de la Cita</legend>
+
+                  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
                     <input name="nombre" type="text" placeholder="First Name" class="w-full border outline-none h-[55px] px-3 text-md ">
                     <input name="apellido" type="text" placeholder="Last Name" class="w-full border outline-none h-[55px] px-3 text-md ">
                     <input name="fecha" type="date" placeholder="Date" class="w-full border outline-none h-[55px] px-3 text-md ">
-                    <div class="grid grid-rows-2 grid-cols-5 gap-2" id="time-container">
+
+                    <div class="grid grid-rows-2 grid-cols-5 gap-2 mb-3" id="time-container">
+
                       <div class="relative border w-[50px] rounded text-center time-btn">
                         <input type="radio" value="09:00" name="hora" class="opacity-0 absolute left-0 top-0 cursor-pointer w-full h-full">
                         <label for="">09:00</label>
@@ -123,17 +132,47 @@
                         <label for="">18:00</label>
                       </div>
                     </div>
-                </div>
-                <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                  </div>
+
+                  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <select name="servicios" class="w-full border outline-none h-[55px] px-3 text-md" multiple>
-                        <option value="">Seleccionar los servicios</option>
-                        <option value="1">Vacunacion</option>
-                        <option value="2">Limpieza</option>
+                      <option value="">Seleccionar los servicios</option>
+                      <option value="1">Vacunacion</option>
+                      <option value="2">Limpieza</option>
                     </select>
-                    <input name="telefono" type="text" placeholder="Phone" class="w-full border outline-none h-[55px] px-3 text-md ">
-                    <textarea name="mensaje" placeholder="Message" class="w-full border outline-none h-[55px] px-3 text-md "></textarea>
-                    <input type="submit" class="cursor-pointer w-full border outline-none h-[55px] px-3 text-md bg-[#91C235] text-white rounded-md" value="Reservar">
+                    <input name="telefono" type="number" placeholder="Phone" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <textarea name="mensaje" placeholder="Message" class="w-full border outline-none h-[70px] px-3 py-3 text-md col-span-2"></textarea>
+                  </div>
+
+                </fieldset>
+
+
+              <fieldset class="border p-4 rounded-md">
+
+                <legend>Informacion de tu mascota</legend>
+
+                <div id="pet_container">
+                  <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+                    <input name="nombre_mascota[0]" type="text" placeholder="Nombre" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <input name="especie[0]" type="text" placeholder="Especie" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <input name="raza[0]" type="text" placeholder="Raza, Ejm. pitbull" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <input name="edad[0]" type="text" placeholder="Edad, Ejm. 2 meses" class="w-full border outline-none h-[55px] px-3 text-md ">
+                    <select name="genero[0]" class="border outline-none px-3">
+                      <option value="macho">macho</option>
+                      <option value="hembra">hembra</option>
+                    </select>
+                    <input name="imagen[0]" type="file" class="w-full border outline-none h-[55px] px-3 text-md ">
+                  </div>
                 </div>
+              </fieldset>
+
+              <div>
+                <button type="button" id="add_pet" class="  bg-blue-800 text-white py-2 px-5 rounded inline-block">Agregar otra mascota</button>
+              </div>
+
+              <input type="submit" class="cursor-pointer w-full border outline-none h-[55px] px-3 text-md bg-[#91C235] text-white rounded-md" value="Reservar">
+
+
             </form>
 
 

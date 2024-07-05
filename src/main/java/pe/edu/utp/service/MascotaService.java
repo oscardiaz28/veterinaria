@@ -19,7 +19,7 @@ public class MascotaService {
     }
 
     // Método para registrar a una mascota
-    public void addMascota(Mascota mascota) throws SQLException, IOException {
+    public int addMascota(Mascota mascota) throws SQLException, IOException {
             String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?)}";
             try (CallableStatement cstmt = cnn.prepareCall(consulta)) {
                 cstmt.setString(1, mascota.getNombre());
@@ -37,6 +37,7 @@ public class MascotaService {
                 // Obtener el código de la mascota generada
                 int codigoMascota = cstmt.getInt(7);
                 mascota.setCodigo(codigoMascota);
+                return codigoMascota;
 
             } catch (SQLException e) {
                 ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);

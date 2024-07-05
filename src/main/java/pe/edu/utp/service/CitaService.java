@@ -38,13 +38,14 @@ public class CitaService {
     }
 
     public Long registroCita(Cita cita) throws IOException, SQLException {
-        String sql = "INSERT INTO cita(cliente_dni, fecha_registro, hora) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cita(cliente_dni, fecha_registro, hora, mensaje) VALUES (?, ?, ?, ?)";
 
         try{
             PreparedStatement stmt = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString( 1, cita.getCliente_dni() );
             stmt.setDate( 2, Date.valueOf( cita.getFecha_registro()) );
             stmt.setTime(3, Time.valueOf(cita.getHora()) );
+            stmt.setString( 4, cita.getMensaje() );
 
             int affectedRows = stmt.executeUpdate();
             if( affectedRows > 0 ){

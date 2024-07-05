@@ -16,5 +16,6 @@ public class Cita {
     private String trabajador;
     private LocalDate fecha_registro;
     private LocalTime hora;
+    private String mensaje;
 
 }

@@ -38,6 +38,7 @@ public class RegistroCita {
         cita.setCliente_dni( String.valueOf(dto.getId_cliente()) );
         cita.setFecha_registro(LocalDate.parse(dto.getFecha()) );
         cita.setHora(LocalTime.parse(dto.getHora()));
+        cita.setMensaje( dto.getMensaje() );
 
         boolean isAlreadyTaken = citaServicio.isTimeTaken(dto.getFecha(), dto.getHora());
 
