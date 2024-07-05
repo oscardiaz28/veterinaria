@@ -24,6 +24,7 @@ public class Mascota {
     public Mascota() {
     }
 
+    //Constructor para Listar
     public Mascota(int codigo, String dni_cliente, String nombre, String especie, String raza, String edad,
             String genero, String foto) {
         this.codigo = codigo;
@@ -37,7 +38,18 @@ public class Mascota {
     }
 
    
-    // Constructor con parámetros
+    // Constructor para registrar
+    public Mascota(String dni_cliente, String nombre, String especie, String raza, String edad,
+                   String genero, String foto) {
+        this.codigo = codigo;
+        this.dni_cliente = dni_cliente;
+        this.nombre = nombre;
+        this.especie = especie;
+        this.raza = raza;
+        this.edad = edad;
+        this.genero = genero;
+        this.foto = foto;
+    }
     
 
 }

@@ -271,21 +271,10 @@
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">Registrar Mascota</h3>
+            <h3 class="tile-title">Registro Cliente y Mascota</h3>
             <div class="tile-body">
               <form method="post" action="/register_mascotas" enctype="multipart/form-data">
                 <div class="row mb-3">
-                  <div class="col-md-6">
-                    <label class="form-label">Código</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="txtcodigo"
-                      name="txtcodigo"
-                      placeholder="Código de la mascota"
-                      required
-                    />
-                  </div>
                   <div class="col-md-6">
                     <label class="form-label">DNI - Dueño</label>
                     <input
@@ -293,17 +282,17 @@
                       type="text"
                       id="txtdni_cliente"
                       name="txtdni_cliente"
-                      placeholder="Nombre de la mascota"
+                      placeholder="Dni Cliente"
                     />
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">Nombre</label>
                     <input
-                      class="form-control"
-                      type="text"
-                      id="txtnombre"
-                      name="txtnombre"
-                      placeholder="Nombre de la mascota"
+                            class="form-control"
+                            type="text"
+                            id="txtnombre_mascota"
+                            name="txtnombre_mascota"
+                            placeholder="Nombre de la mascota"
                     />
                   </div>
                 </div>
@@ -350,25 +339,66 @@
                       placeholder="Macho / Hembra"
                     />
                   </div>
-                  <!-- <div class="col-md-6">
-                    <label class="form-label">Género</label>
-                    <select class="form-select">
-                      <option selected>Selecciona el género</option>
-                      <option value="Macho">Macho</option>
-                      <option value="Hembra">Hembra</option>
-                    </select>
-                  </div> -->
-                  <!-- <div class="col-md-6">
-                    <label class="form-label">DNI-DUEÑO</label>
-                    <select class="form-select">
-                      <option selected>Seleccionar</option>
-                        {itemsDueño}
-                    </select>
-                  </div> -->
+                </div>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Nombre Dueño</label>
+                      <input
+                              class="form-control"
+                              type="text"
+                              id="txtnombre"
+                              name="txtnombre"
+                              placeholder="Nombre Cliente"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Apellidos</label>
+                      <input
+                              class="form-control"
+                              type="text"
+                              id="txtapellidos"
+                              name="txtapellidos"
+                              placeholder="Apellidos Cliente"
+                      />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Dirección</label>
+                      <input
+                              class="form-control"
+                              type="text"
+                              id="txtdireccion"
+                              name="txtdireccion"
+                              placeholder="Dirección"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Celular</label>
+                      <input
+                              class="form-control"
+                              type="text"
+                              placeholder="Celular"
+                              id="txtcelular"
+                              name="txtcelular"
+                      />
+                    </div>
+                  </div>
+                <div class="row mb-3">
                   <div class="col-md-6">
-                    <label class="form-label">Foto</label>
+                    <label class="form-label">Foto Mascota</label>
                     <input class="form-control" type="file" accept="image/*" id="txtFoto"
-                    name="txtFoto" />
+                           name="txtFoto" />
+                  </div>
+                  <div class="col-md-6">
+                      <label class="form-label">Email</label>
+                      <input class="form-control" type="email" id="txtusername" name="txtusername" placeholder="Nombre de usuario" />
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Contraseña</label>
+                    <input class="form-control" type="password" id="txtPASS" name="txtPASS" placeholder="Contraseña" />
                   </div>
                 </div>
                 <div class="tile-footer">

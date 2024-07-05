@@ -25,7 +25,7 @@ public class ClienteController extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        // Captura de datos
+        // Captura de datos cliente
         String dni_cliente = req.getParameter("txtdni");
         String usuario_id = req.getParameter("txtusuarioID");
         String nombre = req.getParameter("txtnombre");
@@ -45,7 +45,7 @@ public class ClienteController extends HttpServlet {
 
             Integer usuarioID = Integer.parseInt(usuario_id);
 
-            // Crear el objeto Producto y registrar el producto
+            // Registro Cliente
             Cliente cliente = new Cliente(dni_cliente,usuarioID,nombre,apellidos,direccion,celular);
             App.RegCliente.registrarCliente(cliente);
 

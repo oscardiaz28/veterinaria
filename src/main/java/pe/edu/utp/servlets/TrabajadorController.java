@@ -31,10 +31,12 @@ public class TrabajadorController extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        // Captura de datos
+        // Captura de datos usuario
         String email = req.getParameter("txtusername");
         String password = req.getParameter("txtPASS");
         String estadoUsuario = "Activo";
+
+        //Captura de datos trabajador
         String dniTrabajador = req.getParameter("txtdni");
         String nombre = req.getParameter("txtnombre");
         String apellidos = req.getParameter("txtapellidos");
@@ -43,7 +45,7 @@ public class TrabajadorController extends HttpServlet {
         String direccion = req.getParameter("txtdireccion");
         String celular = req.getParameter("txtcelular");
         String fecha_contrato = LocalDate.now().toString();
-        String estado = "Activo"; // Se puede cambiar si es necesario
+        String estado = "Activo";
 
         try {
             // Validaciones
@@ -71,6 +73,8 @@ public class TrabajadorController extends HttpServlet {
             // Registro Trabajador con el ID del usuario obtenido
             Trabajador trabajador = new Trabajador(dniTrabajador, idUsuario, nombre, apellidos, cargo, salarioStr, direccion, celular, fecha_contrato, estado);
             App.RegTrabajador.registrarTrabajador(trabajador);
+
+
 
             resp.sendRedirect("/listar_trabajador");
 
