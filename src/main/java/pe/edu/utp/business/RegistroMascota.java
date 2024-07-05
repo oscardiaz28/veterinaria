@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 
 import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Mascota;
+import pe.edu.utp.model.Usuario;
 import pe.edu.utp.service.MascotaService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
@@ -31,25 +32,39 @@ public class RegistroMascota {
     }
 
     // Método para confirmar el registro de la mascota
-    public static void registrarMascota (Mascota mascota) throws IOException {
-
+    public static int registrarMascota(Mascota mascota) throws IOException {
         try {
             mascotaService.addMascota(mascota);
             System.out.println("Nuevo ok");
-        } catch (AlreadyExistsException e){
-            System.out.println("AlreadyExistsException:" +e.getMessage());
+        } catch (AlreadyExistsException e) {
+            String errorMsg = "AlreadyExistsException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg,ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (SQLException e) {
+            String errorMsg = "SQLException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (RuntimeException e) {
+            String errorMsg = "Error al crear: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
-        catch (SQLException e) {
-            System.out.println("SQLException:" +e.getMessage());
-        }
-        catch (RuntimeException e){
-            System.out.println("Error al crear:" +e.getMessage());
-        } catch (IOException e) {
-            String errorMsg = String.format("IOException al registrar: %s", e.getMessage());
-            ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
-            throw new RuntimeException(e);
-        }
+        return 0;
     }
+
+
 
     //Listar Mascota
     public String getHtmlListarMascota() throws IOException, SQLException {
@@ -73,7 +88,6 @@ public class RegistroMascota {
 
             //Tabla Proyectos
             String item = htmlItem.replace("${codigo}", Integer.toString(mascota.getCodigo()))
-                    .replace("${dni_cliente}", mascota.getDni_cliente())
                     .replace("${nombre}", mascota.getNombre())
                     .replace("${especie}", mascota.getEspecie())
                     .replace("${raza}", mascota.getRaza())

@@ -37,3 +37,26 @@
 2024-07-04 07:48:19 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Column 'estado' cannot be null
 2024-07-04 07:49:35 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
 2024-07-04 07:49:35 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`trabajador`, CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-05 12:54:10 - ERROR - SQLException: java.sql.SQLException: Parameter 4 is not registered as an output parameter
+2024-07-05 12:54:22 - ERROR - SQLException: java.sql.SQLException: Parameter 4 is not registered as an output parameter
+2024-07-05 12:54:33 - ERROR - SQLException: java.sql.SQLException: Parameter 4 is not registered as an output parameter
+2024-07-05 01:12:04 - ERROR - Incorrect number of arguments for PROCEDURE bd_veterinaria.registrarCliente; expected 7, got 6
+2024-07-05 01:12:04 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Incorrect number of arguments for PROCEDURE bd_veterinaria.registrarCliente; expected 7, got 6
+2024-07-05 01:19:32 - ERROR - Incorrect number of arguments for PROCEDURE bd_veterinaria.registrarCliente; expected 7, got 6
+2024-07-05 01:19:32 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Incorrect number of arguments for PROCEDURE bd_veterinaria.registrarCliente; expected 7, got 6
+2024-07-05 01:27:28 - ERROR - Data truncation: Data too long for column 'p_celular' at row 1
+2024-07-05 01:27:28 - ERROR - SQLException: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'p_celular' at row 1
+2024-07-05 01:32:10 - ERROR - Data truncation: Data too long for column 'p_celular' at row 1
+2024-07-05 01:32:10 - ERROR - SQLException: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'p_celular' at row 1
+2024-07-05 01:33:12 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`cliente`, CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-05 01:33:12 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`cliente`, CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`))
+2024-07-05 01:34:42 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`cliente`, CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`codigo_mascota`) REFERENCES `mascota` (`codigo`))
+2024-07-05 01:34:42 - ERROR - SQLException: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`cliente`, CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`codigo_mascota`) REFERENCES `mascota` (`codigo`))
+2024-07-05 01:41:18 - ERROR - Incorrect integer value: 'dsf' for column 'p_codigo_mascota' at row 1
+2024-07-05 01:41:18 - ERROR - SQLException: java.sql.SQLException: Incorrect integer value: 'dsf' for column 'p_codigo_mascota' at row 1
+2024-07-05 01:49:11 - ERROR - Incorrect integer value: 'dsf' for column 'p_codigo_mascota' at row 1
+2024-07-05 01:49:11 - ERROR - SQLException: java.sql.SQLException: Incorrect integer value: 'dsf' for column 'p_codigo_mascota' at row 1
+2024-07-05 01:54:08 - ERROR - Data truncated for column 'p_codigo_mascota' at row 1
+2024-07-05 01:54:08 - ERROR - SQLException: java.sql.SQLException: Data truncated for column 'p_codigo_mascota' at row 1
+2024-07-05 01:55:17 - ERROR - Incorrect integer value: 'a' for column 'p_codigo_mascota' at row 1
+2024-07-05 01:55:17 - ERROR - SQLException: java.sql.SQLException: Incorrect integer value: 'a' for column 'p_codigo_mascota' at row 1

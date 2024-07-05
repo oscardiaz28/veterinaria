@@ -1,16 +1,14 @@
 package pe.edu.utp.service;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import javax.naming.NamingException;
 import pe.edu.utp.exceptions.NotFoundException;
 import pe.edu.utp.model.Mascota;
 import pe.edu.utp.util.DataAccess;
+import pe.edu.utp.util.ErrorLog;
 
 public class MascotaService {
     
@@ -21,26 +19,30 @@ public class MascotaService {
     }
 
     // Método para registrar a una mascota
-    public void addMascota (Mascota masc) throws SQLException, IOException {
-        String consultaSQL = "CALL registrarMascotas(?, ?, ?, ?, ?, ?, ?, ?)";
+    public void addMascota(Mascota mascota) throws SQLException, IOException {
+            String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?)}";
+            try (CallableStatement cstmt = cnn.prepareCall(consulta)) {
+                cstmt.setString(1, mascota.getNombre());
+                cstmt.setString(2, mascota.getEspecie());
+                cstmt.setString(3, mascota.getRaza());
+                cstmt.setString(4, mascota.getEdad());
+                cstmt.setString(5, mascota.getGenero());
+                cstmt.setString(6, mascota.getFoto());
 
-        try {
-            PreparedStatement pstm = cnn.prepareStatement(consultaSQL);
-            pstm.setInt(1, masc.getCodigo());  // Codigo de la mascota
-            pstm.setString(2, masc.getDni_cliente());
-            pstm.setString(3, masc.getNombre());
-            pstm.setString(4, masc.getEspecie());
-            pstm.setString(5, masc.getRaza());
-            pstm.setString(6, masc.getEdad());
-            pstm.setString(7, masc.getGenero());
-            pstm.setString(8, masc.getFoto());
+                // Registrar el parámetro de salida a
+                cstmt.registerOutParameter(7, Types.INTEGER);
 
-            int num = pstm.executeUpdate();
-            
-        } catch (SQLException e) {
-            throw new SQLException(e);
+                cstmt.executeUpdate();
+
+                // Obtener el código de la mascota generada
+                int codigoMascota = cstmt.getInt(7);
+                mascota.setCodigo(codigoMascota);
+
+            } catch (SQLException e) {
+                ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+                throw new SQLException(e);
+            }
         }
-    }
 
     // Método para listar a las macotas
     public List<Mascota> getAllMascota() throws SQLException, NotFoundException{
@@ -54,7 +56,6 @@ public class MascotaService {
 
             while (rst.next()){
                 int codigo = rst.getInt("codigo");
-                String dni_cliente = rst.getString("dni_cliente");
                 String nombre = rst.getString("nombre");
                 String especie = rst.getString("especie");
                 String raza = rst.getString("raza");
@@ -62,7 +63,7 @@ public class MascotaService {
                 String genero = rst.getString("genero");
                 String foto = rst.getString("foto");
 
-                Mascota mascota = new Mascota(codigo, dni_cliente, nombre, especie, raza, edad, genero, foto);
+                Mascota mascota = new Mascota(codigo, nombre, especie, raza, edad, genero, foto);
                 mascota.setCodigo(codigo);
                 lista.add(mascota);
                 conteo++;

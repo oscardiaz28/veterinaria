@@ -24,16 +24,18 @@ public class ClienteService {
 
     // Metodo para registrar un CLIENTE
     public void addCliente(Cliente cli) throws SQLException, IOException {
-        String consulta = String.format("CALL registrarCliente(?, ?, ?, ?, ?, ?)");
+        String consulta = String.format("CALL registrarCliente(?, ?, ?, ?, ?, ?, ?)");
 
         try {
             PreparedStatement pstmt = cnn.prepareStatement(consulta);
             pstmt.setString(1, cli.getDni_cliente());
-            pstmt.setInt(2, cli.getUsuario_id());
-            pstmt.setString(3, cli.getNombre());
-            pstmt.setString(4, cli.getApellidos());
-            pstmt.setString(5, cli.getDireccion());
-            pstmt.setString(6, cli.getCelular());
+            pstmt.setInt(2, cli.getCodigo_mascota());
+            pstmt.setInt(3, cli.getUsuario_id());
+            pstmt.setString(4, cli.getNombre());
+            pstmt.setString(5, cli.getApellidos());
+            pstmt.setString(6, cli.getDireccion());
+            pstmt.setString(7, cli.getCelular());
+
 
             int num = pstmt.executeUpdate();
 
@@ -60,8 +62,9 @@ public class ClienteService {
                 String apellidos = rst.getString("apellidos");
                 String direccion = rst.getString("direccion");
                 String celular = rst.getString("celular");
+                Integer codigo_mascota = rst.getInt("codigo_mascota");
 
-                Cliente cliente = new Cliente(dni,usuarioId,nombre,apellidos,direccion,celular);
+                Cliente cliente = new Cliente(dni,codigo_mascota,usuarioId,nombre,apellidos,direccion,celular);
                 lista.add(cliente);
                 count++;
             }

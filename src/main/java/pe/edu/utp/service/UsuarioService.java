@@ -33,6 +33,7 @@ public class UsuarioService {
             // Obtener el ID generado
             int idUsuario = cstmt.getInt(4);
             use.setId(idUsuario);
+
         } catch (SQLException e) {
             ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
             throw new SQLException(e);

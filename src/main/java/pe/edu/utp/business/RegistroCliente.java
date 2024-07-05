@@ -81,6 +81,7 @@ public class RegistroCliente {
             //Tabla Clientes
             String item = htmlItem.replace("${dni_cliente}", cliente.getDni_cliente())
                     .replace("${id_user}", Integer.toString(cliente.getUsuario_id()))
+                    .replace("${codigo_mascota}", Integer.toString(cliente.getCodigo_mascota()))
                     .replace("${nombre}", cliente.getNombre())
                     .replace("${apellidos}", cliente.getApellidos())
                     .replace("${direccion}", cliente.getDireccion())

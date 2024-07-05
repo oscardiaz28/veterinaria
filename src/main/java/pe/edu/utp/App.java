@@ -41,7 +41,6 @@ public class App {
         webserver.addServlet(TrabajadorController.class, "/register_trabajador");
 
         // CLIENTE
-        webserver.addServlet(ClienteController.class, "/register_cliente");
         webserver.addServlet(ListarClienteServlet.class, "/listar_cliente");
 
         // CATEGORIA
