@@ -41,6 +41,7 @@ public class UsuarioService {
 
 
 
+
     // Metodo para listar Usuarios
     public List<Usuario> getAllUsuarios() throws SQLException, NotFoundException {
         List<Usuario> lista = new LinkedList<>();

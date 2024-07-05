@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 @WebServlet("/register_trabajador")
@@ -31,13 +32,9 @@ public class TrabajadorController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         // Captura de datos
-
-        //Usuario
         String email = req.getParameter("txtusername");
-        String password = req.getParameter("txtpassword");
-        String estadoUsuario = ("txtestado");
-
-        //Trabajador
+        String password = req.getParameter("txtPASS");
+        String estadoUsuario = "Activo";
         String dniTrabajador = req.getParameter("txtdni");
         String nombre = req.getParameter("txtnombre");
         String apellidos = req.getParameter("txtapellidos");
@@ -46,7 +43,7 @@ public class TrabajadorController extends HttpServlet {
         String direccion = req.getParameter("txtdireccion");
         String celular = req.getParameter("txtcelular");
         String fecha_contrato = LocalDate.now().toString();
-        String estado = req.getParameter("txtestado");
+        String estado = "Activo"; // Se puede cambiar si es necesario
 
         try {
             // Validaciones
@@ -58,12 +55,18 @@ public class TrabajadorController extends HttpServlet {
             Validator.validateNotEmpty(salario, "Salario");
             Validator.validateNotEmpty(celular, "Celular");
 
-            // Conversion
             Double salarioStr = Double.parseDouble(salario);
 
             // Registro Usuario
             Usuario usuario = new Usuario(email, password, estadoUsuario);
-            int idUsuario = App.RegUsuario.registrarUsuario(usuario);
+            App.RegUsuario.registrarUsuario(usuario);
+
+            // Obtener el ID del usuario generado
+            int idUsuario = usuario.getId();
+
+            if (idUsuario == 0) {
+                throw new SQLException("Error al registrar el usuario, ID no generado.");
+            }
 
             // Registro Trabajador con el ID del usuario obtenido
             Trabajador trabajador = new Trabajador(dniTrabajador, idUsuario, nombre, apellidos, cargo, salarioStr, direccion, celular, fecha_contrato, estado);
@@ -71,7 +74,7 @@ public class TrabajadorController extends HttpServlet {
 
             resp.sendRedirect("/listar_trabajador");
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | SQLException e) {
             e.printStackTrace();
             String errorPagePath = AppConfig.getErrorTemplate();
             String html_error = new String(Files.readAllBytes(Paths.get(errorPagePath)), StandardCharsets.UTF_8);
@@ -83,3 +86,4 @@ public class TrabajadorController extends HttpServlet {
         }
     }
 }
+

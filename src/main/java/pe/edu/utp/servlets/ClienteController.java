@@ -5,13 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
 import pe.edu.utp.App;
-import pe.edu.utp.model.Categoria;
 import pe.edu.utp.model.Cliente;
 import pe.edu.utp.util.AppConfig;
-import pe.edu.utp.utils.UTPBinary;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

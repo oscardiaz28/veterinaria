@@ -20,10 +20,9 @@ public class TrabajadorService {
     }
 
     public void addTrabajador(Trabajador tra) throws SQLException, IOException {
-        String consulta = String.format("CALL registrar_trabajador(?, ? ,?, ?, ?, ?, ? ,?, ?, ?)");
+        String consulta = "CALL registrar_trabajador(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try {
-            PreparedStatement pstmt = cnn.prepareStatement(consulta);
+        try (PreparedStatement pstmt = cnn.prepareStatement(consulta)) {
             pstmt.setString(1, tra.getDni());
             pstmt.setInt(2, tra.getUsuario_id());
             pstmt.setString(3, tra.getNombre());
@@ -35,13 +34,14 @@ public class TrabajadorService {
             pstmt.setString(9, tra.getFecha_contrato());
             pstmt.setString(10, tra.getEstado());
 
-            int num = pstmt.executeUpdate();
+            pstmt.executeUpdate();
 
         } catch (SQLException e) {
             ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
             throw new SQLException(e);
         }
     }
+
 
     //Metodo para ListarTrabajadores
     public List<Trabajador> getAllTrabajador() throws SQLException, NotFoundException {
