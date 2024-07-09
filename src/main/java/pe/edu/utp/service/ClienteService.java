@@ -4,6 +4,7 @@ import pe.edu.utp.exceptions.NotFoundException;
 import pe.edu.utp.model.Categoria;
 import pe.edu.utp.model.Cliente;
 import pe.edu.utp.model.Trabajador;
+import pe.edu.utp.model.Usuario;
 import pe.edu.utp.util.DataAccess;
 import pe.edu.utp.util.ErrorLog;
 
@@ -20,6 +21,28 @@ public class ClienteService {
     private final Connection cnn;
     public ClienteService(DataAccess dao) throws SQLException, NamingException {
         this.cnn = dao.getConnection();
+    }
+
+
+    public void registroCliente(Cliente cliente) throws IOException, SQLException {
+        String sql = String.format("INSERT INTO cliente(dni_cliente, usuario_id, nombre, apellidos, direccion, " +
+                "celular) VALUES (?, ?, ?, ?, ?, ?)");
+        try{
+            PreparedStatement stmt = cnn.prepareStatement(sql);
+            stmt.setString(1, cliente.getDni_cliente());
+            stmt.setInt(2, cliente.getUsuario_id());
+            stmt.setString(3, cliente.getNombre());
+            stmt.setString(4, cliente.getApellidos());
+            stmt.setString(5, cliente.getDireccion());
+            stmt.setString(6, cliente.getCelular());
+
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException(e);
+        }
+
     }
 
     // Metodo para registrar un CLIENTE

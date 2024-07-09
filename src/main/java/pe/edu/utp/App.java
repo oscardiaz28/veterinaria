@@ -69,6 +69,12 @@ public class App {
         webserver.addServlet(ServiceController.class, "/register_servicios").getRegistration()
                 .setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
 
+        // REGISTRAR CLIENTE
+        webserver.addServlet( RegistrarClienteController.class, "/registrarCliente" );
+
+        // LOGIN CLIENTE
+        webserver.addServlet( LoginServlet.class, "/login" );
+
         URL myURL = new URL("http://localhost:8085/dashboard.html");
         System.out.println("*********************************************************");
         System.out.println("CLICK AQUI PARA ABRIR LA APLICACION:" + myURL);

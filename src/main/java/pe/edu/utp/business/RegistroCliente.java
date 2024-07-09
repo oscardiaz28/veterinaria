@@ -3,7 +3,9 @@ package pe.edu.utp.business;
 
 import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Cliente;
+import pe.edu.utp.model.Usuario;
 import pe.edu.utp.service.ClienteService;
+import pe.edu.utp.service.UsuarioService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
 import pe.edu.utp.util.ErrorLog;
@@ -19,14 +21,42 @@ public class RegistroCliente {
     String cnx = AppConfig.getConnectionStringCFN();
     DataAccessMariaDB dao = new DataAccessMariaDB(cnx);
     public static ClienteService clienteService = null;
+    public static UsuarioService usuarioService = null;
 
     public RegistroCliente() {
         try {
             clienteService = new ClienteService(dao);
+            usuarioService = new UsuarioService(dao);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (NamingException e) {
         }
+    }
+    public static void addCliente(Cliente cliente, Usuario usuario)  {
+        try {
+
+            boolean result = usuarioService.isUserExist(usuario.getEmail());
+
+            if( result ){
+                throw new IllegalArgumentException("El correo ya existe");
+            }
+
+            int usuarioId = usuarioService.registrarUsuario(usuario);
+
+            if( usuarioId == -1 ){
+                throw new IllegalArgumentException("Hubo un error");
+
+            }else{
+                cliente.setUsuario_id(usuarioId);
+                clienteService.registroCliente(cliente);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void registrarCliente(Cliente cliente) throws IOException {

@@ -1,6 +1,9 @@
 package pe.edu.utp.service;
 
 import pe.edu.utp.exceptions.NotFoundException;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.CallableStatement;
 import pe.edu.utp.model.Usuario;
 import pe.edu.utp.util.DataAccess;
@@ -19,8 +22,50 @@ public class UsuarioService {
         this.cnn = dao.getConnection();
     }
 
+    public boolean isUserExist(String email) throws IOException, SQLException {
+        String sql = "select * from usuario where email = ?";
+        try{
+            PreparedStatement stmt = cnn.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if( rs.next() ){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException(e);
+        }
+    }
+
+    public int registrarUsuario(Usuario use) throws SQLException, IOException {
+        String consulta = "INSERT into usuario(email, password, token, estado) VALUES(?, ?, ?, ?)";
+        System.out.println(consulta);
+        try {
+            PreparedStatement stmt = cnn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, use.getEmail());
+            stmt.setString(2, use.getContra());
+            stmt.setString(3, use.getToken());
+            stmt.setString(4, use.getEstado());
+
+            int affectedRows = stmt.executeUpdate();
+            if( affectedRows > 0 ){
+                ResultSet generatedkeys = stmt.getGeneratedKeys();
+                if( generatedkeys.next() ){
+                    long id = generatedkeys.getLong(1);
+                    return (int)id;
+                }
+            }
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException(e);
+        }
+        return -1;
+    }
+
     // Metodo para registrar un usuario
-    public void addUsuario(Usuario use) throws SQLException, IOException {
+    public int addUsuario(Usuario use) throws SQLException, IOException {
         String consulta = "{CALL registrarUsuario(?, ?, ?, ?)}";
         try (CallableStatement cstmt = cnn.prepareCall(consulta)) {
             cstmt.setString(1, use.getEmail());
@@ -33,6 +78,7 @@ public class UsuarioService {
             // Obtener el ID generado
             int idUsuario = cstmt.getInt(4);
             use.setId(idUsuario);
+            return idUsuario;
 
         } catch (SQLException e) {
             ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
@@ -40,7 +86,23 @@ public class UsuarioService {
         }
     }
 
-
+    public static String md5(String data) throws IOException {
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest msg = (MessageDigest) md.clone();
+            msg.update(data.getBytes());
+            return byteArrayToHex(msg.digest());
+        } catch (CloneNotSupportedException | NoSuchAlgorithmException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            return data;
+        }
+    }
+    public static String byteArrayToHex(byte[] a) {
+        StringBuilder sb = new StringBuilder(a.length * 2);
+        for(byte b: a)
+            sb.append(String.format("%02x", b));
+        return sb.toString();
+    }
 
 
     // Metodo para listar Usuarios

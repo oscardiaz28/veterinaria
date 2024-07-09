@@ -8,7 +8,7 @@ public class Usuario {
     private String contra;
     private String token;
     private String estado;
-
+    private String rol;
     //Constructor
     public Usuario() {
     }
@@ -20,6 +20,14 @@ public class Usuario {
         this.contra = contra;
         this.token = token;
         this.estado = estado;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     //Constructor para registrar usuario
