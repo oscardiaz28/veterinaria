@@ -77,3 +77,4 @@
 2024-07-12 10:15:35 - ERROR - SQLException: java.sql.SQLException: No value specified for parameter 8
 2024-07-12 10:27:18 - ERROR - Parameter index of 8 is out of range (1, 7)
 2024-07-12 10:27:18 - ERROR - SQLException: java.sql.SQLException: Parameter index of 8 is out of range (1, 7)
+2024-07-12 11:55:18 - ERROR - Data truncation: Data too long for column 'dni_cliente' at row 1
