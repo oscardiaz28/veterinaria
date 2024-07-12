@@ -16,24 +16,18 @@ import java.util.List;
 @ToString
 public class CitaDto {
 
-    private Integer id_cliente;
-    private String nombre;
-    private String apellido;
+    private String id_cliente;
     private String fecha;
     private String hora;
     private String mensaje;
     private List<Integer> servicios;
-    private List<Integer> mascotas;
-    private String telefono;
+    private String mascotas;
 
     public boolean hasEmptyFields() {
         return id_cliente == null ||
-                nombre == null || nombre.isEmpty() ||
-                apellido == null || apellido.isEmpty() ||
                 fecha == null || fecha.isEmpty() ||
                 hora == null || hora.isEmpty() ||
                 mensaje == null || mensaje.isEmpty() ||
-                servicios == null || servicios.isEmpty() ||
-                telefono == null || telefono.isEmpty();
+                servicios == null || servicios.isEmpty();
     }
 }

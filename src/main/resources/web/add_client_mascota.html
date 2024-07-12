@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+  />
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+
+<style>
+      .active{
+        color: white !important;
+        background-color: green !important;
+      }
+      .load {
+          width: 48px;
+          height: 48px;
+          border: 5px solid black;
+          border-bottom-color: transparent;
+          border-radius: 50%;
+          display: inline-block;
+          box-sizing: border-box;
+          margin: 2rem auto;
+          animation: rotation 1s linear infinite;
+          }
+
+          @keyframes rotation {
+          0% {
+              transform: rotate(0deg);
+          }
+          100% {
+              transform: rotate(360deg);
+          }
+      }
+      .hidden{
+        display: none;
+      }
+      .show{
+        display: block;
+      }
+
+    </style>
+<body>
+
+<header class="header header-light">
+  <div class="max-w-[1200px] my-0 mx-auto px-5 pt-8">
+    <nav id="nav" class="bg-white px-6 flex items-center justify-between relative rounded-md">
+      <a href="/index.html" class="inline-block flex items-center">
+        <img class="w-[90px] block" src="img/logo.jpg" alt="" />
+        <span class="hidden md:block italic text-xl"
+        >Veterinaria Adela</span
+        >
+      </a>
+      <div
+              class="nav_links rounded-md absolute top-full left-0 w-full flex flex-col gap-5 py-5 mt-3 hidden lg:block lg:relative lg:mt-0 lg:text-right z-10"
+      >
+        <a href="index.html" class="font-bold inline-block mx-5 hover:text-[#FD4C82]"
+        >Inicio</a
+        >
+        <a href="productos.html" class="font-bold inline-block mx-5 hover:text-[#FD4C82]"
+        >Productos</a
+        >
+        <a href="servicios.html" class="font-bold inline-block mx-5 hover:text-[#FD4C82]"
+        >Servicios</a
+        >
+        <a href="contacto.html" class="font-bold inline-block mx-5 hover:text-[#FD4C82]"
+        >Contacto</a
+        >
+
+        <a
+                href="${link}" id="authLink"
+                class="${colorLink}"
+        >${textLink}</a
+        >
+      </div>
+      <button id="menu" class="lg:hidden">
+        <i class="bx bx-menu text-3xl"></i>
+      </button>
+    </nav>
+
+    <div class="header_content my-[100px] max-w-[550px] text-left sm:mx-auto md:mx-0 h-[20rem]" data-aos="fade-up" data-aos-delay="300">
+
+      <div class="flex flex-col gap-4 md:flex-col  h-full justify-end items-start w-full">
+        <p href="" class=" text-left p-4 rounded-md text-left text-5xl text-[#FD4C82] font-bold">Agregar tu mascota
+        </p>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<section class="max-w-[900px] mx-auto my-[80px]">
+
+  <a href="/servicios.html" class="mb-8 inline-block py-2 px-6 text-white rounded-md bg-blue-800">Volver</a>
+
+  <fieldset class="border p-4 rounded-md">
+
+    <legend>Informacion de tu mascota</legend>
+
+    <form action="/add_cliente_mascota" method="POST" enctype="multipart/form-data" >
+
+      <div id="pet_container">
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <input name="nombre_mascota[0]" type="text" placeholder="Nombre" class="w-full border outline-none h-[55px] px-3 text-md ">
+          <input name="especie[0]" type="text" placeholder="Especie" class="w-full border outline-none h-[55px] px-3 text-md ">
+          <input name="raza[0]" type="text" placeholder="Raza, Ejm. pitbull" class="w-full border outline-none h-[55px] px-3 text-md ">
+          <input name="edad[0]" type="text" placeholder="Edad, Ejm. 2 meses" class="w-full border outline-none h-[55px] px-3 text-md ">
+          <select name="genero[0]" class="border outline-none px-3">
+            <option value="macho">macho</option>
+            <option value="hembra">hembra</option>
+          </select>
+          <input name="imagen[0]" type="file" class="w-full border outline-none h-[55px] px-3 text-md ">
+
+          <!--
+          <div>
+            <button type="button" id="add_pet" class="  bg-blue-800 text-white py-2 px-5 rounded inline-block">Agregar otra mascota</button>
+          </div>
+          -->
+
+        </div>
+
+      </div>
+
+      <button type="submit" class="text-white bg-green-800 p-3 rounded my-5">Registrar Mascota</button>
+
+    </form>
+
+  </fieldset>
+
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+      AOS.init();
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="js/app.js" type="module" defer></script>
+
+</body>
+</html>
+
+

@@ -23,133 +23,47 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet("/api/crear_cita")
-@MultipartConfig(
-        fileSizeThreshold = 1024 * 1024,
-        maxFileSize = 1024 * 1024 * 2,  // Ajusta este valor a 2 MB, por ejemplo
-        maxRequestSize = 1024 * 1024 * 2 * 5  // Ajusta este valor a 10 MB, por ejemplo
-)
 public class CitaController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String id_cliente = req.getParameter("id_cliente");
-        String nombre = req.getParameter("nombre");
-        String apellido = req.getParameter("apellido");
-        String fecha = req.getParameter("fecha");
-        String hora = req.getParameter("hora");
-        String mensaje = req.getParameter("mensaje");
-        String telefono = req.getParameter("telefono");
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = req.getReader().readLine()) != null) {
+            sb.append(line);
+        }
+        String json = sb.toString();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        CitaDto dto = new CitaDto();
-        dto.setId_cliente( Integer.parseInt(id_cliente) );
-        dto.setNombre(nombre);
-        dto.setApellido(apellido);
-        dto.setFecha(fecha);
-        dto.setHora(hora);
-        dto.setMensaje(mensaje);
-        dto.setTelefono(telefono);
-
-        String[] servicios = req.getParameterValues("servicios");
-        if( servicios != null ){
-            List<Integer> idServicios = Arrays.stream( servicios )
-                    .map( s -> Integer.valueOf(s) )
-                    .collect(Collectors.toList());
-
-            dto.setServicios(idServicios);
+        CitaDto cita = null;
+        try {
+            cita = objectMapper.readValue(json, CitaDto.class);
+            System.out.println("Fecha: " + cita.getFecha());
+            System.out.println("Hora: " + cita.getHora());
+            System.out.println("Servicios: " + cita.getServicios());
+            System.out.println("Mascotas: " + cita.getMascotas());
+            System.out.println("Mensaje: " + cita.getMensaje());
+            System.out.println("ID Cliente: " + cita.getId_cliente());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        List<Mascota> mascotas = new ArrayList<>();
-
-        Map<String, String[]> maps = req.getParameterMap();
-
-        for( Map.Entry<String, String[]> entry : maps.entrySet() ){
-            String key = entry.getKey();
-            String[] values = entry.getValue();
-
-            if( key.contains("[") ){
-                //divide la cadena en funcion del separador ( [ ) , y obtiene el primer elemento del arreglo
-                String fieldName = key.split("\\[")[0];
-                //obtener index
-                int index = Integer.parseInt(key.replaceAll("[^\\d]", ""));
-                while( mascotas.size() <= index ){
-                    mascotas.add(new Mascota());
-                }
-                if( fieldName.equals("nombre_mascota") ){
-                    mascotas.get(index).setNombre(values[0]);
-                }else if( fieldName.equals("especie") ){
-                    mascotas.get(index).setEspecie(values[0]);
-                }else if( fieldName.equals("raza") ){
-                    mascotas.get(index).setRaza(values[0]);
-                }else if( fieldName.equals("edad") ){
-                    mascotas.get(index).setEdad(values[0]);
-                }else if( fieldName.equals("genero") ){
-                    mascotas.get(index).setGenero(values[0]);
-                }
-            }else{
-            }
-        }
-
-        List<String> imageNames = new ArrayList<>();
-        Collection<Part> files = req.getParts();
-        for( Part file : files ){
-            if( file.getSubmittedFileName() != null ){
-                String field = file.getName();
-                String filename = field + "_" + getFileName(file);
-                imageNames.add( filename );
-            }
-        }
-        for( String name : imageNames){
-            String fieldName = name.split("\\[")[0];
-            int index = Integer.parseInt(name.replaceAll("^.*\\[(\\d+)\\].*$", "$1"));
-            mascotas.get(index).setFoto(name);
-        }
-
-        Boolean emptyFields = dto.hasEmptyFields();
+        Boolean emptyFields = cita.hasEmptyFields();
 
         if( emptyFields == true ){
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
-            System.out.println( dto.toString() );
+            System.out.println( cita.toString() );
             resp.getWriter().write("{\"message\":\" Todos los campos son obligatorios \"}");
             return;
-        }
-
-        List<Integer> idMascotas = new ArrayList<>();
-        for( Mascota mascota : mascotas ){
-            idMascotas.add( App.RegMascotas.registrarMascota(mascota) );
-        }
-
-        dto.setMascotas(idMascotas);
-
-        /***
-         * SAVE IMAGES
-         */
-        String destino = AppConfig.getImgDir();
-        try{
-            files.forEach( file -> {
-                if( file.getSubmittedFileName() != null ){
-                    String field = file.getName();
-                    String fileName = field + "_" + getFileName(file);
-                    String fileFoto = destino + fileName;
-                    System.out.println( fileFoto );
-                    try{
-                        byte[] data = file.getInputStream().readAllBytes();
-                        UTPBinary.echobin(data, fileFoto);
-                    }catch(Exception e){
-                        System.out.println(e.getMessage());
-                    }
-                }
-            });
-        }catch(Exception e){
-            System.out.println( e.getMessage() );
         }
 
         RegistroCita registroCita = new RegistroCita();
 
         Map<String, String> result = null;
         try {
-            result = registroCita.crearCita(dto);
+            result = registroCita.crearCita(cita);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

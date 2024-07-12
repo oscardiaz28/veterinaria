@@ -18,6 +18,7 @@ public class Mascota {
     private String edad;
     private String genero;
     private String foto;
+    private String cliente_dni;
     
     // Constructor vacío 
     public Mascota() {

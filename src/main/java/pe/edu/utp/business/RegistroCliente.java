@@ -14,6 +14,7 @@ import pe.edu.utp.utils.TextUTP;
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistroCliente {
@@ -22,6 +23,18 @@ public class RegistroCliente {
     DataAccessMariaDB dao = new DataAccessMariaDB(cnx);
     public static ClienteService clienteService = null;
     public static UsuarioService usuarioService = null;
+
+    public List<Cliente> getClienteByDni(String dni){
+        List<Cliente> listado = new ArrayList<>();
+        try {
+            clienteService = new ClienteService(dao);
+            listado = clienteService.getClienteByDni(dni);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (NamingException e) {
+        }
+        return  listado;
+    }
 
     public RegistroCliente() {
         try {

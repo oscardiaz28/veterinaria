@@ -39,6 +39,7 @@ public class RegistroCita {
         cita.setFecha_registro(LocalDate.parse(dto.getFecha()) );
         cita.setHora(LocalTime.parse(dto.getHora()));
         cita.setMensaje( dto.getMensaje() );
+        cita.setCodigo_mascota( Integer.parseInt(dto.getMascotas()) );
 
         boolean isAlreadyTaken = citaServicio.isTimeTaken(dto.getFecha(), dto.getHora());
 

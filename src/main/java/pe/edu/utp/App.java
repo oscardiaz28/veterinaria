@@ -55,8 +55,7 @@ public class App {
         webserver.addServlet(CombosForProductos.class, "/add_producto");
 
         // CITAS
-        webserver.addServlet(CitaController.class, "/api/crear_cita")
-                .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
+        webserver.addServlet(CitaController.class, "/api/crear_cita");
 
 
         // MASCOTAS
@@ -74,6 +73,19 @@ public class App {
 
         // LOGIN CLIENTE
         webserver.addServlet( LoginServlet.class, "/login" );
+
+        //LOGOUT
+        webserver.addServlet(LogoutServlet.class, "/logout");
+
+        //
+        webserver.addServlet(HomeServlet.class, "/inicio");
+
+        webserver.addServlet(MascotaClienteController.class, "/add_cliente_mascota")
+                .getRegistration().setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
+
+        webserver.addServlet(MascotaClienteServlet.class, "/getMascotas");
+
+        webserver.addServlet(ClienteController.class, "/clientes");
 
         URL myURL = new URL("http://localhost:8085/dashboard.html");
         System.out.println("*********************************************************");

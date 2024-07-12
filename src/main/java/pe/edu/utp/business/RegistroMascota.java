@@ -64,7 +64,13 @@ public class RegistroMascota {
         return 0;
     }
 
+    public List<Mascota> getMascotas() throws SQLException {
+        return mascotaService.getAllMascota();
+    }
 
+    public List<Mascota> getMascotasByDni(String cliente_dni) throws SQLException {
+        return mascotaService.getMascotasByClienteDni(cliente_dni);
+    }
 
     //Listar Mascota
     public String getHtmlListarMascota() throws IOException, SQLException {

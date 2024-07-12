@@ -2,10 +2,7 @@ package pe.edu.utp.servlets;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 import pe.edu.utp.business.LoginBusiness;
 import pe.edu.utp.service.UsuarioService;
 import pe.edu.utp.util.DataAccess;
@@ -43,10 +40,24 @@ public class LoginServlet extends HttpServlet {
             if( !isPasswordCorrect ){
                 throw new IllegalArgumentException("La contraseña es incorrecta");
             }else{
+
+                Cookie[] cookies = req.getCookies();
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        cookie.setValue("");
+                        cookie.setMaxAge(0);
+                        resp.addCookie(cookie);
+                    }
+                }
+
+                Cookie cookie = new Cookie( "dni_cliente", usuario.get("dni_cliente") );
+                cookie.setMaxAge(60 * 60 * 24); // 1 día de duración
+                /*
                 PrintWriter out = resp.getWriter();
                 usuario.forEach( (key, value) -> {
                     out.println(key + ": " + value);
                 });
+                */
                 /*
                 HttpSession session = req.getSession();
                 session.setAttribute("dni_cliente", usuario.get("dni_cliente"));
@@ -56,9 +67,10 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("celular", usuario.get("celular"));
                 session.setAttribute("email", usuario.get("email"));
                 session.setAttribute("rol", usuario.get("rol"));
-
-                String cargo = usuario.get("cargo");
-                switch(cargo){
+                */
+                resp.addCookie(cookie);
+                String rol = usuario.get("rol");
+                switch(rol){
                     case "CLIENTE":
                         resp.sendRedirect("/index.html");
                         break;
@@ -68,7 +80,6 @@ public class LoginServlet extends HttpServlet {
                     default:
                         break;
                 }
-                */
             }
 
         }catch(Exception e){

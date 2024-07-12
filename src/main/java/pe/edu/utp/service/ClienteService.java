@@ -24,6 +24,7 @@ public class ClienteService {
     }
 
 
+
     public void registroCliente(Cliente cliente) throws IOException, SQLException {
         String sql = String.format("INSERT INTO cliente(dni_cliente, usuario_id, nombre, apellidos, direccion, " +
                 "celular) VALUES (?, ?, ?, ?, ?, ?)");
@@ -67,6 +68,42 @@ public class ClienteService {
             throw new SQLException(e);
         }
     }
+
+    public List<Cliente> getClienteByDni(String clienteDni) throws SQLException, NotFoundException {
+        List<Cliente> lista = new LinkedList<>();
+
+        String strSQL = String.format("SELECT * FROM cliente where dni_cliente = ?");
+
+        try {
+            PreparedStatement stmt = cnn.prepareStatement(strSQL);
+            stmt.setString(1, clienteDni);
+            ResultSet rst = stmt.executeQuery();
+            int conteo = 0;
+            int count = 0;
+
+            while (rst.next()) {
+                String dni = rst.getString("dni_cliente");
+                Integer usuarioId = rst.getInt("usuario_id");
+                String nombre = rst.getString("nombre");
+                String apellidos = rst.getString("apellidos");
+                String direccion = rst.getString("direccion");
+                String celular = rst.getString("celular");
+                Integer codigo_mascota = rst.getInt("codigo_mascota");
+
+                Cliente cliente = new Cliente(dni,codigo_mascota,usuarioId,nombre,apellidos,direccion,celular);
+                lista.add(cliente);
+                count++;
+            }
+            if (count == 0) {
+                throw new NotFoundException("No se encontró ningun cliente en la bd");
+            }
+        } catch (SQLException e) {
+            String msg = String.format("Ocurrió una excepción SQL: %s", e.getMessage());
+            throw new SQLException(msg);
+        }
+        return lista;
+    }
+
 
     //Metodo para ListarCliente
     public List<Cliente> getAllCliente() throws SQLException, NotFoundException {

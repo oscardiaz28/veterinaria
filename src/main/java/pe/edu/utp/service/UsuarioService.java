@@ -40,7 +40,7 @@ public class UsuarioService {
     }
 
     public int registrarUsuario(Usuario use) throws SQLException, IOException {
-        String consulta = "INSERT into usuario(email, password, token, estado) VALUES(?, ?, ?, ?)";
+        String consulta = "INSERT into usuario(email, password, token, estado, rol) VALUES(?, ?, ?, ?, ?)";
         System.out.println(consulta);
         try {
             PreparedStatement stmt = cnn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
@@ -48,6 +48,7 @@ public class UsuarioService {
             stmt.setString(2, use.getContra());
             stmt.setString(3, use.getToken());
             stmt.setString(4, use.getEstado());
+            stmt.setString(5, use.getRol());
 
             int affectedRows = stmt.executeUpdate();
             if( affectedRows > 0 ){
