@@ -17,10 +17,9 @@ public class MascotaService {
     public MascotaService (DataAccess dao) throws SQLException, NamingException {
         this.cnn = dao.getConnection();
     }
-
     // Método para registrar a una mascota
     public int addMascota(Mascota mascota) throws SQLException, IOException {
-            String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?, ?)}";
+            String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?)}";
             try (CallableStatement cstmt = cnn.prepareCall(consulta)) {
                 cstmt.setString(1, mascota.getNombre());
                 cstmt.setString(2, mascota.getEspecie());
@@ -28,15 +27,14 @@ public class MascotaService {
                 cstmt.setString(4, mascota.getEdad());
                 cstmt.setString(5, mascota.getGenero());
                 cstmt.setString(6, mascota.getFoto());
-                cstmt.setString(7, mascota.getCliente_dni());
 
                 // Registrar el parámetro de salida a
-                cstmt.registerOutParameter(8, Types.INTEGER);
+                cstmt.registerOutParameter(7, Types.INTEGER);
 
                 cstmt.executeUpdate();
 
                 // Obtener el código de la mascota generada
-                int codigoMascota = cstmt.getInt(8);
+                int codigoMascota = cstmt.getInt(7);
                 mascota.setCodigo(codigoMascota);
                 return codigoMascota;
 
@@ -47,7 +45,7 @@ public class MascotaService {
         }
     public List<Mascota> getMascotasByClienteDni(String cliente_dni) throws SQLException {
         List<Mascota> mascotas = new LinkedList<>();
-        String sql = String.format("select * from mascotas m where m.cliente_dni = ?");
+        String sql = String.format("select * from mascota m where m.cliente_dni = ?");
         try{
             PreparedStatement stmt = cnn.prepareStatement(sql);
             stmt.setString(1, cliente_dni);
@@ -99,10 +97,8 @@ public class MascotaService {
                 String edad = rst.getString("edad");
                 String genero = rst.getString("genero");
                 String foto = rst.getString("foto");
-                String cliente_dni = rst.getString("cliente_dni");
 
                 Mascota mascota = new Mascota(codigo, nombre, especie, raza, edad, genero, foto);
-                mascota.setCliente_dni(cliente_dni);
                 mascota.setCodigo(codigo);
                 lista.add(mascota);
                 conteo++;

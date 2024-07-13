@@ -78,3 +78,27 @@
 2024-07-12 10:27:18 - ERROR - Parameter index of 8 is out of range (1, 7)
 2024-07-12 10:27:18 - ERROR - SQLException: java.sql.SQLException: Parameter index of 8 is out of range (1, 7)
 2024-07-12 11:55:18 - ERROR - Data truncation: Data too long for column 'dni_cliente' at row 1
+2024-07-12 12:39:50 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-12 12:39:50 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-12 12:42:00 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-12 12:42:00 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:18:57 - ERROR - Parameter index of 8 is out of range (1, 7)
+2024-07-13 01:18:57 - ERROR - SQLException: java.sql.SQLException: Parameter index of 8 is out of range (1, 7)
+2024-07-13 01:21:43 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:21:43 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:21:48 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:21:48 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:23:33 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:23:33 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:25:04 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:25:04 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:26 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:26 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:32 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:32 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:48 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:48 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:52 - ERROR - Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:26:52 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
+2024-07-13 01:34:08 - ERROR - Parameter index of 8 is out of range (1, 7)
+2024-07-13 01:34:08 - ERROR - SQLException: java.sql.SQLException: Parameter index of 8 is out of range (1, 7)
