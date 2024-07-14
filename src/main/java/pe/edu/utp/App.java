@@ -87,6 +87,10 @@ public class App {
 
         webserver.addServlet(ClienteController.class, "/clientes");
 
+        webserver.addServlet(AdminLoginController.class, "/admin/login");
+
+        webserver.addServlet(LogoutAdminServlet.class, "/logoutAdmin");
+
         URL myURL = new URL("http://localhost:8085/dashboard.html");
         System.out.println("*********************************************************");
         System.out.println("CLICK AQUI PARA ABRIR LA APLICACION:" + myURL);

@@ -98,9 +98,7 @@ public class MascotaClienteController extends HttpServlet {
             }
         }
 
-
-
-        List<Integer> idMascotas = new ArrayList<>();
+        //List<Integer> idMascotas = new ArrayList<>();
         for( Mascota mascota : mascotas ){
             /*
             PrintWriter out = resp.getWriter();
@@ -112,8 +110,8 @@ public class MascotaClienteController extends HttpServlet {
             out.println(mascota.getFoto());
             out.println( mascota.getCliente_dni() );
              */
-            idMascotas.add( App.RegMascotas.registrarMascota(mascota) );
-
+            //idMascotas.add( App.RegMascotas.createMascota(mascota) );
+            App.RegMascotas.createMascota(mascota);
         }
         resp.sendRedirect("/servicios.html");
     }

@@ -102,3 +102,9 @@
 2024-07-13 01:26:52 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Table 'bd_veterinaria.mascotas' doesn't exist
 2024-07-13 01:34:08 - ERROR - Parameter index of 8 is out of range (1, 7)
 2024-07-13 01:34:08 - ERROR - SQLException: java.sql.SQLException: Parameter index of 8 is out of range (1, 7)
+2024-07-13 06:07:22 - ERROR - Parameter number 7 is not an OUT parameter
+2024-07-13 06:07:22 - ERROR - SQLException: java.sql.SQLException: Parameter number 7 is not an OUT parameter
+2024-07-13 07:06:29 - ERROR - Parameter index out of range (7 > number of parameters, which is 6).
+2024-07-13 07:06:29 - ERROR - SQLException: java.sql.SQLException: Parameter index out of range (7 > number of parameters, which is 6).
+2024-07-13 07:08:41 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`cita_servicio`, CONSTRAINT `cita_servicio_ibfk_1` FOREIGN KEY (`servicio_id`) REFERENCES `servicio` (`id_servicio`))
+2024-07-13 07:09:16 - ERROR - Cannot add or update a child row: a foreign key constraint fails (`bd_veterinaria`.`cita_servicio`, CONSTRAINT `cita_servicio_ibfk_1` FOREIGN KEY (`servicio_id`) REFERENCES `servicio` (`id_servicio`))

@@ -17,6 +17,26 @@ public class MascotaService {
     public MascotaService (DataAccess dao) throws SQLException, NamingException {
         this.cnn = dao.getConnection();
     }
+
+    public void createMascota(Mascota mascota) throws IOException, SQLException {
+        String sql = "INSERT INTO mascota(nombre, especie, raza, edad, genero, foto, cliente_dni) VALUES(?, ?," +
+                "?, ?, ?, ?, ?)";
+        try{
+            PreparedStatement stmt = cnn.prepareStatement(sql);
+            stmt.setString(1, mascota.getNombre());
+            stmt.setString(2, mascota.getEspecie());
+            stmt.setString(3, mascota.getRaza());
+            stmt.setString(4, mascota.getEdad());
+            stmt.setString(5, mascota.getGenero());
+            stmt.setString(6, mascota.getFoto());
+            stmt.setString(7, mascota.getCliente_dni());
+            stmt.executeUpdate();
+        }catch(SQLException e){
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException(e);
+        }
+    }
+
     // Método para registrar a una mascota
     public int addMascota(Mascota mascota) throws SQLException, IOException {
             String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?)}";

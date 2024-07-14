@@ -13,11 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     events.init();
 
     const url = "http://localhost:8085/getMascotas?cliente_dni="+dni;
-    fetch(url)
-    .then( response => response.json() )
-    .then( data => {
-        showOptions(data);
-    } )
+    if( selectMascotas ){
+     fetch(url)
+        .then( response => response.json() )
+        .then( data => {
+            showOptions(data);
+        } )
+    }
 
     function showOptions(data){
         if( data.length > 0 ){

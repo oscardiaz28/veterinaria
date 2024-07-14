@@ -25,6 +25,21 @@ public class LoginBusiness {
         }
     }
 
+    public Map<String, String> findByEmailAdmin(String email) {
+        Map<String, String> existe = null;
+        try {
+            existe = loginService.findByEmailAdmin(email);
+
+            if( existe == null ){
+                throw new IllegalArgumentException("El correo no existe");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return existe == null ? null : existe;
+    }
+
     public Map<String, String> findByEmail(String email) {
         Map<String, String> existe = null;
         try {

@@ -18,6 +18,23 @@ public class LoginService {
         this.conn = dao.getConnection();
     }
 
+    public Map<String, String> findByEmailAdmin(String email) throws SQLException {
+        Map<String, String> result = null;
+        String sql =
+        "select u.id as id_usuario, rol, u.email as email, u.password as password, " +
+            "token, u.estado, dni_trabajador, nombre, apellidos, direccion, celular " +
+        "from usuario u inner join trabajador t on u.id = t.usuario_id where email = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        System.out.println(sql);
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        if(rs.next()){
+            result = getDataAdmin(rs);
+        }
+        return result;
+    }
+
+
     public Map<String, String> findByEmail(String email) throws SQLException {
         Map<String, String> result = null;
         String sql = "select u.id as \"id_usuario\", rol, u.email as \"email\", u.password as 'password', token, estado, dni_cliente, \n" +
@@ -42,6 +59,22 @@ public class LoginService {
         values.put("estado", rs.getString("estado"));
         values.put("password", rs.getString("password"));
         values.put("dni_cliente", rs.getString("dni_cliente"));
+        values.put("nombre", rs.getString("nombre"));
+        values.put("apellidos", rs.getString("apellidos"));
+        values.put("direccion", rs.getString("direccion"));
+        values.put("celular", rs.getString("celular"));
+        values.put("rol", rs.getString("rol"));
+        return values;
+    }
+
+    private Map<String, String> getDataAdmin(ResultSet rs) throws SQLException {
+        Map<String, String> values = new HashMap<>();
+        values.put("id_usuario", rs.getString("id_usuario"));
+        values.put("email", rs.getString("email"));
+        values.put("token", rs.getString("token"));
+        values.put("estado", rs.getString("estado"));
+        values.put("password", rs.getString("password"));
+        values.put("dni_trabajador", rs.getString("dni_trabajador"));
         values.put("nombre", rs.getString("nombre"));
         values.put("apellidos", rs.getString("apellidos"));
         values.put("direccion", rs.getString("direccion"));

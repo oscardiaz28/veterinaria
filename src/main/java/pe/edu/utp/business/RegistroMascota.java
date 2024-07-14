@@ -31,6 +31,20 @@ public class RegistroMascota {
         }
     }
 
+    public static void createMascota(Mascota mascota){
+        try{
+            mascotaService.createMascota(mascota);
+        }catch (Exception e){
+            String errorMsg = "SQLException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+    }
+
     // Método para confirmar el registro de la mascota
     public static int registrarMascota(Mascota mascota) throws IOException {
         try {
