@@ -77,6 +77,7 @@ public class MascotaController extends HttpServlet {
 
 
             Mascota mascota = new Mascota(nombre, especie, raza, edad, genero, foto);
+            mascota.setCliente_dni(dni_cliente);
             App.RegMascotas.registrarMascota(mascota);
 
             int idMascota = mascota.getCodigo();

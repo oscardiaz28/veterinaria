@@ -35,6 +35,7 @@ public class TrabajadorController extends HttpServlet {
         String email = req.getParameter("txtusername");
         String password = req.getParameter("txtPASS");
         String estadoUsuario = "Activo";
+        String rol = "TRABAJADOR";
 
         //Captura de datos trabajador
         String dniTrabajador = req.getParameter("txtdni");
@@ -61,6 +62,7 @@ public class TrabajadorController extends HttpServlet {
 
             // Registro Usuario
             Usuario usuario = new Usuario(email, password, estadoUsuario);
+            usuario.setRol(rol);
             App.RegUsuario.registrarUsuario(usuario);
 
             // Obtener el ID del usuario generado

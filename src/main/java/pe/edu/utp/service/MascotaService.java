@@ -39,7 +39,7 @@ public class MascotaService {
 
     // Método para registrar a una mascota
     public int addMascota(Mascota mascota) throws SQLException, IOException {
-            String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?)}";
+            String consulta = "{CALL registrarMascota(?, ?, ?, ?, ?, ?, ?, ?)}";
             try (CallableStatement cstmt = cnn.prepareCall(consulta)) {
                 cstmt.setString(1, mascota.getNombre());
                 cstmt.setString(2, mascota.getEspecie());
@@ -47,14 +47,15 @@ public class MascotaService {
                 cstmt.setString(4, mascota.getEdad());
                 cstmt.setString(5, mascota.getGenero());
                 cstmt.setString(6, mascota.getFoto());
+                cstmt.setString(7, mascota.getCliente_dni());
 
                 // Registrar el parámetro de salida a
-                cstmt.registerOutParameter(7, Types.INTEGER);
+                cstmt.registerOutParameter(8, Types.INTEGER);
 
                 cstmt.executeUpdate();
 
                 // Obtener el código de la mascota generada
-                int codigoMascota = cstmt.getInt(7);
+                int codigoMascota = cstmt.getInt(8);
                 mascota.setCodigo(codigoMascota);
                 return codigoMascota;
 
