@@ -56,6 +56,7 @@ public class App {
 
         // CITAS
         webserver.addServlet(CitaController.class, "/api/crear_cita");
+        webserver.addServlet(ListarCitasServlets.class, "/listar_citas");
 
 
         // MASCOTAS
