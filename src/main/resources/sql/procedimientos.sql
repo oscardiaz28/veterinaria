@@ -262,5 +262,15 @@ BEGIN
     SET p_codigo_venta = LAST_INSERT_ID();
 END
 
+Procedimiento para listar citas servicios
 
+DELIMITER //
+
+CREATE PROCEDURE listarCitaServicios()
+BEGIN
+    SELECT id, cita_id, servicio_id, estado
+    FROM cita_servicio;
+END //
+
+DELIMITER ;
 -- Dump completed on 2024-07-13 13:42:37
