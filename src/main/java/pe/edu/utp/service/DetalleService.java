@@ -25,7 +25,7 @@ public class DetalleService {
 
     // Metodo para registrar
     public void addDetalle(Detalle det) throws SQLException, IOException {
-        String consulta = String.format("CALL registrarDetalle(?, ?, ?, ?, ?, ?)");
+        String consulta = String.format("CALL registrarDetalleVenta(?, ?, ?, ?, ?, ?)");
 
         try {
             PreparedStatement pstmt = cnn.prepareStatement(consulta);

@@ -7,10 +7,7 @@ import pe.edu.utp.util.DataAccess;
 import pe.edu.utp.util.ErrorLog;
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,17 +19,22 @@ public class VentaService {
         this.cnn = dao.getConnection();
     }
 
-    public void addVenta(Venta vta) throws SQLException, IOException {
+    public int addVenta(Venta vta) throws SQLException, IOException {
         String consulta = String.format("CALL registrarVenta(?, ?, ?, ?)");
 
         try {
-            PreparedStatement pstmt = cnn.prepareStatement(consulta);
-            pstmt.setString(1, vta.getCliente_dni());
-            pstmt.setString(2, vta.getTrabajador_dni());
-            pstmt.setString(3, vta.getFecha());
-            pstmt.setString(4, vta.getMetodo_pago());
+            CallableStatement cstmt = cnn.prepareCall(consulta);
+            cstmt.setString(1, vta.getCliente_dni());
+            cstmt.setString(2, vta.getTrabajador_dni());
+            cstmt.setString(3, vta.getFecha());
+            cstmt.setString(4, vta.getMetodo_pago());
 
-            int num = pstmt.executeUpdate();
+            cstmt.executeUpdate();
+
+            // Obtener el ID generado
+            int codigo_venta = cstmt.getInt(4);
+            vta.setCodigo_venta(codigo_venta);
+            return codigo_venta;
 
         } catch (SQLException e) {
             ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);

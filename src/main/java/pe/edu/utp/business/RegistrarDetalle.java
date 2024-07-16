@@ -2,14 +2,11 @@ package pe.edu.utp.business;
 
 import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Detalle;
-import pe.edu.utp.model.Producto;
 import pe.edu.utp.service.DetalleService;
-import pe.edu.utp.service.ProductoService;
 import pe.edu.utp.util.AppConfig;
 import pe.edu.utp.util.DataAccessMariaDB;
 import pe.edu.utp.util.ErrorLog;
 import pe.edu.utp.utils.TextUTP;
-
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -69,7 +66,7 @@ public class RegistrarDetalle {
         String html = TextUTP.read(filename);
 
         // Cargar plantilla para los items
-        String filenameItems = "src\\main\\resources\\templates\\listado_detalle.html";
+        String filenameItems = "src\\main\\resources\\templates\\detalle_listado.html";
         String htmlItem = TextUTP.read(filenameItems);
 
         // Recorrer la lista

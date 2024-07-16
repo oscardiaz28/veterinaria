@@ -250,5 +250,17 @@ END //
 
 DELIMITER ;
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVenta`(
+    IN p_cliente_dni CHAR(8),
+    IN p_trabajador_dni CHAR(8),
+    IN p_fecha DATE,
+    IN p_metodo_pago VARCHAR(100),
+    OUT p_codigo_venta INT
+)
+BEGIN
+    INSERT INTO venta (cliente_dni, trabajador_dni, fecha, metodo_pago) VALUES (p_cliente_dni, p_trabajador_dni,p_fecha,p_metodo_pago);
+    SET p_codigo_venta = LAST_INSERT_ID();
+END
+
 
 -- Dump completed on 2024-07-13 13:42:37

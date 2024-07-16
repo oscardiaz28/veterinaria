@@ -68,7 +68,7 @@ public class VentaController extends HttpServlet {
             Detalle detalle = new Detalle(codigo_venta, codigo_productoStr,cantidadStr,precioStr,subtotalStr,estado);
             App.RegDetalle.registrarDetalle(detalle);
 
-            resp.sendRedirect("/listar_venta");
+            resp.sendRedirect("/listar_detalle");
 
         } catch (IllegalArgumentException|SQLException e) {
             // Leer el HTML de error y reemplazar el marcador de posición con el mensaje de error
