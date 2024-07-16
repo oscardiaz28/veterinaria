@@ -47,7 +47,6 @@ public class VentaController extends HttpServlet {
             // Validaciones
             Validator.validateNotEmpty(fecha, "fecha");
             Validator.validateNotEmpty(estado, "estado");
-            Validator.validateNotEmpty(cantidad, "cantidad");
 
             Integer codigo_productoStr = Integer.parseInt(codigo_producto);
             Integer cantidadStr = Integer.parseInt(cantidad);

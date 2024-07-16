@@ -77,15 +77,17 @@ public class RegistroVentas {
         List<Venta> listado = BusquedaVentasService.getAllVentas();
 
         for (Venta venta : listado) {
-            // Reemplazar los marcadores en la plantilla del item
-            String item = htmlItem.replace("${codigo_venta}", Integer.toString(venta.getCodigo_venta())
+            // Reemplazar
+            String item = htmlItem
+                    .replace("${codigo_venta}", Integer.toString(venta.getCodigo_venta()))
                     .replace("${cliente_dni}", venta.getCliente_dni())
                     .replace("${trabajador_dni}", venta.getTrabajador_dni())
                     .replace("${fecha}", venta.getFecha())
-                    .replace("${metodo_pago}", venta.getMetodo_pago()));
+                    .replace("${metodo_pago}", venta.getMetodo_pago());
 
             itemsHtml.append(item);
         }
+
 
         // Reemplazar en la plantilla principal
         String reporteHtml = html.replace("${itemsVentas}", itemsHtml.toString());
