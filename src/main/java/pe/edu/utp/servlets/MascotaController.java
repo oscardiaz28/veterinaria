@@ -59,6 +59,12 @@ public class MascotaController extends HttpServlet {
         String estadoUsuario = "Activo";
 
         try {
+            // Validaciones
+            Validator.validateNotEmpty(nombre, "Nombre de la Mascota");
+            Validator.validateNotEmpty(nombreCliente, "Nombre del Cliente");
+            Validator.validateNotEmpty(celular, "Celular");
+            Validator.validateNotEmpty(edad, "Edad");
+
             Part filePart = req.getPart("txtFoto");
 
             if (filePart == null) {

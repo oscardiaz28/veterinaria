@@ -20,8 +20,7 @@ public class Venta {
 
     }
 
-    public Venta(int codigo_venta, String cliente_dni, String trabajador_dni, String fecha, String metodo_pago) {
-        this.codigo_venta = codigo_venta;
+    public Venta(String cliente_dni, String trabajador_dni, String fecha, String metodo_pago) {
         this.cliente_dni = cliente_dni;
         this.trabajador_dni = trabajador_dni;
         this.fecha = fecha;

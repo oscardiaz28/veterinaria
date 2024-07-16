@@ -23,6 +23,8 @@ public class App {
     public static RegistroCliente RegCliente = new RegistroCliente();
     public static RegistroMascota RegMascotas = new RegistroMascota();
     public static RegistroServicios RegServicios =new RegistroServicios();
+    public static RegistroVentas RegVentas = new RegistroVentas();
+    public static RegistrarDetalle RegDetalle = new RegistrarDetalle();
 
     public static void main(String[] args) throws Exception {
 
@@ -35,6 +37,11 @@ public class App {
 
         // USUARIO
         webserver.addServlet(ListarUsuarioServlet.class, "/listar_usuario");
+
+        //VENTAS
+        webserver.addServlet(VentaController.class, "/register_venta");
+        webserver.addServlet(ListadoVentaServlet.class, "/listar_venta");
+        webserver.addServlet(ListarDetalleServlet.class, "/listar_detalle");
 
         // TRABAJADOR
         webserver.addServlet(ListarTrabajadorServlet.class, "/listar_trabajador");
@@ -78,7 +85,7 @@ public class App {
         //LOGOUT
         webserver.addServlet(LogoutServlet.class, "/logout");
 
-        //
+        //INICIO
         webserver.addServlet(HomeServlet.class, "/inicio");
 
         webserver.addServlet(MascotaClienteController.class, "/add_cliente_mascota")
