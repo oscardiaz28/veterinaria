@@ -93,4 +93,19 @@ public class RegistroProducto {
 
         return reporteHtml;
     }
+
+    //Combo para add_ventas
+    public String getComboProductos() throws IOException, SQLException {
+        // Cargar la plantilla de la página de agregar PRODUCTO
+        String filename = "src\\main\\resources\\web\\add_detalle_ventas.html";
+        String html = TextUTP.read(filename);
+
+        // Obtener las opciones del combo de categorias
+        String comboProductos = busquedaProductoService.getComboProductos();
+
+        // Reemplazar
+        String resultHtml = html.replace("${comboProductos}",comboProductos);
+
+        return resultHtml;
+    }
 }

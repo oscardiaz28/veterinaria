@@ -87,6 +87,4 @@ public class CategoriaService {
 
         return sb.toString();
     }
-
-
 }

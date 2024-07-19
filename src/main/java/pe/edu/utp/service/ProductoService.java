@@ -3,11 +3,12 @@ package pe.edu.utp.service;
 import pe.edu.utp.exceptions.NotFoundException;
 import pe.edu.utp.model.Producto;
 import pe.edu.utp.util.DataAccess;
+import pe.edu.utp.util.ErrorLog;
+import pe.edu.utp.utils.TextUTP;
+
 import javax.naming.NamingException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -72,6 +73,33 @@ public class ProductoService {
         }
         return lista;
     }
+
+    //Metodo Combo Producto
+    public String getComboProductos() throws SQLException, IOException {
+        StringBuilder sb = new StringBuilder();
+        String strSQL = "SELECT codigo_producto, nombre FROM producto";
+
+        try {
+            Statement stmt = cnn.createStatement();
+            ResultSet rst = stmt.executeQuery(strSQL);
+
+            while (rst.next()) {
+                int codigo_producto = rst.getInt("codigo_producto");
+                String nombre = rst.getString("nombre");
+                sb.append(String.format("<option value=\"%d\">%s</option>", codigo_producto, nombre));
+            }
+            rst.close();
+            stmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener la lista de los productos");
+        }
+
+        return sb.toString();
+    }
+
+
+
 
 
 

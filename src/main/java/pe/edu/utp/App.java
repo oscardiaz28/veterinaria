@@ -42,6 +42,7 @@ public class App {
         webserver.addServlet(VentaController.class, "/register_venta");
         webserver.addServlet(ListadoVentaServlet.class, "/listar_venta");
         webserver.addServlet(ListarDetalleServlet.class, "/listar_detalle");
+        webserver.addServlet(CombosForVentas.class, "/add_ventas");
 
         // TRABAJADOR
         webserver.addServlet(ListarTrabajadorServlet.class, "/listar_trabajador");
