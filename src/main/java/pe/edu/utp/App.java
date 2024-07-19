@@ -25,6 +25,7 @@ public class App {
     public static RegistroServicios RegServicios =new RegistroServicios();
     public static RegistroVentas RegVentas = new RegistroVentas();
     public static RegistrarDetalle RegDetalle = new RegistrarDetalle();
+    public static RegistroCitaServicio registroCitaServicio = new RegistroCitaServicio();
 
     public static void main(String[] args) throws Exception {
 
@@ -66,6 +67,8 @@ public class App {
         webserver.addServlet(CitaController.class, "/api/crear_cita");
         webserver.addServlet(ListarCitasServlets.class, "/listar_citas");
 
+        // Listar citas servicio
+        webserver.addServlet(ListarCitasServiciosServelt.class, "/listarServiciosCitas");
 
         // MASCOTAS
         webserver.addServlet(ListarMascotaServlet.class, "/listar_mascotas");
