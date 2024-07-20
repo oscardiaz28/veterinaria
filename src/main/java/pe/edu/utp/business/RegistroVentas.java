@@ -94,6 +94,4 @@ public class RegistroVentas {
 
         return reporteHtml;
     }
-
-
 }

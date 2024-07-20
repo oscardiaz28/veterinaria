@@ -137,4 +137,7 @@ public class RegistroCliente {
 
         return reporteHtml;
     }
+
+
+
 }

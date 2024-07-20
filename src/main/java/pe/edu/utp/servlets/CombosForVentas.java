@@ -17,10 +17,19 @@ public class CombosForVentas extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // Cargar la página HTML
-        String html = TextUTP.read("src\\main\\resources\\web\\add_detalle_ventas.html");
-        resp.setContentType("text/html");
+        //UTF-8
+        resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(html);
+
+        try {
+            //combo de trabajadores
+            String combo = App.RegTrabajador.getComboCliente_Trabajadores();
+
+            //combo de clientes
+            resp.getWriter().println(combo);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

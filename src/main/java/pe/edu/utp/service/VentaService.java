@@ -20,7 +20,7 @@ public class VentaService {
     }
 
     public int addVenta(Venta vta) throws SQLException, IOException {
-        String consulta = String.format("CALL registrarVenta(?, ?, ?, ?)");
+        String consulta = "{CALL registrarVenta(?, ?, ?, ?, ?)}";
 
         try {
             CallableStatement cstmt = cnn.prepareCall(consulta);
@@ -28,11 +28,12 @@ public class VentaService {
             cstmt.setString(2, vta.getTrabajador_dni());
             cstmt.setString(3, vta.getFecha());
             cstmt.setString(4, vta.getMetodo_pago());
+            cstmt.registerOutParameter(5, java.sql.Types.INTEGER);
 
             cstmt.executeUpdate();
 
             // Obtener el ID generado
-            int codigo_venta = cstmt.getInt(4);
+            int codigo_venta = cstmt.getInt(5);
             vta.setCodigo_venta(codigo_venta);
             return codigo_venta;
 

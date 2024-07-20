@@ -6,10 +6,7 @@ import pe.edu.utp.util.DataAccess;
 import pe.edu.utp.util.ErrorLog;
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,5 +77,31 @@ public class TrabajadorService {
         }
         return lista;
     }
+
+    //Metodo Combo Trabajadores
+    public String getComboTrabajadores() throws SQLException, IOException {
+        StringBuilder sb = new StringBuilder();
+        String strSQL = "SELECT dni_trabajador, nombre FROM trabajador";
+
+        try {
+            Statement stmt = cnn.createStatement();
+            ResultSet rst = stmt.executeQuery(strSQL);
+
+            while (rst.next()) {
+                String dni_trabajador = rst.getString("dni_trabajador");
+                String nombre = rst.getString("nombre");
+                sb.append(String.format("<option value=\"%s\">%s</option>", dni_trabajador,nombre ));
+            }
+            rst.close();
+            stmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener la lista de los trabajadores");
+        }
+
+        return sb.toString();
+    }
+
+
 
 }

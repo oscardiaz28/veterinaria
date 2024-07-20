@@ -110,6 +110,7 @@ public class RegistroProducto {
         return resultHtml;
     }
 
+    //JSON
     public String getProductosAsJson() throws SQLException {
         // Listar productos
         List<Producto> listado = busquedaProductoService.getAllProducto();

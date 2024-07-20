@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import static pe.edu.utp.business.RegistroCliente.clienteService;
+
 public class RegistroTrabajador {
 
     String cnx = AppConfig.getConnectionStringCFN();
@@ -98,6 +100,29 @@ public class RegistroTrabajador {
 
         return reporteHtml;
     }
+
+    public String getComboCliente_Trabajadores() throws IOException, SQLException {
+        // Cargar la plantilla de la página de agregar PRODUCTO
+        String filename = "src\\main\\resources\\web\\add_detalle_ventas.html";
+        String html = TextUTP.read(filename);
+
+        // Obtener las opciones del combo de trabajador
+        String comboTrabajadores = busquedaTrabajadorService.getComboTrabajadores();
+
+        String comboClientes = clienteService.getComboClientes();
+
+        // Reemplazar
+        String resultHtml = html.replace("${comboTrabajadores}",comboTrabajadores)
+                .replace("${comboCliente}",comboClientes);
+
+        return resultHtml;
+    }
+
+
+
+
+
+
 }
 
 

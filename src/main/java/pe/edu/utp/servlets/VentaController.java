@@ -55,7 +55,7 @@ public class VentaController extends HttpServlet {
             Venta venta = new Venta(cliente_dni, trabajador_dni, fecha, metodo_pago);
             App.RegVentas.registrarVenta(venta);
 
-            // Obtener el ID del usuario generado
+            // Obtener el codigo_venta generado
             int codigo_venta = venta.getCodigo_venta();
 
             if (codigo_venta == 0) {

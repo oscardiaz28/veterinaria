@@ -114,3 +114,11 @@
 2024-07-15 11:23:08 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Unknown column 'cliente_dni' in 'field list'
 2024-07-15 11:23:46 - ERROR - Unknown column 'cliente_dni' in 'field list'
 2024-07-15 11:23:46 - ERROR - SQLException: java.sql.SQLSyntaxErrorException: Unknown column 'cliente_dni' in 'field list'
+2024-07-20 06:31:16 - ERROR - Parameter p_codigo_venta is not registered as an output parameter
+2024-07-20 06:31:16 - ERROR - SQLException: java.sql.SQLException: Parameter p_codigo_venta is not registered as an output parameter
+2024-07-20 06:33:18 - ERROR - Parameter p_codigo_venta is not registered as an output parameter
+2024-07-20 06:33:18 - ERROR - SQLException: java.sql.SQLException: Parameter p_codigo_venta is not registered as an output parameter
+2024-07-20 06:33:40 - ERROR - Parameter p_codigo_venta is not registered as an output parameter
+2024-07-20 06:33:40 - ERROR - SQLException: java.sql.SQLException: Parameter p_codigo_venta is not registered as an output parameter
+2024-07-20 06:52:04 - ERROR - Data truncation: Data too long for column 'p_trabajador_dni' at row 1
+2024-07-20 06:52:04 - ERROR - SQLException: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'p_trabajador_dni' at row 1

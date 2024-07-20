@@ -10,10 +10,7 @@ import pe.edu.utp.util.ErrorLog;
 
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,8 +19,6 @@ public class ClienteService {
     public ClienteService(DataAccess dao) throws SQLException, NamingException {
         this.cnn = dao.getConnection();
     }
-
-
 
     public void registroCliente(Cliente cliente) throws IOException, SQLException {
         String sql = String.format("INSERT INTO cliente(dni_cliente, usuario_id, nombre, apellidos, direccion, " +
@@ -137,6 +132,33 @@ public class ClienteService {
         }
         return lista;
     }
+
+    //Metodo Combo Clientes
+    public String getComboClientes() throws SQLException, IOException {
+        StringBuilder sb = new StringBuilder();
+        String strSQL = "SELECT nombre, dni_cliente  FROM cliente";
+
+        try {
+            Statement stmt = cnn.createStatement();
+            ResultSet rst = stmt.executeQuery(strSQL);
+
+            while (rst.next()) {
+                String dni_cliente = rst.getString("dni_cliente");
+                String nombre = rst.getString("nombre");
+                sb.append(String.format("<option value=\"%s\">%s</option>", dni_cliente, nombre ));
+            }
+            rst.close();
+            stmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener la lista de los productos");
+        }
+
+        return sb.toString();
+    }
+
+
+
 
 
 
