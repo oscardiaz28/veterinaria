@@ -1,5 +1,6 @@
 package pe.edu.utp.business;
 
+import com.google.gson.Gson;
 import pe.edu.utp.exceptions.AlreadyExistsException;
 import pe.edu.utp.model.Producto;
 import pe.edu.utp.service.ProductoService;
@@ -107,5 +108,11 @@ public class RegistroProducto {
         String resultHtml = html.replace("${comboProductos}",comboProductos);
 
         return resultHtml;
+    }
+
+    public String getProductosAsJson() throws SQLException {
+        // Listar productos
+        List<Producto> listado = busquedaProductoService.getAllProducto();
+        return new Gson().toJson(listado);
     }
 }

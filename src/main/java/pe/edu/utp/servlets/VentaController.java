@@ -15,6 +15,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/register_venta")
 public class VentaController extends HttpServlet {
@@ -35,26 +37,22 @@ public class VentaController extends HttpServlet {
         String trabajador_dni = req.getParameter("ComboTrabajador");
         String fecha = req.getParameter("txtFecha");
         String metodo_pago = req.getParameter("ComboMetodo");
+        String estado = req.getParameter("txtestado");
 
         //Captura de datos DetalleVenta
-        String codigo_producto = req.getParameter("CodigoProducto");
+        /*String codigo_producto = req.getParameter("Producto");
         String cantidad = req.getParameter("Cantidad");
         String precio_unitario = req.getParameter("txtprecio_unitario");
         String subtotal = req.getParameter("txtsubototal");
-        String estado = req.getParameter("txtestado");
+        String estado = req.getParameter("txtestado");*/
 
         try {
             // Validaciones
             Validator.validateNotEmpty(fecha, "fecha");
-            Validator.validateNotEmpty(estado, "estado");
 
-            Integer codigo_productoStr = Integer.parseInt(codigo_producto);
-            Integer cantidadStr = Integer.parseInt(cantidad);
-            Double precioStr = Double.parseDouble(precio_unitario);
-            Double subtotalStr = Double.parseDouble(subtotal);
 
             // Crear el objeto Venta y registrar la venta
-            Venta venta = new Venta(cliente_dni, trabajador_dni,fecha,metodo_pago);
+            Venta venta = new Venta(cliente_dni, trabajador_dni, fecha, metodo_pago);
             App.RegVentas.registrarVenta(venta);
 
             // Obtener el ID del usuario generado
@@ -64,12 +62,33 @@ public class VentaController extends HttpServlet {
                 throw new SQLException("Error al registrar la venta, ID no generado.");
             }
 
-            Detalle detalle = new Detalle(codigo_venta, codigo_productoStr,cantidadStr,precioStr,subtotalStr,estado);
-            App.RegDetalle.registrarDetalle(detalle);
+            // Capturar y registrar los detalles de la venta
+            List<Detalle> detalles = new ArrayList<>();
+            String[] productos = req.getParameterValues("productos");
+
+            for (int i = 0; i < productos.length; i++) {
+                String codigo_producto = req.getParameter("productos[" + i + "][nombre]");
+                String cantidad = req.getParameter("productos[" + i + "][cantidad]");
+                String precio_unitario = req.getParameter("productos[" + i + "][precio]");
+                String subtotal = req.getParameter("productos[" + i + "][subtotal]");
+
+                Integer codigo_productoStr = Integer.parseInt(codigo_producto);
+                Integer cantidadStr = Integer.parseInt(cantidad);
+                Double precioStr = Double.parseDouble(precio_unitario);
+                Double subtotalStr = Double.parseDouble(subtotal);
+
+                Detalle detalle = new Detalle(codigo_venta, codigo_productoStr, cantidadStr, precioStr, subtotalStr, estado);
+                detalles.add(detalle);
+            }
+
+            // Registrar los detalles en la base de datos
+            for (Detalle detalle : detalles) {
+                App.RegDetalle.registrarDetalle(detalle);
+            }
 
             resp.sendRedirect("/listar_detalle");
 
-        } catch (IllegalArgumentException|SQLException e) {
+        }catch (IllegalArgumentException|SQLException e) {
             // Leer el HTML de error y reemplazar el marcador de posición con el mensaje de error
             String errorPagePath = AppConfig.getErrorTemplate();
             String html_error = new String(Files.readAllBytes(Paths.get(errorPagePath)), StandardCharsets.UTF_8);

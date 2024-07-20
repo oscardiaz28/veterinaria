@@ -44,6 +44,7 @@ public class App {
         webserver.addServlet(ListadoVentaServlet.class, "/listar_venta");
         webserver.addServlet(ListarDetalleServlet.class, "/listar_detalle");
         webserver.addServlet(CombosForVentas.class, "/add_ventas");
+        webserver.addServlet(ProductosJsonServlet.class, "/productos_json");
 
         // TRABAJADOR
         webserver.addServlet(ListarTrabajadorServlet.class, "/listar_trabajador");

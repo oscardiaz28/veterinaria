@@ -50,13 +50,7 @@ public class TrabajadorController extends HttpServlet {
 
         try {
             // Validaciones
-            Validator.validateNotEmpty(dniTrabajador, "Dni Trabajador");
-            Validator.validateNotEmpty(nombre, "Nombre");
-            Validator.validateNotEmpty(apellidos, "Apellidos");
-            Validator.validateNotEmpty(cargo, "Cargo");
-            Validator.validateNotEmpty(direccion, "Direccion");
-            Validator.validateNotEmpty(salario, "Salario");
-            Validator.validateNotEmpty(celular, "Celular");
+           //
 
             Double salarioStr = Double.parseDouble(salario);
 

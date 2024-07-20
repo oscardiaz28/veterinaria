@@ -22,15 +22,14 @@ public class ServicioService {
     }
     // Método para registrar a un servicio
     public void addservice (Servicio servicio) throws SQLException, IOException {
-        String consultaSQL = "CALL registrarservicio(?, ?, ?, ?, ?)";
+        String consultaSQL = "CALL registrar_servicio(?, ?, ?, ?)";
 
         try {
-            PreparedStatement pstm = cnn.prepareStatement(consultaSQL);
-            pstm.setInt(1, servicio.getId_servicio());  // Codigo de la mascota
-            pstm.setString(2, servicio.getNombre());
-            pstm.setString(3, servicio.getDescripcion());
-            pstm.setDouble(4, servicio.getPrecio());
-            pstm.setString(5, servicio.getImagen());
+            PreparedStatement pstm = cnn.prepareStatement(consultaSQL);// Codigo de la mascota
+            pstm.setString(1, servicio.getNombre());
+            pstm.setString(2, servicio.getDescripcion());
+            pstm.setDouble(3, servicio.getPrecio());
+            pstm.setString(4, servicio.getImagen());
 
             int num = pstm.executeUpdate();
 
