@@ -30,18 +30,11 @@ public class RegistroVentas {
         }
     }
 
-    public static void registrarVenta(Venta venta) throws IOException {
+    public static int registrarVenta(Venta venta) throws IOException {
+        int codigo_venta = 0;
         try {
-            BusquedaVentasService.addVenta(venta);
-            System.out.println("Nuevo ok");
-        } catch (AlreadyExistsException e) {
-            String errorMsg = "AlreadyExistsException: " + e.getMessage();
-            System.out.println(errorMsg);
-            try {
-                ErrorLog.log(errorMsg,ErrorLog.Level.ERROR);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            codigo_venta = BusquedaVentasService.addVenta(venta);
+            System.out.println("Venta registrada exitosamente.");
         } catch (SQLException e) {
             String errorMsg = "SQLException: " + e.getMessage();
             System.out.println(errorMsg);
@@ -51,7 +44,7 @@ public class RegistroVentas {
                 ioException.printStackTrace();
             }
         } catch (RuntimeException e) {
-            String errorMsg = "Error al crear: " + e.getMessage();
+            String errorMsg = "Error al registrar: " + e.getMessage();
             System.out.println(errorMsg);
             try {
                 ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
@@ -59,6 +52,7 @@ public class RegistroVentas {
                 ioException.printStackTrace();
             }
         }
+        return codigo_venta;
     }
 
     public String getHtmlListarVentas() throws IOException, SQLException {

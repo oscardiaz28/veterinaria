@@ -60,6 +60,39 @@ public class RegistrarDetalle {
         }
     }
 
+    public static void registrarDetalles(List<Detalle> detalles) throws IOException {
+        try {
+            for (Detalle detalle : detalles) {
+                busquedaDetalle.addDetalle(detalle);
+            }
+            System.out.println("Detalles registrados exitosamente.");
+        } catch (AlreadyExistsException e) {
+            String errorMsg = "AlreadyExistsException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (SQLException e) {
+            String errorMsg = "SQLException: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } catch (RuntimeException e) {
+            String errorMsg = "Error al crear: " + e.getMessage();
+            System.out.println(errorMsg);
+            try {
+                ErrorLog.log(errorMsg, ErrorLog.Level.ERROR);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+    }
+
     public String getHmtlListarDetalle() throws IOException, SQLException {
         // Cargar plantilla principal
         String filename = "src\\main\\resources\\web\\detalle.html";

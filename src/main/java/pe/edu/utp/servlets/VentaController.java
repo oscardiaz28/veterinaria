@@ -27,69 +27,60 @@ public class VentaController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        //UTF-8
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        // Captura de datos Ventas
         String cliente_dni = req.getParameter("ComboCliente");
         String trabajador_dni = req.getParameter("ComboTrabajador");
         String fecha = req.getParameter("txtFecha");
         String metodo_pago = req.getParameter("ComboMetodo");
         String estado = req.getParameter("txtestado");
 
-        //Captura de datos DetalleVenta
-        /*String codigo_producto = req.getParameter("Producto");
-        String cantidad = req.getParameter("Cantidad");
-        String precio_unitario = req.getParameter("txtprecio_unitario");
-        String subtotal = req.getParameter("txtsubototal");
-        String estado = req.getParameter("txtestado");*/
-
         try {
-            // Validaciones
             Validator.validateNotEmpty(fecha, "fecha");
 
-
-            // Crear el objeto Venta y registrar la venta
+            // Registrar la venta
             Venta venta = new Venta(cliente_dni, trabajador_dni, fecha, metodo_pago);
-            App.RegVentas.registrarVenta(venta);
-
-            // Obtener el codigo_venta generado
-            int codigo_venta = venta.getCodigo_venta();
+            int codigo_venta = App.RegVentas.registrarVenta(venta);
 
             if (codigo_venta == 0) {
                 throw new SQLException("Error al registrar la venta, ID no generado.");
             }
 
-            // Capturar y registrar los detalles de la venta
             List<Detalle> detalles = new ArrayList<>();
-            String[] productos = req.getParameterValues("productos");
+            String[] productosIds = req.getParameterValues("productos[0][id]");
 
-            for (int i = 0; i < productos.length; i++) {
-                String codigo_producto = req.getParameter("productos[" + i + "][nombre]");
+            if (productosIds == null || productosIds.length == 0) {
+                throw new IllegalArgumentException("No se recibieron productos.");
+            }
+
+            for (int i = 0; i < productosIds.length; i++) {
+                String codigo_producto = req.getParameter("productos[" + i + "][id]");
                 String cantidad = req.getParameter("productos[" + i + "][cantidad]");
                 String precio_unitario = req.getParameter("productos[" + i + "][precio]");
                 String subtotal = req.getParameter("productos[" + i + "][subtotal]");
 
-                Integer codigo_productoStr = Integer.parseInt(codigo_producto);
-                Integer cantidadStr = Integer.parseInt(cantidad);
-                Double precioStr = Double.parseDouble(precio_unitario);
-                Double subtotalStr = Double.parseDouble(subtotal);
+                if (codigo_producto == null || cantidad == null || precio_unitario == null || subtotal == null) {
+                    throw new IllegalArgumentException("Uno o más detalles de productos están vacíos.");
+                }
 
-                Detalle detalle = new Detalle(codigo_venta, codigo_productoStr, cantidadStr, precioStr, subtotalStr, estado);
+                Integer codigo_productoInt = Integer.parseInt(codigo_producto);
+                Integer cantidadInt = Integer.parseInt(cantidad);
+                Double precio = Double.parseDouble(precio_unitario);
+                Double subtotalDouble = Double.parseDouble(subtotal);
+
+                Detalle detalle = new Detalle(codigo_venta, codigo_productoInt, cantidadInt, precio, subtotalDouble, estado);
                 detalles.add(detalle);
             }
 
-            // Registrar los detalles en la base de datos
+            // Registrar todos los detalles
             for (Detalle detalle : detalles) {
                 App.RegDetalle.registrarDetalle(detalle);
             }
 
             resp.sendRedirect("/listar_detalle");
 
-        }catch (IllegalArgumentException|SQLException e) {
-            // Leer el HTML de error y reemplazar el marcador de posición con el mensaje de error
+        } catch (IllegalArgumentException | SQLException e) {
             String errorPagePath = AppConfig.getErrorTemplate();
             String html_error = new String(Files.readAllBytes(Paths.get(errorPagePath)), StandardCharsets.UTF_8);
             html_error = html_error.replace("${error}", e.getMessage());

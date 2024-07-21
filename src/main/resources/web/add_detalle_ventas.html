@@ -235,7 +235,7 @@
                             </tr>
                             </thead>
                             <tbody id="detalleVentaBody">
-                            <!-- Filas de productos se agregarán aquí dinámicamente -->
+
                             </tbody>
                         </table>
                     </div>
@@ -267,95 +267,102 @@
 <script src="js/main.js"></script>
 <script src="datatables/datatables.min.js"></script>
 <script src="js/plugins/pace.min.js"></script>
+
 <script>
     let contadorProductos = 0;
-        let productos = {};
+    let productos = {};
 
-        $(document).ready(function() {
-            fetchProductos();
-        });
+    $(document).ready(function() {
+        fetchProductos();
+    });
 
-        function fetchProductos() {
-            $.ajax({
-                url: '/productos_json',
-                method: 'GET',
-                success: function(data) {
-                    productos = data.reduce((acc, producto) => {
-                        acc[producto.nombre] = producto.precio;
-                        return acc;
-                    }, {});
-                },
-                error: function(error) {
-                    console.error("Error fetching products: ", error);
+    function fetchProductos() {
+        $.ajax({
+            url: '/productos_json',
+            method: 'GET',
+            success: function(data) {
+                if (!data || !Array.isArray(data)) {
+                    console.error("Data is not in expected format or is null.");
+                    return;
                 }
-            });
-        }
-
-        function agregarProducto() {
-            if (Object.keys(productos).length === 0) {
-                alert("No hay productos disponibles.");
-                return;
+                productos = data.reduce((acc, producto) => {
+                    acc[producto.id] = {
+                        nombre: producto.nombre,
+                        precio: producto.precio
+                    };
+                    return acc;
+                }, {});
+            },
+            error: function(error) {
+                console.error("Error fetching products: ", error);
             }
+        });
+    }
 
-            const productoSeleccionado = Object.keys(productos)[0];
-            const precio = productos[productoSeleccionado];
-            const cantidad = 1;
-            const subtotal = cantidad * precio;
-
-            const nuevaFila = `
-                <tr id="producto-${contadorProductos}">
-                    <td>
-                        <select name="productos[${contadorProductos}][nombre]" class="form-control" onchange="actualizarPrecio(${contadorProductos}, this.value)">
-                            ${Object.keys(productos).map(p => `<option value="${p}" ${p === productoSeleccionado ? "selected" : ""}>${p}</option>`).join("")}
-                        </select>
-                    </td>
-                    <td><input type="number" name="productos[${contadorProductos}][precio]" value="${precio}" class="form-control" readonly /></td>
-                    <td><input type="number" name="productos[${contadorProductos}][cantidad]" value="${cantidad}" class="form-control" onchange="actualizarSubtotal(${contadorProductos})" /></td>
-                    <td><input type="number" name="productos[${contadorProductos}][subtotal]" value="${subtotal}" class="form-control" readonly /></td>
-                    <td><span class="remove-product-btn" onclick="eliminarProducto(${contadorProductos})">Eliminar</span></td>
-                </tr>
-            `;
-
-            $('#detalleVentaBody').append(nuevaFila);
-            contadorProductos++;
-            actualizarTotal();
+    function agregarProducto() {
+        if (Object.keys(productos).length === 0) {
+            alert("No hay productos disponibles.");
+            return;
         }
 
-        function eliminarProducto(id) {
-            $(`#producto-${id}`).remove();
-            actualizarTotal();
-        }
+        const productoSeleccionado = Object.keys(productos)[0];
+        const { nombre, precio } = productos[productoSeleccionado];
+        const cantidad = 1;
+        const subtotal = cantidad * precio;
 
-        function actualizarPrecio(id, producto) {
-            const precio = productos[producto];
-            $(`#producto-${id} input[name='productos[${id}][precio]']`).val(precio);
-            actualizarSubtotal(id);
-        }
+        const nuevaFila = `
+            <tr id="producto-${contadorProductos}">
+                <td>
+                    <select name="productos[${contadorProductos}][id]" class="form-control" onchange="actualizarPrecio(${contadorProductos}, this.value)">
+                        ${Object.keys(productos).map(id => `<option value="${id}" ${id === productoSeleccionado ? "selected" : ""}>${productos[id].nombre}</option>`).join("")}
+                    </select>
+                </td>
+                <td><input type="number" name="productos[${contadorProductos}][precio]" value="${precio}" class="form-control" readonly /></td>
+                <td><input type="number" name="productos[${contadorProductos}][cantidad]" value="${cantidad}" class="form-control" onchange="actualizarSubtotal(${contadorProductos})" /></td>
+                <td><input type="number" name="productos[${contadorProductos}][subtotal]" value="${subtotal}" class="form-control" readonly /></td>
+                <td><span class="remove-product-btn" onclick="eliminarProducto(${contadorProductos})">Eliminar</span></td>
+            </tr>
+        `;
 
-        function actualizarSubtotal(id) {
-            const precio = parseFloat($(`#producto-${id} input[name='productos[${id}][precio]']`).val());
-            const cantidad = parseFloat($(`#producto-${id} input[name='productos[${id}][cantidad]']`).val());
-            const subtotal = precio * cantidad;
-            $(`#producto-${id} input[name='productos[${id}][subtotal]']`).val(subtotal);
-            actualizarTotal();
-        }
+        $('#detalleVentaBody').append(nuevaFila);
+        contadorProductos++;
+        actualizarTotal();
+    }
 
-        function actualizarTotal() {
-            let total = 0;
-            $('#detalleVentaBody input[name$="[subtotal]"]').each(function() {
-                total += parseFloat($(this).val());
-            });
-            $('#total').val(total.toFixed(2));
-        }
+    function eliminarProducto(id) {
+        $(`#producto-${id}`).remove();
+        actualizarTotal();
+    }
 
-        $('#ventaForm').on('submit', function (e) {
-            // Convertir los datos de la tabla en formato adecuado para enviar al servidor
-            $('#detalleVentaTable tbody tr').each(function(index) {
-                $(this).find('select, input').each(function() {
-                    $(this).attr('name', $(this).attr('name').replace(/\[\d+\]/, '[' + index + ']'));
-                });
+    function actualizarPrecio(id, productoId) {
+        const { precio } = productos[productoId];
+        $(`#producto-${id} input[name='productos[${id}][precio]']`).val(precio);
+        actualizarSubtotal(id);
+    }
+
+    function actualizarSubtotal(id) {
+        const precio = parseFloat($(`#producto-${id} input[name='productos[${id}][precio]']`).val());
+        const cantidad = parseFloat($(`#producto-${id} input[name='productos[${id}][cantidad]']`).val());
+        const subtotal = precio * cantidad;
+        $(`#producto-${id} input[name='productos[${id}][subtotal]']`).val(subtotal);
+        actualizarTotal();
+    }
+
+    function actualizarTotal() {
+        let total = 0;
+        $('#detalleVentaBody input[name$="[subtotal]"]').each(function() {
+            total += parseFloat($(this).val());
+        });
+        $('#total').val(total.toFixed(2));
+    }
+
+    $('#ventaForm').on('submit', function (e) {
+        $('#detalleVentaTable tbody tr').each(function(index) {
+            $(this).find('select, input').each(function() {
+                $(this).attr('name', $(this).attr('name').replace(/\[\d+\]/, '[' + index + ']'));
             });
         });
+    });
 </script>
 </body>
 </html>
