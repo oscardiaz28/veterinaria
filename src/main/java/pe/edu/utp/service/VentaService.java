@@ -75,4 +75,89 @@ public class VentaService {
         }
         return lista;
     }
+
+    public double getTotalVentas() throws SQLException {
+        double total = 0;
+
+        try {
+            CallableStatement cstmt = cnn.prepareCall("{CALL obtenerTotalVentas(?)}");
+            cstmt.registerOutParameter(1, Types.DOUBLE);
+            cstmt.execute();
+
+            total = cstmt.getDouble(1);
+
+            cstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return total;
+    }
+
+    public int getTotalProductos() throws SQLException, IOException {
+        int totalProductos = 0;
+
+        try {
+            CallableStatement cstmt = cnn.prepareCall("{CALL verTotalProductos()}");
+            ResultSet rs = cstmt.executeQuery(); // Se ejecuta el procedimiento
+
+            // Si hay resultados, mostrar el total de productos
+            if (rs.next()) {
+                totalProductos = rs.getInt("Total de Productos");
+            }
+
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener el total de productos");
+        }
+
+        return totalProductos;
+    }
+
+    public int getTotalCitas() throws SQLException, IOException {
+        int totalCitas = 0;
+
+        try {
+            CallableStatement cstmt = cnn.prepareCall("{CALL verTotalCitas()}");
+            ResultSet rs = cstmt.executeQuery(); // Se ejecuta el procedimiento
+
+            // Si hay resultados, mostrar el total de productos
+            if (rs.next()) {
+                totalCitas = rs.getInt("Total de Citas");
+            }
+
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener el total de citas");
+        }
+
+        return totalCitas;
+    }
+
+    public int getTotalClientes() throws SQLException, IOException {
+        int totalClientes = 0;
+
+        try {
+            CallableStatement cstmt = cnn.prepareCall("{CALL verTotalClientes()}");
+            ResultSet rs = cstmt.executeQuery(); // Se ejecuta el procedimiento
+
+            // Si hay resultados, mostrar el total de productos
+            if (rs.next()) {
+                totalClientes = rs.getInt("Total de Clientes");
+            }
+
+            rs.close();
+            cstmt.close();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw new SQLException("Error al obtener el total de citas");
+        }
+
+        return totalClientes;
+    }
 }

@@ -122,3 +122,4 @@
 2024-07-20 06:33:40 - ERROR - SQLException: java.sql.SQLException: Parameter p_codigo_venta is not registered as an output parameter
 2024-07-20 06:52:04 - ERROR - Data truncation: Data too long for column 'p_trabajador_dni' at row 1
 2024-07-20 06:52:04 - ERROR - SQLException: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'p_trabajador_dni' at row 1
+2024-07-24 11:45:43 - ERROR - Unknown column 'total_citas' in 'field list'

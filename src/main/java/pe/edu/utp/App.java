@@ -36,6 +36,9 @@ public class App {
         String path = "src\\main\\resources\\web\\";
         JettyAdvUTP webserver = new JettyAdvUTP(8085, path);
 
+        //Index
+        webserver.addServlet(ReportServlet.class, "/home");
+
         // USUARIO
         webserver.addServlet(ListarUsuarioServlet.class, "/listar_usuario");
 
@@ -104,7 +107,7 @@ public class App {
 
         webserver.addServlet(LogoutAdminServlet.class, "/logoutAdmin");
 
-        URL myURL = new URL("http://localhost:8085/index.html");
+        URL myURL = new URL("http://localhost:8085/home");
         System.out.println("*********************************************************");
         System.out.println("CLICK AQUI PARA ABRIR LA APLICACION:" + myURL);
         System.out.println("*********************************************************");

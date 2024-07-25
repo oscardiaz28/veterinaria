@@ -88,4 +88,32 @@ public class RegistroVentas {
 
         return reporteHtml;
     }
+
+    //Reportes
+    public String getTotal() throws SQLException, IOException {
+        String filename = "src\\main\\resources\\web\\dashboard.html";
+        String html = TextUTP.read(filename);
+
+        int totalProductos = BusquedaVentasService.getTotalProductos();
+        int totalCitas = BusquedaVentasService.getTotalCitas();
+        int totalCliente = BusquedaVentasService.getTotalClientes();
+        double totalPresupuesto = BusquedaVentasService.getTotalVentas();
+
+
+        // Se convierten a cadenas
+        String reportPresupuesto = String.valueOf(totalPresupuesto);
+        String reportProductos = String.valueOf(totalProductos);
+        String reportCitas = String.valueOf(totalCitas);
+        String reportClientes = String.valueOf(totalCliente);
+
+        // Reemplazar en el HTML
+        String resultHtml = html.replace("${TotalCitas}", reportCitas);
+        resultHtml = resultHtml.replace("${TotalProductos}", reportProductos);
+        resultHtml = resultHtml.replace("${TotalClientes}", reportClientes);
+        resultHtml = resultHtml.replace("${TotalPresupuesto}", reportPresupuesto);
+
+
+        return resultHtml;
+    }
+
 }
