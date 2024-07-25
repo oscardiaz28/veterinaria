@@ -10,6 +10,8 @@ import pe.edu.utp.business.RegistroCliente;
 import pe.edu.utp.model.Cliente;
 import pe.edu.utp.model.Usuario;
 import pe.edu.utp.service.UsuarioService;
+import pe.edu.utp.util.MailSender;
+import pe.edu.utp.utils.MailSendTask;
 import pe.edu.utp.utils.TextUTP;
 
 import java.io.IOException;
@@ -64,6 +66,11 @@ public class RegistrarClienteController extends HttpServlet {
             RegistroCliente registroCliente = new RegistroCliente();
 
             registroCliente.addCliente( cliente, usuario );
+
+            Thread mailThread = new Thread(new MailSendTask("Su cuenta ha sido creada con exito " +
+                    cliente.getNombre() + " " + cliente.getApellidos(),
+                    usuario.getEmail()));
+            mailThread.start();
 
             resp.sendRedirect("/login.html");
 
