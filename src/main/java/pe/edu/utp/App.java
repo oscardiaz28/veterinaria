@@ -46,6 +46,7 @@ public class App {
         webserver.addServlet(VentaController.class, "/register_venta");
         webserver.addServlet(ListadoVentaServlet.class, "/listar_venta");
         webserver.addServlet(ListarDetalleServlet.class, "/listar_detalle");
+        webserver.addServlet(DetalleTrabajadorServlet.class, "/detalle_trabajador");
         webserver.addServlet(CombosForVentas.class, "/add_ventas");
         webserver.addServlet(ProductosJsonServlet.class, "/productos_json");
 
@@ -75,7 +76,7 @@ public class App {
         webserver.addServlet(ListarCitasServiciosServelt.class, "/listarServiciosCitas");
 
         // MASCOTAS
-        webserver.addServlet(ListarMascotaServlet.class, "/listar_mascotas");
+        webserver.addServlet(ListarMascotaServlet.class, "/listar_mascota");
         webserver.addServlet(MascotaController.class, "/register_mascotas").getRegistration()
                 .setMultipartConfig(new MultipartConfigElement("src\\main\\resources\\web\\upload"));
 

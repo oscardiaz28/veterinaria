@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import pe.edu.utp.App;
 
-@WebServlet (urlPatterns = "/listar_mascotas")
+@WebServlet (urlPatterns = "/listar_mascota")
 
 public class ListarMascotaServlet extends HttpServlet{
     @Override

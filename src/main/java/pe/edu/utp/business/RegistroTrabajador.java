@@ -12,6 +12,7 @@ import pe.edu.utp.utils.TextUTP;
 
 import javax.naming.NamingException;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -117,6 +118,45 @@ public class RegistroTrabajador {
 
         return resultHtml;
     }
+
+    public String getHtmlDetalleTrabajador(String dniTrabajador) throws IOException, SQLException {
+        // Cargar la página de detalle del trabajador
+        String filename = "src\\main\\resources\\web\\dashboard.html";
+        String html = TextUTP.read(filename);
+
+        // Obtener el trabajador por su DNI
+        Trabajador trabajador = busquedaTrabajadorService.getTrabajadorByDNI(dniTrabajador);
+        if (trabajador == null) {
+            throw new SQLException("Trabajador no encontrado con DNI: " + dniTrabajador);
+        }
+
+        // Reemplazar los placeholders en la plantilla con los datos del trabajador
+        String resultHtml = html.replace("${dni_trabajador}", trabajador.getDni())
+                .replace("${usuario_id}", trabajador.getUsuario_id().toString())
+                .replace("${nombre}", trabajador.getNombre())
+                .replace("${apellido}", trabajador.getApellido())
+                .replace("${cargo}", trabajador.getCargo())
+                .replace("${salario}", trabajador.getSalario().toString())
+                .replace("${direccion}", trabajador.getDireccion())
+                .replace("${celular}", trabajador.getCelular())
+                .replace("${fecha_contrato}", trabajador.getFecha_contrato())
+                .replace("${estado}", trabajador.getEstado());
+
+        return resultHtml;
+    }
+
+    public void actualizarEstadoColaborador(String dni_trabajador) throws SQLException, IOException {
+        try {
+            busquedaTrabajadorService.actualizarEstadoProyecto(dni_trabajador);
+            System.out.println("Estado del proyecto actualizado correctamente.");
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw e;
+        }
+    }
+
+
+
 
 
 

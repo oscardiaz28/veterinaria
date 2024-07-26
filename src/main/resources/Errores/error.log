@@ -125,3 +125,47 @@
 2024-07-24 11:45:43 - ERROR - Unknown column 'total_citas' in 'field list'
 2024-07-25 01:43:33 - ERROR - PROCEDURE bd_veterinaria.verTotalProductos does not exist
 2024-07-25 01:43:33 - ERROR - PROCEDURE bd_veterinaria.verTotalProductos does not exist
+2024-07-25 06:49:44 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:49:44 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:49:53 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:49:53 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:54:13 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:54:13 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:54:20 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:54:20 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:54:54 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:54:54 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 06:55:02 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 06:55:02 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 06:55:10 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 06:55:10 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:05:08 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:05:08 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:05:09 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 08:05:09 - ERROR - Data truncation: Data too long for column 'pdni_trabajador' at row 1
+2024-07-25 08:05:28 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:05:28 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:18:24 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:18:24 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:18:47 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:18:47 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:18:55 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:18:55 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:15 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:15 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:17 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:17 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:18 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:18 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:18 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:21:18 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:26:15 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:26:15 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:26:36 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:26:36 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:28:49 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:28:49 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:44:23 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:44:23 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:44:40 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='
+2024-07-25 08:44:40 - ERROR - Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation '='

@@ -38,7 +38,7 @@ public class RegistroCitaServicio {
 
     public String getHTMListarCitaServicios() throws IOException, SQLException {
     // Cargar plantilla principal
-    String filename = "src\\main\\resources\\web\\cita_servicio.html";
+    String filename = "src\\main\\resources\\web\\reserva.html";
     String html = TextUTP.read(filename);
 
     // Cargar plantilla para los items

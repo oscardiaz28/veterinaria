@@ -10,12 +10,13 @@
     <td>${celular}</td>
     <td>${fecha_contrato}</td>
     <td>
+        <a href="/detalle_trabajador?dni_trabajador=${dni}&action=updateEstado">
         <button
                 class="btn btn-success"
                 onclick="toggleStatus(this)"
         >
             ${estado}
-        </button>
+        </button></a>
     </td>
     <td>
         <a href="#"

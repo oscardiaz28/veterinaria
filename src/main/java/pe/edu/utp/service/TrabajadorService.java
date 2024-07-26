@@ -102,6 +102,50 @@ public class TrabajadorService {
         return sb.toString();
     }
 
+    //Obtener Detalle Trabajador
+    public Trabajador getTrabajadorByDNI(String dniTrabajador) throws SQLException {
+
+        String query = "{CALL GetTrabajadorByDNI(?)}";
+
+        try (CallableStatement stmt = cnn.prepareCall(query)) {
+
+            stmt.setString(1, dniTrabajador);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+                    return new Trabajador(
+                            rs.getString("dni"),
+                            rs.getInt("usuario_id"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("cargo"),
+                            rs.getDouble("salario"),
+                            rs.getString("direccion"),
+                            rs.getString("celular"),
+                            rs.getString("fecha_contratacion"),
+                            rs.getString("estado")
+                    );
+                }
+            }
+        }
+        return null;
+    }
+
+
+    //Actualizar Estado
+    public void actualizarEstadoProyecto(String dni) throws SQLException, IOException {
+        String query = "{CALL actualizarEstadoTrabajador(?)}";
+
+        try (CallableStatement cstmt = cnn.prepareCall(query)) {
+            cstmt.setString(1, dni);
+            cstmt.execute();
+        } catch (SQLException e) {
+            ErrorLog.log(e.getMessage(), ErrorLog.Level.ERROR);
+            throw e;
+        }
+    }
+
 
 
 }
