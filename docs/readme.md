@@ -5,6 +5,8 @@ Contribuí al desarrollo construyendo el frontend utilizando HTML, CSS/SASS y Ja
 También implemente la autenticacón para los diferentes roles de los usuarios, e hice uso de la librería Commons Email para 
 el envio de emails para los nuevos usuarios.
 
+**Tecnologias:** Java, Jakarta EE, Lombok, HTML, CSS, JavaScript, Jquery, Commons Email
+
 ### Visuales
 ---
 
